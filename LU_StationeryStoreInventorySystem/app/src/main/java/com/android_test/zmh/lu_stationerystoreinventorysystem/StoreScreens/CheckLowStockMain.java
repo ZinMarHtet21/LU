@@ -22,6 +22,7 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.Ite
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Item;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.StockItem;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,6 +37,7 @@ public class CheckLowStockMain extends ActionBarActivity implements AdapterView.
     private RequestQueue mRequestQueue;
     private ArrayList<Item> stocklist;
     private String url = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=7c5c19eba3c21dc8bb16f00829b2be41&date=2015-02-09&format=json&nojsoncallback=1";
+
 
 
     @Override
