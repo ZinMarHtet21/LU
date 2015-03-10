@@ -10,17 +10,17 @@ public class Requisition implements Serializable {
 
     private String id;
     private String madeBy;
-    private Date date;
+    private String date;
     private String departmentName;
     private String status;
     private String remark;
     private String approvedBy;
-    private Date processDate;
+    private String processDate;
     private List<RequisitionDetail> requisitionDetails = new ArrayList<RequisitionDetail>();
 
     public Requisition(){}
 
-    public Requisition(String id, String madeBy, Date date, String departmentName, String status, String remark, String approvedBy, Date processDates) {
+    public Requisition(String id, String madeBy, String date, String departmentName, String status, String remark, String approvedBy, String processDates) {
         this.id = id;
         this.madeBy = madeBy;
         this.date = date;
@@ -47,11 +47,11 @@ public class Requisition implements Serializable {
         this.madeBy = madeBy;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -87,11 +87,11 @@ public class Requisition implements Serializable {
         this.approvedBy = approvedBy;
     }
 
-    public Date getProcessDate() {
+    public String getProcessDate() {
         return processDate;
     }
 
-    public void setProcessDate(Date processDate) {
+    public void setProcessDate(String processDate) {
         this.processDate = processDate;
     }
 

@@ -1,4 +1,4 @@
-package com.example.student.touristapp;
+package com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator;
 
 import android.util.Log;
 
@@ -42,8 +42,8 @@ public class JSONParser {
         InputStream is = null;
         try {
             DefaultHttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpPost = new HttpGet(url);
-            HttpResponse httpResponse = httpClient.execute(httpPost);
+            HttpGet httpGet = new HttpGet(url);
+            HttpResponse httpResponse = httpClient.execute(httpGet);
             HttpEntity httpEntity = httpResponse.getEntity();
             is = httpEntity.getContent();
         } catch (UnsupportedEncodingException e) {

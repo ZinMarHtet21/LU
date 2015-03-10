@@ -50,7 +50,7 @@
         </activity>
         <activity
             android:name=".DepartmentScreens.NewRequisition"
-            android:label="@string/title_activity_new_requisition" >
+            android:label="@string/title_activity_new_requisition">
         </activity>
         <activity
             android:name=".DepartmentScreens.RequisitionHistory"
@@ -62,11 +62,13 @@
         </activity>
         <activity
             android:name=".DepartmentScreens.RequisitionListDetail"
-            android:label="@string/title_activity_requisition_list_detail" >
+            android:label="@string/title_activity_requisition_list_detail"
+            android:parentActivityName=".DepartmentScreens.RequisitionHistory">
         </activity>
         <activity
             android:name=".DepartmentScreens.DisbursementList"
-            android:label="@string/title_activity_disbursement_list" >
+            android:label="@string/title_activity_disbursement_list"
+            android:parentActivityName=".MainScreens.RepresentativeMainScreen">
         </activity>
         <activity
             android:name=".DepartmentScreens.DisbursementListDetail"
