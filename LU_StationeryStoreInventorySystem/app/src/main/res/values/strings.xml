@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Logic University Stationery Store Inventory System</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="loginBtn">Login</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="title_activity_acitvity_main_screen">acitvity_main_screen</string>
+    <string name="title_activity_main_screen">MainScreen</string>
+    <string name="title_activity_clerk_main_screen">Clerk MainScreen</string>
+    <string name="title_activity_supervisor_main_screen">Supervisor MainScreen</string>
+    <string name="title_activity_manager_main_screen">Manager MainScreen</string>
+    <string name="title_activity_employee_main_screen">Employee MainScreen</string>
+    <string name="title_activity_representative_main_screen">Representative MainScreen</string>
+    <string name="title_activity_hodmain_screen">HOD MainScreen</string>
+    <string name="title_activity_update_profile">Update Profile</string>
+    <string name="title_activity_new_requisition">New Requisition</string>
+    <string name="title_activity_requisition_history">Requisition History</string>
+    <string name="title_activity_requisition_list">Requisition List</string>
+    <string name="title_activity_requisition_list_detail">Requisition List Detail</string>
+    <string name="title_activity_disbursement_list">Disbursement List</string>
+    <string name="title_activity_disbursement_list_detail">Disbursement List Detail</string>
+    <string name="title_activity_check_low_stock">Check Low Stock</string>
+    <string name="title_activity_retrieval_list">Retrieval List</string>
+    <string name="title_activity_check_low_stock_main">Check Low Stock Main</string>
+    <string name="title_activity_check_low_stock_all_stock">Check Low Stock All Stock</string>
+    <string name="title_activity_check_low_stock_search">Check Low Stock Search</string>
+    <string name="title_activity_purchase_order">Purchase Order</string>
+    <string name="title_activity_purchase_order_detail">Purchase Order Detail</string>
+    <string name="title_activity_report_discrepency">Report Discrepency</string>
+    <string name="title_activity_approve_reject_stock_adjustment">Approve/Reject Stock Adjustment</string>
+    <string name="title_activity_approve_reject_stock_adjustment_detail">Approve/Reject StockA djustment Detail</string>
+    <string name="title_activity_approve_reject_purchase_order">Approve/Reject Purchase Order</string>
+    <string name="title_activity_approve_reject_purchase_order_detail">Approve/Reject Purchase Order Detail</string>
+    <string name="department_prompt">Choose a department</string>
+
+    <string-array name="department_array">
+        <item>English</item>
+        <item>Computer Science</item>
+        <item>Commerce</item>
+        <item>Registrar</item>
+        <item>Zoology</item>
+    </string-array>
+
+    <string-array name="itemlist_array">
+        <item>Clip Double 1"</item>
+        <item>Clip Dobule 2"</item>
+        <item>Clip Double 3/4"</item>
+        <item>Clip Paper large</item>
+        <item>Clip Paper Medium</item>
+        <item>Clip Paper Small</item>
+    </string-array>
+
+
+    <string name="title_activity_test">test</string>
+    <string name="title_activity_requisition_history_detail">RequisitionHistoryDetail</string>
+    <string name="itemlist_prompt">Choose an item</string>
+
+</resources>

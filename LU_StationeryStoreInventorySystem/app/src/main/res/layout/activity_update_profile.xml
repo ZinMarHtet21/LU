@@ -1,0 +1,130 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.android_test.zmh.lu_stationerystoreinventorysystem.UpdateProfile">
+
+    <TextView
+        android:id="@+id/upd_empCode_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Employee Code"
+        android:textSize="16dp"
+        android:textAllCaps="true"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/upd_empCode_txt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:layout_below="@+id/upd_empCode_tv"/>
+
+    <TextView
+        android:id="@+id/upd_empName_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Employee Name"
+        android:textSize="16dp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:layout_below="@+id/upd_empCode_txt"/>
+
+    <EditText
+        android:id="@+id/upd_empName_txt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:layout_below="@+id/upd_empName_tv" />
+
+    <TextView
+        android:id="@+id/upd_empDept_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Department Name"
+        android:textSize="16dp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:layout_below="@+id/upd_empName_txt"/>
+
+    <Spinner
+        android:id="@+id/upd_empDept_Spnr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/department_array"
+        android:prompt="@string/department_prompt"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/upd_empDept_tv"/>
+
+    <TextView
+        android:id="@+id/upd_empType_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Position"
+        android:textSize="16dp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:layout_below="@+id/upd_empDept_Spnr"/>
+
+    <Spinner
+        android:id="@+id/upd_empType_Spnr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/department_array"
+        android:prompt="@string/department_prompt"
+        android:padding="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/upd_empType_tv"/>
+
+    <TextView
+        android:id="@+id/upd_empPh_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone Number"
+        android:textSize="16dp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:layout_below="@+id/upd_empType_Spnr"/>
+
+    <EditText
+        android:id="@+id/upd_empPh_txt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:layout_below="@+id/upd_empPh_tv"/>
+
+    <TextView
+        android:id="@+id/upd_empAdr_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone Number"
+        android:textSize="16dp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:layout_below="@+id/upd_empPh_txt"/>
+
+
+    <EditText
+        android:id="@+id/upd_empAdr_txt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:layout_below="@+id/upd_empAdr_tv" />
+
+
+</RelativeLayout>
