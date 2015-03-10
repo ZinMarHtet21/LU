@@ -1,4 +1,4 @@
-package com.android_test.zmh.lu_stationerystoreinventorysystem;
+package com.android_test.zmh.lu_stationerystoreinventorysystem.Main;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -17,6 +17,7 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens.HODMai
 import com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens.ManagerMainScreen;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens.RepresentativeMainScreen;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens.SupervisorMainScreen;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
 
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {

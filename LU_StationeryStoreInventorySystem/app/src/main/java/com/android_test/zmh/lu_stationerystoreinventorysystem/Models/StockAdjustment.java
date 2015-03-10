@@ -15,8 +15,7 @@ public class StockAdjustment {
     private String reason;
     private Date date;
 
-    public StockAdjustment() {
-    }
+    public StockAdjustment(){}
 
     public StockAdjustment(String id, String voucherId, String itemName, int qty, double price, String status, String reason, Date date) {
         this.id = id;
@@ -29,19 +28,19 @@ public class StockAdjustment {
         this.date = date;
     }
 
-    public String getID(){
+    public String getId() {
         return id;
     }
 
-    public void setID(String id){
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getVoucherId(){
+    public String getVoucherId() {
         return voucherId;
     }
 
-    public void setVoucherId(String voucherId){
+    public void setVoucherId(String voucherId) {
         this.voucherId = voucherId;
     }
 
@@ -61,35 +60,35 @@ public class StockAdjustment {
         this.qty = qty;
     }
 
-    public double getPrice(){
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price){
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public String getStatus(){
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status){
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public String getReason(){
+    public String getReason() {
         return reason;
     }
 
-    public void setReason(String reason){
+    public void setReason(String reason) {
         this.reason = reason;
     }
 
-    public Date getDate(){
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date){
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -106,4 +105,5 @@ public class StockAdjustment {
                 ", date=" + date +
                 '}';
     }
+
 }

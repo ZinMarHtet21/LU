@@ -86,7 +86,7 @@ public class DisbursementList extends ActionBarActivity {
             View v = inflater.inflate(R.layout.disbursement_list_row, null, true);
             TextView tv1 = (TextView) v.findViewById(R.id.disbursement_id_txt);
             TextView tv2 = (TextView) v.findViewById(R.id.disbursement_date_txt);
-            tv1.setText(list.get(position).getID());
+            tv1.setText(list.get(position).getId());
             tv2.setText(list.get(position).getDate().toString());
             return v;
         }

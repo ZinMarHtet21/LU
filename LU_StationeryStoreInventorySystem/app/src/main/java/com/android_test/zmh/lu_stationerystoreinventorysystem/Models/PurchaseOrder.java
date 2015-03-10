@@ -2,13 +2,14 @@ package com.android_test.zmh.lu_stationerystoreinventorysystem.Models;
 
 
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by student on 4/3/15.
  */
-public class PurchaseOrder {
+public class PurchaseOrder implements Serializable {
     private String id;
     private String number;
     private Date date;
@@ -18,9 +19,9 @@ public class PurchaseOrder {
     private String status;
     private List<PurchaseOrderDetail> purchaseOrderDetail;
 
-    public PurchaseOrder() {
-    }
+    public PurchaseOrder(){}
 
+    //private static final long Version = 1L;
     public PurchaseOrder(String id, String number, Date date, String supplierName, String orderBy, String approvedBy, String status) {
         this.id = id;
         this.number = number;
@@ -31,67 +32,67 @@ public class PurchaseOrder {
         this.status = status;
     }
 
-    public String getID(){
+    public String getId() {
         return id;
     }
 
-    public void setID(String id){
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getNumber(){
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(String number){
+    public void setNumber(String number) {
         this.number = number;
     }
 
-    public Date getDate(){
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date){
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public String getSupplierName(){
+    public String getSupplierName() {
         return supplierName;
     }
 
-    public void setSupplierName(String supplierName){
+    public void setSupplierName(String supplierName) {
         this.supplierName = supplierName;
     }
 
-    public String getOrderBy(){
+    public String getOrderBy() {
         return orderBy;
     }
 
-    public void setOrderBy(String orderBy){
+    public void setOrderBy(String orderBy) {
         this.orderBy = orderBy;
     }
 
-    public String getApprovedBy(){
+    public String getApprovedBy() {
         return approvedBy;
     }
 
-    public void setApprovedBy(String approvedBy){
+    public void setApprovedBy(String approvedBy) {
         this.approvedBy = approvedBy;
     }
 
-    public String getStatus(){
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status){
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public List<PurchaseOrderDetail> getDeliveryOrderDetail(){
+    public List<PurchaseOrderDetail> getPurchaseOrderDetail() {
         return purchaseOrderDetail;
     }
 
-    public void setDeliveryOrderDetail(List<PurchaseOrderDetail> purchaseOrderDetail){
+    public void setPurchaseOrderDetail(List<PurchaseOrderDetail> purchaseOrderDetail) {
         this.purchaseOrderDetail = purchaseOrderDetail;
     }
 
@@ -108,4 +109,5 @@ public class PurchaseOrder {
                 ", purchaseOrderDetail=" + purchaseOrderDetail +
                 '}';
     }
+
 }

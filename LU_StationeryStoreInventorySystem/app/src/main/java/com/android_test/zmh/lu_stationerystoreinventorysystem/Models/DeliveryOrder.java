@@ -15,63 +15,62 @@ public class DeliveryOrder {
     private String remark;
     private List<DeliveryOrderDetail> deliveryOrderDetail = new ArrayList<DeliveryOrderDetail>();
 
-    public DeliveryOrder() {
-    }
+    public DeliveryOrder(){}
 
-    public DeliveryOrder(String id, String number, Date date, String status, String remark, List<DeliveryOrderDetail> deliveryOrderDetail) {
+    public DeliveryOrder(String id, String number, Date date, String status, String remark) {
         this.id = id;
         this.number = number;
         this.date = date;
         this.status = status;
         this.remark = remark;
-        this.deliveryOrderDetail = deliveryOrderDetail;
     }
 
-    public String getID(){
+
+    public String getId() {
         return id;
     }
 
-    public void setID(String id){
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getNumber(){
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(String number){
+    public void setNumber(String number) {
         this.number = number;
     }
 
-    public Date getDate(){
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date){
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public String getStatus(){
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status){
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public String getRemark(){
+    public String getRemark() {
         return remark;
     }
 
-    public void setRemark(String remark){
+    public void setRemark(String remark) {
         this.remark = remark;
     }
 
-    public List<DeliveryOrderDetail> getDeliveryOrderDetail(){
+    public List<DeliveryOrderDetail> getDeliveryOrderDetail() {
         return deliveryOrderDetail;
     }
 
-    public void setDeliveryOrderDetail(List<DeliveryOrderDetail> deliveryOrderDetail){
+    public void setDeliveryOrderDetail(List<DeliveryOrderDetail> deliveryOrderDetail) {
         this.deliveryOrderDetail = deliveryOrderDetail;
     }
 

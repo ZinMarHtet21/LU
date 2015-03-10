@@ -2,13 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android_test.zmh.lu_stationerystoreinventorysystem" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_project_log"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".Main.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,14 +18,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 ´
-        </activity>
-        <activity
-            android:name=".acitvity_main_screen"
-            android:label="@string/title_activity_acitvity_main_screen" >
-        </activity>
-        <activity
-            android:name=".MainScreen"
-            android:label="@string/title_activity_main_screen" >
         </activity>
         <activity
             android:name=".MainScreens.ClerkMainScreen"
@@ -60,7 +54,7 @@
         </activity>
         <activity
             android:name=".DepartmentScreens.RequisitionHistory"
-            android:label="@string/title_activity_requisition_history" >
+            android:label="@string/title_activity_requisition_history">
         </activity>
         <activity
             android:name=".DepartmentScreens.RequisitionList"
@@ -79,6 +73,14 @@
             android:label="@string/title_activity_disbursement_list_detail" >
         </activity>
         <activity
+            android:name=".DepartmentScreens.test"
+            android:label="@string/title_activity_test" >
+        </activity>
+        <activity
+            android:name=".DepartmentScreens.RequisitionHistoryDetail"
+            android:label="@string/title_activity_requisition_history_detail" >
+        </activity>
+        <activity
             android:name=".StoreScreens.RetrievalList"
             android:label="@string/title_activity_retrieval_list" >
         </activity>
@@ -95,7 +97,7 @@
             android:label="@string/title_activity_check_low_stock_search" >
         </activity>
         <activity
-            android:name=".StoreScreens.PurchaseOrder"
+            android:name=".StoreScreens.PurchaseOrderUII"
             android:label="@string/title_activity_purchase_order" >
         </activity>
         <activity
@@ -123,12 +125,20 @@
             android:label="@string/title_activity_approve_reject_purchase_order_detail" >
         </activity>
         <activity
-            android:name=".DepartmentScreens.test"
-            android:label="@string/title_activity_test" >
+            android:name=".StoreScreens.ProcessRequisitions"
+            android:label="@string/title_activity_process_requisitions" >
         </activity>
         <activity
-            android:name=".DepartmentScreens.RequisitionHistoryDetail"
-            android:label="@string/title_activity_requisition_history_detail" >
+            android:name=".StoreScreens.DisbursementDepartmentList"
+            android:label="@string/title_activity_disbursement_department_list" >
+        </activity>
+        <activity
+            android:name=".StoreScreens.DisbursementDepartmentListDetail"
+            android:label="@string/title_activity_disbursement_department_list_detail" >
+        </activity>
+        <activity
+            android:name=".StoreScreens.RejectReason"
+            android:label="@string/title_activity_reject_reason" >
         </activity>
     </application>
 

@@ -1,5 +1,6 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.Models;
 
+
 import java.io.Serializable;
 
 /**
@@ -11,8 +12,7 @@ public class RequisitionDetail implements Serializable{
     private int qty;
     private int actualQty;
 
-    public RequisitionDetail() {
-    }
+    public RequisitionDetail(){}
 
     public RequisitionDetail(String id, String itemName, int qty, int actualQty) {
         this.id = id;
@@ -21,19 +21,19 @@ public class RequisitionDetail implements Serializable{
         this.actualQty = actualQty;
     }
 
-    public String getID() {
+    public String getId() {
         return id;
     }
 
-    public void setID(String id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getItemName(){
+    public String getItemName() {
         return itemName;
     }
 
-    public void setItemName(String itemName){
+    public void setItemName(String itemName) {
         this.itemName = itemName;
     }
 
@@ -62,4 +62,5 @@ public class RequisitionDetail implements Serializable{
                 ", actualQty=" + actualQty +
                 '}';
     }
+
 }

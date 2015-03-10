@@ -1,93 +1,107 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.Models;
 
+
+import java.io.Serializable;
+
 /**
  * Created by student on 4/3/15.
  */
-public class Item {
+
+public class Item implements Serializable {
+
     private String id;
     private String category;
     private String description;
     private int reorderLevel;
     private int reorderQty;
+    private int balance;
     private int virtualBalance;
     private String status;
     private String uom;
 
-    public Item() {
-    }
+    public Item(){}
 
-    public Item(String id, String category, String description, int reorderLevel, int reorderQty, int virtualBalance, String status, String uom) {
+    public Item(String id, String category, String description, int reorderLevel, int reorderQty, int balance, int virtualBalance, String status, String uom) {
         this.id = id;
         this.category = category;
         this.description = description;
         this.reorderLevel = reorderLevel;
         this.reorderQty = reorderQty;
+        this.balance = balance;
         this.virtualBalance = virtualBalance;
         this.status = status;
         this.uom = uom;
     }
 
-    public String getID(){
+    public String getId() {
         return id;
     }
 
-    public void setID(String id){
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getCategory(){
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(String category){
+    public void setCategory(String category) {
         this.category = category;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description){
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public int getReorderLevel(){
+    public int getReorderLevel() {
         return reorderLevel;
     }
 
-    public void setReorderLevel(int reorderLevel){
+    public void setReorderLevel(int reorderLevel) {
         this.reorderLevel = reorderLevel;
     }
 
-    public int getReorderQty(){
+    public int getReorderQty() {
         return reorderQty;
     }
 
-    public void setReorderQty(int reorderQty){
+    public void setReorderQty(int reorderQty) {
         this.reorderQty = reorderQty;
     }
 
-    public int getVirtualBalance(){
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public int getVirtualBalance() {
         return virtualBalance;
     }
 
-    public void setVirtualBalance(int remark){
+    public void setVirtualBalance(int virtualBalance) {
         this.virtualBalance = virtualBalance;
     }
 
-    public String getStatus(){
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status){
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public String getUOM(){
+    public String getUom() {
         return uom;
     }
 
-    public void setUOM(String uom){
+    public void setUom(String uom) {
         this.uom = uom;
     }
 
@@ -104,4 +118,5 @@ public class Item {
                 ", uom='" + uom + '\'' +
                 '}';
     }
+
 }

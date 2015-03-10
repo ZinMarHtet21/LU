@@ -1,7 +1,7 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 

@@ -15,7 +15,7 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.Req
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Requisition;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.CheckLowStockMain;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.PurchaseOrder;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.PurchaseOrderUII;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.ReportDiscrepency;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.RetrievalList;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.UpdateProfile;
@@ -98,7 +98,7 @@ public class test extends ListActivity {
         }else if(item.equals("Check Low Stock")){
             i = new Intent(this, CheckLowStockMain.class);
         }else if(item.equals("Purchase Order")){
-            i = new Intent(this, PurchaseOrder.class);
+            i = new Intent(this, PurchaseOrderUII.class);
         }else if(item.equals("Report Discrepency")){
             i = new Intent(this, ReportDiscrepency.class);
         }

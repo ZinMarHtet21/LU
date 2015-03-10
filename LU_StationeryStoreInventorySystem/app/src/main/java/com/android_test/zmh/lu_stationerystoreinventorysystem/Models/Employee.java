@@ -14,6 +14,7 @@ public class Employee {
     private String password;
     private String departmentName;
 
+
     public Employee() {
     }
 
@@ -29,75 +30,75 @@ public class Employee {
         this.departmentName = departmentName;
     }
 
-    public String getID(){
+    public String getId() {
         return id;
     }
 
-    public void setID(String id){
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getType(){
+    public String getType() {
         return type;
     }
 
-    public void setType(String type){
+    public void setType(String type) {
         this.type = type;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getGender(){
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(String gender){
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public String getEmpNumber(){
+    public String getEmp_number() {
         return emp_number;
     }
 
-    public void setEmpNumber(String emp_number){
+    public void setEmp_number(String emp_number) {
         this.emp_number = emp_number;
     }
 
-    public String getEmail(){
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email){
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getPhone(){
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone){
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public String getPassword(){
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password){
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public String getDepartmentName(){
+    public String getDepartmentName() {
         return departmentName;
     }
 
-    public void setDepartmentName(String departmentName){
+    public void setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
     }
 
@@ -115,4 +116,5 @@ public class Employee {
                 ", departmentName='" + departmentName + '\'' +
                 '}';
     }
+
 }

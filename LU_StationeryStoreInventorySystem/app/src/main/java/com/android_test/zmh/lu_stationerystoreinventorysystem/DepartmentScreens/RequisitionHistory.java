@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.RequisitionPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Requisition;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
-
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Adapter.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +28,8 @@ public class RequisitionHistory extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requisition_history);
+
+
         RequisitionPopulator pop = new RequisitionPopulator();
         final List<Requisition> listdata = pop.populateRequisition();
 
@@ -47,6 +49,8 @@ public class RequisitionHistory extends Activity {
               startActivity(i);
             }
         });
+
+
 
     }
 
@@ -86,7 +90,7 @@ public class RequisitionHistory extends Activity {
             TextView tv2 = (TextView) v.findViewById(R.id.req_date);
             TextView tv3 = (TextView) v.findViewById(R.id.req_status);
             tv1.setText(list.get(position).getId());
-            tv2.setText(list.get(position).getProcessDate().toString());
+            //tv2.setText(list.get(position).getProcessDate().toString());
             tv3.setText(list.get(position).getStatus());
 
             return v;

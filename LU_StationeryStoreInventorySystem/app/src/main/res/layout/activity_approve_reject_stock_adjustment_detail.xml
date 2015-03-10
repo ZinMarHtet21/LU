@@ -6,6 +6,79 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.ApproveRejectStockAdjustmentDetail">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/tv_date"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="AdjustmentVoucher:"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/tv_date"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/voucher_id"
+        android:layout_below="@+id/tv_date"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/textView4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Item"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="43dp"
+        android:textColor="#ffff7c35" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Qty"
+        android:id="@+id/textView6"
+        android:layout_alignTop="@+id/textView5"
+        android:layout_alignStart="@+id/voucher_id"
+        android:textColor="#ffff7c35" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lv_adDetail"
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="80dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Approve"
+        android:id="@+id/btApprove"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView5"
+        android:layout_marginBottom="38dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reject"
+        android:id="@+id/btReject"
+        android:layout_alignTop="@+id/btApprove"
+        android:layout_alignStart="@+id/textView6" />
 
 </RelativeLayout>

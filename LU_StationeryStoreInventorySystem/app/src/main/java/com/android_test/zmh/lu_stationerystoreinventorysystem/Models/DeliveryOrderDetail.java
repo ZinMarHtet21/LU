@@ -11,8 +11,7 @@ public class DeliveryOrderDetail {
     private String status;
     private String remark;
 
-    public DeliveryOrderDetail() {
-    }
+    public DeliveryOrderDetail(){}
 
     public DeliveryOrderDetail(String id, Date date, String status, String remark) {
         this.id = id;
@@ -21,35 +20,35 @@ public class DeliveryOrderDetail {
         this.remark = remark;
     }
 
-    public String getID(){
+    public String getId() {
         return id;
     }
 
-    public void setID(String id){
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Date getDate(){
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date){
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public String getStatus(){
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status){
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public String getRemark(){
+    public String getRemark() {
         return remark;
     }
 
-    public void setRemark(String remark){
+    public void setRemark(String remark) {
         this.remark = remark;
     }
 
@@ -62,4 +61,5 @@ public class DeliveryOrderDetail {
                 ", remark='" + remark + '\'' +
                 '}';
     }
+
 }

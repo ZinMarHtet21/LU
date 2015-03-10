@@ -13,8 +13,7 @@ public class StockCard {
     private int qty;
     private int balance;
 
-    public StockCard() {
-    }
+    public StockCard(){}
 
     public StockCard(String id, String itemName, String supplierName, Date date, int qty, int balance) {
         this.id = id;
@@ -25,11 +24,11 @@ public class StockCard {
         this.balance = balance;
     }
 
-    public String getID(){
+    public String getId() {
         return id;
     }
 
-    public void setID(String id){
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -49,11 +48,11 @@ public class StockCard {
         this.supplierName = supplierName;
     }
 
-    public Date getDate(){
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date){
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -84,4 +83,5 @@ public class StockCard {
                 ", balance=" + balance +
                 '}';
     }
+
 }

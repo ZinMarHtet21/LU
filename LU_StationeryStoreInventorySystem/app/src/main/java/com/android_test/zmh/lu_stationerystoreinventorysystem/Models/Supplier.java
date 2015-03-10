@@ -12,8 +12,7 @@ public class Supplier {
     private String address;
     private String gstRegistrationNumber;
 
-    public Supplier() {
-    }
+    public Supplier(){}
 
     public Supplier(String id, String name, String contactName, String phone, String fax, String address, String gstRegistrationNumber) {
         this.id = id;
@@ -25,59 +24,59 @@ public class Supplier {
         this.gstRegistrationNumber = gstRegistrationNumber;
     }
 
-    public String getID(){
+    public String getId() {
         return id;
     }
 
-    public void setID(String id){
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getContactName(){
+    public String getContactName() {
         return contactName;
     }
 
-    public void setContactName(String contactName){
+    public void setContactName(String contactName) {
         this.contactName = contactName;
     }
 
-    public String getFax(){
-        return fax;
-    }
-
-    public void setFax(String fax){
-        this.fax = fax;
-    }
-
-    public String getPhone(){
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone){
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public String getAddress(){
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address){
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public String getGstRegistrationNumber(){
+    public String getGstRegistrationNumber() {
         return gstRegistrationNumber;
     }
 
-    public void setGstRegistrationNumber(String gstRegistrationNumber){
+    public void setGstRegistrationNumber(String gstRegistrationNumber) {
         this.gstRegistrationNumber = gstRegistrationNumber;
     }
 
@@ -93,4 +92,5 @@ public class Supplier {
                 ", gstRegistrationNumber='" + gstRegistrationNumber + '\'' +
                 '}';
     }
+
 }

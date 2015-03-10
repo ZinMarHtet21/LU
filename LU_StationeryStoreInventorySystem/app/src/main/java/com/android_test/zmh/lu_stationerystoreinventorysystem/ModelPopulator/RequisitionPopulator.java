@@ -13,6 +13,7 @@ import java.util.List;
  * Created by student on 6/3/15.
  */
 public class RequisitionPopulator implements IRequisition {
+
     @Override
     public List<Requisition> populateRequisition() {
         List<Requisition> req_list = new LinkedList<Requisition>();
@@ -35,7 +36,7 @@ public class RequisitionPopulator implements IRequisition {
         reqDetails_list.add(details3);
 
         // set the reqdetails into the a single Req.
-         newReq.setRequisitionDetails(reqDetails_list);
+        newReq.setRequisitionDetails(reqDetails_list);
         newReq2.setRequisitionDetails(reqDetails_list);
         newReq3.setRequisitionDetails(reqDetails_list);
 
