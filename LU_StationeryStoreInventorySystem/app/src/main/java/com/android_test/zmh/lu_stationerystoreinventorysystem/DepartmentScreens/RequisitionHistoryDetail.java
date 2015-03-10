@@ -19,6 +19,7 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.Req
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Requisition;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.RequisitionDetail;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +28,7 @@ import java.util.List;
 
 public class RequisitionHistoryDetail extends ActionBarActivity {
     RequisitionPopulator pop = new RequisitionPopulator();
-    String baseurl = "http://10.10.1.200/LU_Store_MvcV1/api/requisition_detailApi/new";
+    String baseurl = UrlManager.REQ_DETAIL_URL;
     String req_id;
     Requisition model;
     ListView lv;

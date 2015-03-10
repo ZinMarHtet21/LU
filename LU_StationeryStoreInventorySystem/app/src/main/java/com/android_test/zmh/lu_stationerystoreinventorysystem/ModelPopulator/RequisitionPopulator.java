@@ -6,6 +6,7 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.IPopulator.IRequis
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Item;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Requisition;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.RequisitionDetail;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,7 +25,7 @@ import java.util.List;
  */
 public class RequisitionPopulator implements IRequisition {
 
-    public final static String baseurl = URLman.base+"/requisitionsApi/new";
+    public final static String baseurl = UrlManager.APIROOTURL+"requisitionsApi/new";
    // public final static String baseurl = "http://10.10.1.200/LU_Store_MvcV1/api/requisitionsApi/new";
 
 

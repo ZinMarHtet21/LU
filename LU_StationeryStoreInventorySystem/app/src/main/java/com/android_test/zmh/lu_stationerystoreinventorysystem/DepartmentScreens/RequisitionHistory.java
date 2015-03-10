@@ -64,7 +64,7 @@ public class RequisitionHistory extends Activity {
                        String req =  ( (Requisition) parent.getAdapter().getItem(position)).getId();
 
                         i.putExtra("Req_id",req);
-                        i.putExtra("Requisition_id",reqList.get(position).getId());
+                        //i.putExtra("Requisition_id",reqList.get(position).getId());
                         startActivity(i);
                     }
                 });
