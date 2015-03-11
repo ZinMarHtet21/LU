@@ -1,9 +1,11 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.Models;
 
+import java.io.Serializable;
+
 /**
  * Created by student on 4/3/15.
  */
-public class Employee {
+public class Employee  implements Serializable {
     private int id;
     private String type;
     private String name;

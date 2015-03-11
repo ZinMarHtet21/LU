@@ -10,8 +10,10 @@ import java.util.List;
 public interface IEmployee {
     List<Employee> PopulateEmployee();
 
+    Employee populateEmployeByUname(String url,String name);
+
     List<Employee> PopulateEmployeeFromWcf();
 
-    void convertToJSONObj(Employee emp);
+    String convertToJSONObj(Employee emp);
 
 }
