@@ -68,9 +68,9 @@ public class test extends ListActivity {
         RequisitionPopulator pop = new RequisitionPopulator();
         //data =  pop.populateRequisition();
 
-        for(Requisition r :pop.populateRequisition()){
-            data.add(r.getStatus());
-        }
+//        for(Requisition r :pop.populateRequisition()){
+//            data.add(r.getStatus());
+//        }
 
 
 

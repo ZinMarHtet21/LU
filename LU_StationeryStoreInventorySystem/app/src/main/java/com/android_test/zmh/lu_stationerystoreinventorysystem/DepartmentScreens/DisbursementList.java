@@ -34,7 +34,6 @@ public class DisbursementList extends ActionBarActivity {
         DisbursementPopulator pop = new DisbursementPopulator();
         final List<Disbursement> listdata = pop.populateDisbursement();
 
-
         // create an adapter
         // pass the data.
         //set the adapter

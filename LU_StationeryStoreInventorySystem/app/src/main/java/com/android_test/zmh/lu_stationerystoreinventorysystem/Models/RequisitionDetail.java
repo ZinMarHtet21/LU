@@ -7,6 +7,7 @@ import java.io.Serializable;
  * Created by student on 5/3/15.
  */
 public class RequisitionDetail implements Serializable{
+
     private String id;
     private String itemName;
     private int qty;

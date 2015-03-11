@@ -37,15 +37,12 @@ import java.util.Map;
 
 public class RequisitionList extends Activity {
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requisition_list);
         RequisitionPopulator req_pop = new RequisitionPopulator();
-        final List<Requisition> req_list = req_pop.populateRequisition();
+        final List<Requisition> req_list = new ArrayList<Requisition>();
 
         ListView lv = (ListView)findViewById(R.id.req_list_lv);
         Myadapter myadapter = new Myadapter(this,req_list);

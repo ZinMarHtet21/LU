@@ -27,74 +27,56 @@ import java.util.List;
 
 
 public class RequisitionHistoryDetail extends ActionBarActivity {
+
     RequisitionPopulator pop = new RequisitionPopulator();
-    String baseurl = UrlManager.REQ_DETAIL_URL;
+    String baseurl = UrlManager.APIROOTURL + "requisition_detailApi/new";
+
     String req_id;
     Requisition model;
     ListView lv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requisition_history_detail);
-
-
-
-        // model to hashmap >>
-       // convertModelToHashMapModel(model)
-
-         lv = (ListView) findViewById(R.id.listView_ReqDetails);
-
-        //create an adapter for listview
-        //set the adapter with the respective model  (Requisition details)
-
-
+        lv = (ListView) findViewById(R.id.listView_ReqDetails);
         model = new Requisition();
+
         if(getIntent()!= null) {
-            req_id = getIntent().getStringExtra("Req_id").toString();
+            req_id = getIntent().getStringExtra("req_id").toString();
             //    ("Requisition",listdata.get(position));
         }
+
         //model.setRequisitionDetails();
         // creat a new async task to pull all the requisition details..
-
         new AsyncTask<Void, Void, List<RequisitionDetail>>() {
             @Override
             protected List<RequisitionDetail> doInBackground(Void... params) {
-                Log.i("doInBackground", "ERROR");
 
-                List<RequisitionDetail> listde = pop.getRequisitionDetails(req_id, baseurl);
-                model.setRequisitionDetails(listde);
-                return  listde;
+                List<RequisitionDetail> listdetail = pop.getRequisitionDetails(req_id, baseurl);
+                model.setRequisitionDetails(listdetail);
+                return listdetail;
 
             }
             @Override
             protected void onPostExecute(List<RequisitionDetail> result) {
-              //  Myadapter myadapter = new Myadapter(RequisitionHistoryDetail.this,result);
-                SimpleAdapter mysimpleAdapter = new SimpleAdapter(RequisitionHistoryDetail.this,convertModelToHashMapModel(model),android.R.layout.simple_list_item_2,new String[]{"itemName","qty"} ,new int[]{ android.R.id.text1,android.R.id.text2});
+                SimpleAdapter mysimpleAdapter = new SimpleAdapter(RequisitionHistoryDetail.this,
+                                                    convertModelToHashMapModel(model),
+                                                    android.R.layout.simple_list_item_2,
+                                                    new String[]{"itemName","qty"} ,
+                                                    new int[]{ android.R.id.text1,android.R.id.text2});
                 lv.setAdapter(mysimpleAdapter);
-
-
-
             }
         }.execute();
-
-
-
-
-        TextView tv = (TextView) findViewById(R.id.textView_Date);
-        //tv.setText(model.getProcessDate().toString());
-
     }
 
     public ArrayList<temp> convertModelToHashMapModel(Requisition model) {
         ArrayList<temp> tempList = new ArrayList<temp>();
         for(RequisitionDetail rd : model.getRequisitionDetails()) {
-
             String qty = ""+rd.getQty();
             tempList.add(new temp(rd.getItemName(),qty));
-
         }
-
         return  tempList;
     }
 
@@ -104,5 +86,4 @@ public class RequisitionHistoryDetail extends ActionBarActivity {
             put("qty", qty);
         }
     }
-
 }
