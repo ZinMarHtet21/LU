@@ -1,5 +1,6 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -8,12 +9,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TabHost;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Adapter.LowStockListAdapter;
@@ -24,6 +27,7 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.StockItem;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,7 +40,8 @@ public class CheckLowStockMain extends ActionBarActivity implements AdapterView.
     TabHost th;
     private RequestQueue mRequestQueue;
     private ArrayList<Item> stocklist;
-    private String url = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=7c5c19eba3c21dc8bb16f00829b2be41&date=2015-02-09&format=json&nojsoncallback=1";
+    //private String url = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=7c5c19eba3c21dc8bb16f00829b2be41&date=2015-02-09&format=json&nojsoncallback=1";
+    private String url = UrlManager.APIROOTURL+"itemApi";
 
 
 
@@ -46,6 +51,7 @@ public class CheckLowStockMain extends ActionBarActivity implements AdapterView.
         boolean useAsync = true;
         itemPopulator = new ItemPopulator();
         setContentView(R.layout.activity_check_low_stock_main);
+        final ProgressDialog pd = ProgressDialog.show(this,"Loading...","Life is So Difficult...");
         mRequestQueue = Volley.newRequestQueue(this);
 
         final ArrayList<StockItem> photos = new ArrayList<StockItem>();
@@ -65,14 +71,11 @@ public class CheckLowStockMain extends ActionBarActivity implements AdapterView.
         ts.setIndicator("All Stock Items");
         th.addTab(ts);
 
-        JsonObjectRequest jr = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        JsonArrayRequest jr = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    stocklist = itemPopulator.populateItemList(response.getJSONObject("photos").getJSONArray("photo"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            public void onResponse(JSONArray jsonArray) {
+                stocklist = itemPopulator.populateItemList(jsonArray);
+                pd.dismiss();
                 System.out.println(stocklist.get(1).getBalance());
                 LowStockListAdapter adapter = new LowStockListAdapter(CheckLowStockMain.this, stocklist);
                 list.setAdapter(adapter);
@@ -84,6 +87,8 @@ public class CheckLowStockMain extends ActionBarActivity implements AdapterView.
                 // Log.i(TAG, error.getMessage());
             }
         });
+
+
 
         mRequestQueue.add(jr);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

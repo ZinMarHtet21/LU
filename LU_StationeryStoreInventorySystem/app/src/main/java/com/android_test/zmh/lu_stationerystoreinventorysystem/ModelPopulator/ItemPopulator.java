@@ -35,16 +35,17 @@ public class ItemPopulator implements IItem {
 
     @Override
     public ArrayList<Item> populateItemList(JSONArray ja) {
+        System.out.print(ja);
 
         ArrayList<Item> list = new ArrayList<Item>();
         for (int i = 0; i<ja.length();i++){
             try {
                 JSONObject jo = ja.getJSONObject(i);
                 Item item = new Item();
-                item.setCategory(jo.getString("id"));
-                item.setDescription(jo.getString("id"));
-                item.setReorderLevel(jo.getInt("server"));
-                item.setBalance(jo.getInt("server"));
+                item.setCategory(jo.getString("category"));
+                item.setDescription(jo.getString("item_description"));
+                item.setReorderLevel(jo.getInt("item_reorder_level"));
+                item.setBalance(jo.getInt("item_virtual_balance"));
                 list.add(item);
                 // list.add(new (jo.getString("id"),jo.getString("server"),jo.getString("server")));
             } catch (JSONException e) {
