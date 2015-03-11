@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -15,9 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.DisbursementPopulator;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.RequisitionPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Disbursement;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Requisition;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
 
 import java.util.ArrayList;
@@ -82,7 +78,7 @@ public class DisbursementList extends ActionBarActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            View v = inflater.inflate(R.layout.disbursement_list_row, null, true);
+            View v = inflater.inflate(R.layout.row_disbursement_list, null, true);
             TextView tv1 = (TextView) v.findViewById(R.id.disbursement_id_txt);
             TextView tv2 = (TextView) v.findViewById(R.id.disbursement_date_txt);
             tv1.setText(list.get(position).getId());

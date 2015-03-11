@@ -4,7 +4,7 @@ package com.android_test.zmh.lu_stationerystoreinventorysystem.Models;
  * Created by student on 4/3/15.
  */
 public class Employee {
-    private String id;
+    private int id;
     private String type;
     private String name;
     private String gender;
@@ -12,13 +12,13 @@ public class Employee {
     private String email;
     private String phone;
     private String password;
-    private String departmentName;
+    private int departmentID;
 
 
     public Employee() {
     }
 
-    public Employee(String id, String type, String name, String gender, String emp_number, String email, String phone, String password, String departmentName) {
+    public Employee(int id, String type, String name, String gender, String emp_number, String email, String phone, String password, int departmentID) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -27,14 +27,14 @@ public class Employee {
         this.email = email;
         this.phone = phone;
         this.password = password;
-        this.departmentName = departmentName;
+        this.departmentID = departmentID;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -94,12 +94,12 @@ public class Employee {
         this.password = password;
     }
 
-    public String getDepartmentName() {
-        return departmentName;
+    public int getDepartmentID() {
+        return departmentID;
     }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+    public void setDepartmentID(int departmentID) {
+        this.departmentID = departmentID;
     }
 
     @Override
@@ -113,7 +113,7 @@ public class Employee {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", password='" + password + '\'' +
-                ", departmentName='" + departmentName + '\'' +
+                ", departmentID='" + departmentID + '\'' +
                 '}';
     }
 

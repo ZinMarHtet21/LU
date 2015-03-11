@@ -1,38 +1,25 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.RequisitionPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Requisition;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
 
-import java.lang.reflect.Array;
 
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class RequisitionList extends Activity {
@@ -90,7 +77,7 @@ public class RequisitionList extends Activity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            View v = inflater.inflate(R.layout.requisition_list_row, null, true);
+            View v = inflater.inflate(R.layout.row_requisition_list, null, true);
             TextView tv1 = (TextView) v.findViewById(R.id.req_id_txt);
             TextView tv2 = (TextView) v.findViewById(R.id.req_date_txt);
 

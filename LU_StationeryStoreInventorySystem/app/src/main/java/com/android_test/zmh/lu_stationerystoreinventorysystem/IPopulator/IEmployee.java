@@ -12,4 +12,6 @@ public interface IEmployee {
 
     List<Employee> PopulateEmployeeFromWcf();
 
+    void convertToJSONObj(Employee emp);
+
 }

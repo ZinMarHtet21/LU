@@ -17,7 +17,7 @@ public class EmployeePopulator implements IEmployee {
         // Add it to the list
        List<Employee> emp_list = new LinkedList<Employee>();
         for (int i=0;i<10;i++) {
-            Employee e = new Employee("1", "test", "test", "test", "test", "test", "test", "test", "test");
+            Employee e = new Employee();
             emp_list.add(e);
         }
         return emp_list;
@@ -26,6 +26,11 @@ public class EmployeePopulator implements IEmployee {
     @Override
     public List<Employee> PopulateEmployeeFromWcf() {
         return null;
+    }
+
+    @Override
+    public void convertToJSONObj(Employee emp) {
+        System.out.println(emp.toString());
     }
 
 }

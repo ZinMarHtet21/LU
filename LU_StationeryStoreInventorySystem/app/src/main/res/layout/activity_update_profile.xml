@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -9,51 +9,71 @@
     tools:context="com.android_test.zmh.lu_stationerystoreinventorysystem.UpdateProfile">
 
     <TextView
-        android:id="@+id/upd_empCode_tv"
+        android:id="@+id/upd_empNumber_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Employee Code"
-        android:textSize="16dp"
+        android:text="Employee Number"
+        android:textSize="14dp"
         android:textAllCaps="true"
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/upd_empCode_txt"
+        android:id="@+id/upd_empNumber_txt"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="7dp"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
-        android:layout_below="@+id/upd_empCode_tv"/>
+        android:layout_below="@+id/upd_empNumber_tv"/>
 
     <TextView
         android:id="@+id/upd_empName_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Employee Name"
-        android:textSize="16dp"
+        android:textSize="14dp"
         android:textAllCaps="true"
         android:textStyle="bold"
-        android:layout_below="@+id/upd_empCode_txt"/>
+        android:layout_below="@+id/upd_empNumber_txt"/>
 
     <EditText
         android:id="@+id/upd_empName_txt"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="7dp"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
         android:layout_below="@+id/upd_empName_tv" />
+
+
+    <TextView
+        android:id="@+id/upd_empPwd_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:textSize="14dp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:layout_below="@+id/upd_empName_txt"/>
+
+    <EditText
+        android:id="@+id/upd_empPwd_txt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:layout_below="@+id/upd_empPwd_tv" />
 
     <TextView
         android:id="@+id/upd_empDept_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Department Name"
-        android:textSize="16dp"
+        android:textSize="14dp"
         android:textAllCaps="true"
         android:textStyle="bold"
-        android:layout_below="@+id/upd_empName_txt"/>
+        android:layout_below="@+id/upd_empPwd_txt"/>
 
     <Spinner
         android:id="@+id/upd_empDept_Spnr"
@@ -61,9 +81,8 @@
         android:layout_height="wrap_content"
         android:entries="@array/department_array"
         android:prompt="@string/department_prompt"
-        android:padding="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:padding="5dp"
+        android:layout_marginTop="7dp"
         android:layout_below="@+id/upd_empDept_tv"/>
 
     <TextView
@@ -71,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Position"
-        android:textSize="16dp"
+        android:textSize="14dp"
         android:textAllCaps="true"
         android:textStyle="bold"
         android:layout_below="@+id/upd_empDept_Spnr"/>
@@ -82,17 +101,17 @@
         android:layout_height="wrap_content"
         android:entries="@array/department_array"
         android:prompt="@string/department_prompt"
-        android:padding="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:padding="5dp"
+        android:layout_marginTop="7dp"
         android:layout_below="@+id/upd_empType_tv"/>
 
     <TextView
         android:id="@+id/upd_empPh_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:text="Phone Number"
-        android:textSize="16dp"
+        android:textSize="14dp"
         android:textAllCaps="true"
         android:textStyle="bold"
         android:layout_below="@+id/upd_empType_Spnr"/>
@@ -101,30 +120,37 @@
         android:id="@+id/upd_empPh_txt"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="7dp"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
         android:layout_below="@+id/upd_empPh_tv"/>
 
     <TextView
-        android:id="@+id/upd_empAdr_tv"
+        android:id="@+id/upd_empEmail_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Phone Number"
-        android:textSize="16dp"
+        android:text="Email"
+        android:textSize="14dp"
         android:textAllCaps="true"
         android:textStyle="bold"
         android:layout_below="@+id/upd_empPh_txt"/>
 
-
     <EditText
-        android:id="@+id/upd_empAdr_txt"
+        android:id="@+id/upd_empEmail_txt"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="7dp"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
-        android:layout_below="@+id/upd_empAdr_tv" />
+        android:layout_below="@+id/upd_empEmail_tv" />
+
+    <Button
+        android:id="@+id/button_update_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:layout_below="@+id/upd_empEmail_txt"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

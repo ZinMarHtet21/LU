@@ -5,27 +5,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
+
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.RequisitionPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Requisition;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.Adapter.*;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
-import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,7 +96,7 @@ public class RequisitionHistory extends Activity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            View v = inflater.inflate(R.layout.requisition_history_row, null, true);
+            View v = inflater.inflate(R.layout.row_requisition_history, null, true);
             TextView tv1 = (TextView) v.findViewById(R.id.req_id);
             TextView tv2 = (TextView) v.findViewById(R.id.req_date);
             TextView tv3 = (TextView) v.findViewById(R.id.req_status);
