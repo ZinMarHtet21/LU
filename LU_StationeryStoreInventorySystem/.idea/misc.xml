@@ -3,42 +3,8 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="GradleLocalSettings">
-    <option name="modificationStamps">
-      <map>
-        <entry key="$USER_HOME$/Desktop/ADProject/Integrated coding/April/LU_StationeryStoreInventorySystem" value="4276569240000" />
-        <entry key="$USER_HOME$/Desktop/ADProject/Integrated coding/Kelvin Integrated/LogicUniversity_Android/LU_StationeryStoreInventorySystem" value="5703275072000" />
-        <entry key="$USER_HOME$/Desktop/ADProject/Integrated coding/LU_StationeryStoreInventorySystem" value="5703275072000" />
-        <entry key="$USER_HOME$/Desktop/Android CA with WCF/TouristApp" value="4266788935000" />
-        <entry key="$USER_HOME$/Desktop/Android/Dkiong (from Document)/List" value="4264947428000" />
-        <entry key="$USER_HOME$/Desktop/Android/Dkiong (from Document)/List 2" value="4264947428000" />
-        <entry key="$USER_HOME$/Desktop/Android/Dkiong (from Document)/List 3" value="4264947428000" />
-        <entry key="$USER_HOME$/Desktop/Android/Dkiong (from Document)/List 4" value="4264947428000" />
-        <entry key="$USER_HOME$/Desktop/Android/Dkiong (from Document)/List 5" value="4264947428000" />
-        <entry key="$USER_HOME$/Desktop/Android/Dkiong (from Document)/ListWithJsonTest" value="4265208207000" />
-        <entry key="$USER_HOME$/Desktop/Android/Dkiong (from Document)/Product" value="4266898988000" />
-        <entry key="$USER_HOME$/Desktop/Android_Revision/ExpandableListView" value="4276612741000" />
-        <entry key="$USER_HOME$/Desktop/Android_Revision/Intent" value="4276313304000" />
-        <entry key="$USER_HOME$/Desktop/Android_Revision/LU_StationeryStoreInventorySystem" value="4275781026000" />
-        <entry key="$USER_HOME$/Desktop/Android_Revision/ListActivity_Simple" value="4276295419000" />
-        <entry key="$USER_HOME$/Desktop/Android_Revision/List_SystemDefined_TwoRow" value="4276301849000" />
-        <entry key="$USER_HOME$/Desktop/Android_Revision/NewsReader" value="4276404171000" />
-        <entry key="$USER_HOME$/Desktop/Android_Revision/OMGAndroid" value="4275435599000" />
-        <entry key="$USER_HOME$/Desktop/Z/List 2-2" value="4264947428000" />
-        <entry key="$USER_HOME$/Documents/Android/Day3_Exercise" value="4264892826000" />
-        <entry key="$USER_HOME$/Documents/Android/Day3_Exercise_Read_and_Write_File" value="4264913802000" />
-        <entry key="$USER_HOME$/Documents/Android/Ex0" value="4263278356000" />
-        <entry key="$USER_HOME$/Documents/Android/IntentTest" value="4264931934000" />
-        <entry key="$USER_HOME$/Documents/Dkiong/Day3_List" value="4264950445000" />
-        <entry key="$USER_HOME$/Documents/Dkiong/List" value="4264947428000" />
-        <entry key="$USER_HOME$/Documents/Dkiong/List 5" value="4264947428000" />
-        <entry key="$USER_HOME$/Documents/Dkiong/Persist" value="4264904188000" />
-        <entry key="$USER_HOME$/Documents/Dkiong/SampleF" value="4265067494000" />
-        <entry key="$USER_HOME$/Downloads/LU_StationeryStoreInventorySystem-3" value="5703275072000" />
-        <entry key="$PROJECT_DIR$" value="7129796990000" />
-        <entry key="$PROJECT_DIR$/../../LogicUniversity_Android/LU_StationeryStoreInventorySystem" value="5703732404000" />
-      </map>
-    </option>
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -50,7 +16,9 @@
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/classes" />
+  </component>
   <component name="RunManager">
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
