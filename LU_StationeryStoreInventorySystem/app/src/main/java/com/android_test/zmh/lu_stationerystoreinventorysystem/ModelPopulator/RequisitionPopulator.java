@@ -23,14 +23,15 @@ import java.util.List;
  */
 public class RequisitionPopulator implements IRequisition {
 
-    public final static String baseurl = UrlManager.APIROOTURL+"requisitionsApi/new";
+    public final static String baseurl = UrlManager.APIROOTURL;
+    public final static String reqURL = baseurl +"requisitionsApi/new";
    // public final static String baseurl = "http://10.10.1.200/LU_Store_MvcV1/api/requisitionsApi/new";
 
 
 
     public List<Requisition> getRequisitionList() {
         List<Requisition> list = new ArrayList<Requisition>();
-        JSONArray arr = JSONParser.getJSONArrayFromUrl(String.format("%s",baseurl));
+        JSONArray arr = JSONParser.getJSONArrayFromUrl(String.format("%s",reqURL));
 
         try {
 

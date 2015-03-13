@@ -79,8 +79,6 @@
         android:id="@+id/upd_empDept_Spnr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/department_array"
-        android:prompt="@string/department_prompt"
         android:padding="5dp"
         android:layout_marginTop="7dp"
         android:layout_below="@+id/upd_empDept_tv"/>
@@ -89,20 +87,19 @@
         android:id="@+id/upd_empType_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Position"
+        android:text="Employee Type"
         android:textSize="14dp"
         android:textAllCaps="true"
         android:textStyle="bold"
         android:layout_below="@+id/upd_empDept_Spnr"/>
 
-    <Spinner
-        android:id="@+id/upd_empType_Spnr"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/upd_empType_txt"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/department_array"
-        android:prompt="@string/department_prompt"
-        android:padding="5dp"
-        android:layout_marginTop="7dp"
+        android:padding="7dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
         android:layout_below="@+id/upd_empType_tv"/>
 
     <TextView
@@ -114,7 +111,7 @@
         android:textSize="14dp"
         android:textAllCaps="true"
         android:textStyle="bold"
-        android:layout_below="@+id/upd_empType_Spnr"/>
+        android:layout_below="@+id/upd_empType_txt"/>
 
     <EditText
         android:id="@+id/upd_empPh_txt"

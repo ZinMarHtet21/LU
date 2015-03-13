@@ -2,6 +2,7 @@ package com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,9 +13,12 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.DepartmentPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.DisbursementPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Disbursement;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Requisition;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,29 +26,44 @@ import java.util.List;
 
 public class DisbursementList extends ActionBarActivity {
 
+    DisbursementPopulator disbPopulator = new DisbursementPopulator();
+    private ArrayList<Disbursement> disbList;
+//    private String url = UrlManager.APIROOTURL;
+    ListView disburment_lv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disbursement_list);
+        disburment_lv = (ListView) findViewById(R.id.disbursement_list_lv);
 
-        DisbursementPopulator pop = new DisbursementPopulator();
-        final List<Disbursement> listdata = pop.populateDisbursement();
-
-        // create an adapter
-        // pass the data.
-        //set the adapter
-        ListView lv = (ListView) findViewById(R.id.disbursement_list_lv);
-        Myadapter myadapter = new Myadapter(this,listdata);
-        lv.setAdapter(myadapter);
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        new AsyncTask<Void, Void, List<Disbursement>>() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(DisbursementList.this,DisbursementListDetail.class);
-                i.putExtra("Disbursement",listdata.get(position));
-                startActivity(i);
+            protected List<Disbursement> doInBackground(Void... params) {
+
+                return disbPopulator.getDisbursementList();
+
             }
-        });
+
+            @Override
+            protected void onPostExecute(List<Disbursement> result) {
+                Myadapter myadapter = new Myadapter(DisbursementList.this, result);
+                disburment_lv.setAdapter(myadapter);
+
+                disburment_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent i = new Intent(DisbursementList.this, DisbursementListDetail.class);
+//                      i.putExtra("Requisition_id",reqList.get(position).getId());
+                        String disID = ((Disbursement) parent.getAdapter().getItem(position)).getId();
+
+                        i.putExtra("disb_id", disID);
+                        //i.putExtra("Requisition_id",reqList.get(position).getId());
+                        startActivity(i);
+                    }
+                });
+            }
+        }.execute();
     }
 
     public class Myadapter extends BaseAdapter {
@@ -60,6 +79,7 @@ public class DisbursementList extends ActionBarActivity {
             inflater = LayoutInflater.from(this.ctx);
         }
         // ends here...
+
         @Override
         public int getCount() {
             return list.size();
@@ -78,14 +98,16 @@ public class DisbursementList extends ActionBarActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
+            System.out.println("LIST");
+            System.out.println(list.toString());
             View v = inflater.inflate(R.layout.row_disbursement_list, null, true);
             TextView tv1 = (TextView) v.findViewById(R.id.disbursement_id_txt);
             TextView tv2 = (TextView) v.findViewById(R.id.disbursement_date_txt);
-            tv1.setText(list.get(position).getId());
-            tv2.setText(list.get(position).getDate().toString());
+
+            tv1.setText((list.get(position).getId()).toString());
+            tv2.setText(Integer.toString((list.get(position).getQty())));
             return v;
         }
 
     }
-
 }

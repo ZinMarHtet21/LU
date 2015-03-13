@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Department implements Serializable {
 
-    private String id;
+    private int id;
     private String code;
     private String name;
     private String contactNumber;
@@ -19,7 +19,7 @@ public class Department implements Serializable {
 
     public Department(){}
 
-    public Department(String id, String code, String name, String contactNumber, String fax, String representative, String collection_point) {
+    public Department(int id, String code, String name, String contactNumber, String fax, String representative, String collection_point) {
         this.id = id;
         this.code = code;
         this.name = name;
@@ -29,11 +29,11 @@ public class Department implements Serializable {
         this.collection_point = collection_point;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

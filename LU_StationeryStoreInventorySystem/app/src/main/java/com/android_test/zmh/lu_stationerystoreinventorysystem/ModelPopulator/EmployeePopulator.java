@@ -31,9 +31,6 @@ public class EmployeePopulator implements IEmployee {
         return emp_list;
     }
 
-
-
-
     @Override
     public Employee populateEmployeByUname(String url,String name) {
         Employee emp=null;

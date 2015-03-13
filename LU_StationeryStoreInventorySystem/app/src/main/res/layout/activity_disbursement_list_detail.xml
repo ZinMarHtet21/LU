@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Date : SomeDate"
-        android:id="@+id/textView_Date"
+        android:id="@+id/disb_list_date"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_height="400dp"
-        android:id="@+id/listView_disbursementDetails"
+        android:id="@+id/listView_disbDetails"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/textView_Date" />
 
@@ -28,6 +28,6 @@
         android:text="Receive"
         android:id="@+id/button_receive"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/textView_Date" />
+        android:layout_alignEnd="@+id/textView_Date" />
 
 </RelativeLayout>

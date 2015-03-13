@@ -15,7 +15,9 @@ import java.util.List;
  */
 public interface IItem {
 
-    List<Item> populateItem();
+//    List<Item> populateItem();
+
+    public List<Item> getItemList();
 
     public ArrayList<Item> populateItemList(JSONArray ja);
 

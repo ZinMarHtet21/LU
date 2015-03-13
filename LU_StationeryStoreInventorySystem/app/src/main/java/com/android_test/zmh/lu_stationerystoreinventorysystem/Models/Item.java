@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class Item implements Serializable {
 
     private String id;
-    private String category;
+    private int category;
     private String description;
     private int reorderLevel;
     private int reorderQty;
@@ -21,7 +21,7 @@ public class Item implements Serializable {
 
     public Item(){}
 
-    public Item(String id, String category, String description, int reorderLevel, int reorderQty, int balance, int virtualBalance, String status, String uom) {
+    public Item(String id, int category, String description, int reorderLevel, int reorderQty, int balance, int virtualBalance, String status, String uom) {
         this.id = id;
         this.category = category;
         this.description = description;
@@ -41,11 +41,11 @@ public class Item implements Serializable {
         this.id = id;
     }
 
-    public String getCategory() {
+    public int getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(int category) {
         this.category = category;
     }
 

@@ -9,9 +9,7 @@
         android:id="@+id/itemlist_spnr"
         android:layout_width="220dp"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:entries="@array/itemlist_array"
-        android:prompt="@string/itemlist_prompt"/>
+        android:layout_marginTop="10dp"/>
 
     <EditText
         android:id="@+id/item_qty_et"

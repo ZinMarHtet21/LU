@@ -3,6 +3,7 @@ package com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -13,10 +14,11 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.DepartmentPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.RequisitionPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Requisition;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
-
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,25 +26,44 @@ import java.util.List;
 
 public class RequisitionList extends Activity {
 
+    RequisitionPopulator reqPopulator = new RequisitionPopulator();
+    private ArrayList<Requisition> reqList;
+    private String url = UrlManager.APIROOTURL;
+    ListView reqlist_lv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requisition_list);
-        RequisitionPopulator req_pop = new RequisitionPopulator();
-        final List<Requisition> req_list = new ArrayList<Requisition>();
+        reqlist_lv = (ListView) findViewById(R.id.req_list_lv);
 
-        ListView lv = (ListView)findViewById(R.id.req_list_lv);
-        Myadapter myadapter = new Myadapter(this,req_list);
-        lv.setAdapter(myadapter);
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        new AsyncTask<Void, Void, List<Requisition>>() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(RequisitionList.this,RequisitionListDetail.class);
-                i.putExtra("Requisition",req_list.get(position));
-                startActivity(i);
+            protected List<Requisition> doInBackground(Void... params) {
+
+                return reqPopulator.getRequisitionList();
+
             }
-        });
+            @Override
+            protected void onPostExecute(List<Requisition> result) {
+
+                Myadapter myadapter = new Myadapter(RequisitionList.this, result);
+                reqlist_lv.setAdapter(myadapter);
+
+                reqlist_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent i = new Intent(RequisitionList.this,RequisitionListDetail.class);
+//                      i.putExtra("Requisition_id",reqList.get(position).getId());
+                        String req =  ((Requisition) parent.getAdapter().getItem(position)).getId();
+
+                        i.putExtra("req_id",req);
+                        //i.putExtra("Requisition_id",reqList.get(position).getId());
+                        startActivity(i);
+                    }
+                });
+            }
+        }.execute();
     }
 
     public class Myadapter extends BaseAdapter {
@@ -82,7 +103,7 @@ public class RequisitionList extends Activity {
             TextView tv2 = (TextView) v.findViewById(R.id.req_date_txt);
 
             tv1.setText(list.get(position).getId());
-            tv2.setText(list.get(position).getProcessDate().toString());
+            tv2.setText(list.get(position).getDate());
 
             return v;
         }
@@ -90,4 +111,3 @@ public class RequisitionList extends Activity {
     }
 
 }
-

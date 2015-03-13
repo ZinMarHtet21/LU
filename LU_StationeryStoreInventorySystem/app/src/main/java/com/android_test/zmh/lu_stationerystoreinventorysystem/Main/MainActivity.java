@@ -2,18 +2,11 @@ package com.android_test.zmh.lu_stationerystoreinventorysystem.Main;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.sax.StartElementListener;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.RequisitionHistoryDetail;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.test;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens.ClerkMainScreen;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens.EmployeeMainScreen;
@@ -23,11 +16,8 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens.Repres
 import com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens.SupervisorMainScreen;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.EmployeePopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Employee;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Requisition;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
-
-import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
@@ -50,12 +40,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if((username.getText().toString()).equals("Employee")){
-            Intent i = new Intent(MainActivity.this, EmployeeMainScreen.class);
-            startActivity(i);
-        }
-/*
-// make a call to the webapi...abd fetch emp object...
+
+        // make a call to the webapi...abd fetch emp object...
         new AsyncTask<Void,Void,Void>() {
 
             @Override
@@ -80,7 +66,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                     startActivity(new Intent(MainActivity.this, test.class));
                 }
             }
-
             @Override
             protected Void doInBackground(Void... params) {
                 String url = UrlManager.APIROOTURL+"employeeApi";
@@ -89,7 +74,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 return null;
             }
         }.execute();
-*/
+
     }
 
 }

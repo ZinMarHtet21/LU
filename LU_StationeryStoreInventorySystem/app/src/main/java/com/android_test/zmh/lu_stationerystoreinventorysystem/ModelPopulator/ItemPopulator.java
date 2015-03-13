@@ -1,8 +1,12 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator;
 
 
+import android.util.Log;
+
 import com.android_test.zmh.lu_stationerystoreinventorysystem.IPopulator.IItem;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Item;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Requisition;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,21 +20,38 @@ import java.util.List;
  * Created by student on 7/3/15.
  */
 public class ItemPopulator implements IItem {
+    public final static String baseurl = UrlManager.APIROOTURL;
+    public final static String itemURL = baseurl +"itemApi";
 
     @Override
-    public List<Item> populateItem() {
+    public List<Item> getItemList() {
+        List<Item> list = new ArrayList<Item>();
+        JSONArray arr = JSONParser.getJSONArrayFromUrl(String.format("%s",itemURL));
 
-        List<Item> item_list = new LinkedList<Item>();
+        try {
 
-        Item item = new Item("Item01", "File", "Transparent File", 30, 50, 10, 5, "Full", "Piece");
-        Item item2 = new Item("Item02", "Envelope", "Envelope 10\"x7\" ", 50, 70, 20, 5, "Low Stock", "Piece");
-        Item item3 = new Item("Item03", "Eraser", "Black Eraser", 30, 50, 10, 5, "Full", "Piece");
+            for (int i =0; i < arr.length(); i++) {
+                JSONObject obj = arr.getJSONObject(i);
+                Item item = new Item();
+                item.setId(obj.getString("item_id").toString());
+                item.setCategory(obj.getInt("category_category_id"));
+                item.setDescription(obj.getString("item_description").toString());
+                item.setReorderLevel(obj.getInt("item_reorder_level"));
+                item.setReorderQty(obj.getInt("item_reorder_qty"));
+//                item.setBalance(obj.getInt(""));
+                item.setVirtualBalance(obj.getInt("item_virtual_balance"));
+                item.setStatus(obj.getString("item_status").toString());
+                item.setUom(obj.getString("uom").toString());
 
-        item_list.add(item);
-        item_list.add(item2);
-        item_list.add(item3);
+                list.add(item);
+            }
 
-        return item_list;
+        } catch (Exception e) {
+            Log.e("Item list", "JSONArray error");
+        }
+
+        return(list);
+
     }
 
     @Override
@@ -42,7 +63,7 @@ public class ItemPopulator implements IItem {
             try {
                 JSONObject jo = ja.getJSONObject(i);
                 Item item = new Item();
-                item.setCategory(jo.getString("category"));
+                item.setCategory(jo.getInt("category"));
                 item.setDescription(jo.getString("item_description"));
                 item.setReorderLevel(jo.getInt("item_reorder_level"));
                 item.setBalance(jo.getInt("item_virtual_balance"));
@@ -77,7 +98,7 @@ public class ItemPopulator implements IItem {
     @Override
     public Item populateItemDetail(JSONObject jo) throws JSONException {
         Item i = new Item();
-        i.setCategory(jo.getString("id"));
+        i.setCategory(jo.getInt("id"));
         i.setDescription(jo.getString("id"));
         i.setReorderLevel(jo.getInt("server"));
         i.setBalance(jo.getInt("farm"));

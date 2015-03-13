@@ -22,7 +22,7 @@ import java.lang.reflect.Array;
 
 public class HODMainScreen extends ListActivity {
 
-    private String[] hod_menu = {"Update Profile","New Requisition","Requisition List","Requisition History"};
+    private String[] hod_menu = {"Update Profile","Requisition List"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +38,19 @@ public class HODMainScreen extends ListActivity {
 
         if(item.equals("Update Profile")){
             i = new Intent(this, UpdateProfile.class);
-        }else if(item.equals("New Requisition")){
-            i = new Intent(this, NewRequisition.class);
         }else if(item.equals("Requisition List")){
             i = new Intent(this, RequisitionList.class);
-        }else if(item.equals("Requisition History")){
-            i = new Intent(this, RequisitionHistory.class);
         }
+
+//        if(item.equals("Update Profile")){
+//            i = new Intent(this, UpdateProfile.class);
+//        }else if(item.equals("New Requisition")){
+//            i = new Intent(this, NewRequisition.class);
+//        }else if(item.equals("Requisition List")){
+//            i = new Intent(this, RequisitionList.class);
+//        }else if(item.equals("Requisition History")){
+//            i = new Intent(this, RequisitionHistory.class);
+//        }
         startActivity(i);
     }
 

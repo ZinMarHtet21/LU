@@ -10,14 +10,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Date : SomeDate"
-        android:id="@+id/textView_Date"
+        android:id="@+id/req_list_date"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_height="400dp"
+        android:layout_height="350dp"
         android:id="@+id/listView_ReqDetails"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/textView_Date" />
@@ -27,8 +27,9 @@
         android:layout_height="wrap_content"
         android:text="Approve"
         android:id="@+id/button_approve"
-        android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/textView_Date" />
+        android:layout_below="@+id/listView_ReqDetails"
+        android:layout_toStartOf="@+id/textView_Date"
+        android:layout_marginTop="49dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -37,4 +38,5 @@
         android:id="@+id/button_reject"
         android:layout_alignTop="@+id/button_approve"
         android:layout_toEndOf="@+id/textView_Date" />
+
 </RelativeLayout>
