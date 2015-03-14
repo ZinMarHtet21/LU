@@ -54,7 +54,10 @@ public class RequisitionListDetail extends ActionBarActivity {
             @Override
             protected List<RequisitionDetail> doInBackground(Void... params) {
 
-                List<RequisitionDetail> listdetail = pop.getRequisitionDetails(req_id, baseurl);
+                System.out.println("REQID");
+                System.out.println(req_id);
+
+                List<RequisitionDetail> listdetail = pop.getRequisitionDetail(req_id, baseurl);
                 model.setRequisitionDetails(listdetail);
                 return listdetail;
 

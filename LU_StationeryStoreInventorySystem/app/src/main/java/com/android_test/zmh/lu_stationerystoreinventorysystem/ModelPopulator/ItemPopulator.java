@@ -20,6 +20,7 @@ import java.util.List;
  * Created by student on 7/3/15.
  */
 public class ItemPopulator implements IItem {
+
     public final static String baseurl = UrlManager.APIROOTURL;
     public final static String itemURL = baseurl +"itemApi";
 

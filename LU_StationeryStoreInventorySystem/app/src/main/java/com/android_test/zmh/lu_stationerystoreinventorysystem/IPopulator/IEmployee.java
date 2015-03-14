@@ -8,9 +8,10 @@ import java.util.List;
  * Created by student on 6/3/15.
  */
 public interface IEmployee {
+
     List<Employee> PopulateEmployee();
 
-    Employee populateEmployeByUname(String url,String name);
+    Employee populateEmployeByUname(String name);
 
     List<Employee> PopulateEmployeeFromWcf();
 

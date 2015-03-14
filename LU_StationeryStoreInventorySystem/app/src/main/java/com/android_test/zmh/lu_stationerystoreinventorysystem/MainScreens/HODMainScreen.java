@@ -14,10 +14,12 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.
 import com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.NewRequisition;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.RequisitionHistory;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.RequisitionList;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Main.MainActivity;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.UpdateProfile;
 
 import java.lang.reflect.Array;
+import java.sql.SQLOutput;
 
 
 public class HODMainScreen extends ListActivity {
@@ -36,10 +38,18 @@ public class HODMainScreen extends ListActivity {
         String item = (String)getListAdapter().getItem(position);
         Intent i = new Intent();
 
+        System.out.println("ETYPE");
+        System.out.println(MainActivity.emp.getType());
+
         if(item.equals("Update Profile")){
             i = new Intent(this, UpdateProfile.class);
         }else if(item.equals("Requisition List")){
-            i = new Intent(this, RequisitionList.class);
+            if((MainActivity.emp.getType()).equals("HOD")){
+                i = new Intent(this, RequisitionList.class);
+            }else{
+                i = new Intent(this, RequisitionHistory.class);
+            }
+
         }
 
 //        if(item.equals("Update Profile")){

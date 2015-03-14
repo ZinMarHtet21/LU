@@ -16,6 +16,11 @@ import java.util.List;
  */
 public interface IRequisition {
 
-    public List<Requisition> getRequisitionList();
-    public List<RequisitionDetail> getRequisitionDetails(String req_id, String url);
+    public List<Requisition> getRequisitionHistoryList(int empID);
+//    public List<RequisitionDetail> getRequisitionHistoryDetails(String req_id, String url);
+
+    public List<Requisition> getRequisitionList(int deptID);
+//    public List<RequisitionDetail> getRequisitionListDetails(String req_id, String url);
+
+    public List<RequisitionDetail> getRequisitionDetail(String reqID,String url);
 }

@@ -11,5 +11,6 @@ public interface IDepartment {
     public String getDepartmentName(int deptID);
     public List<Department> getDepartmentList();
     public List<String> getDepartmentNameList();
+    public int getDepartmentID(String deptName);
 
 }

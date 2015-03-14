@@ -8,25 +8,25 @@ import java.io.Serializable;
  */
 public class RequisitionDetail implements Serializable{
 
-    private String id;
+    private int id;
     private String itemName;
     private int qty;
     private int actualQty;
 
     public RequisitionDetail(){}
 
-    public RequisitionDetail(String id, String itemName, int qty, int actualQty) {
+    public RequisitionDetail(int id, String itemName, int qty, int actualQty) {
         this.id = id;
         this.itemName = itemName;
         this.qty = qty;
         this.actualQty = actualQty;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

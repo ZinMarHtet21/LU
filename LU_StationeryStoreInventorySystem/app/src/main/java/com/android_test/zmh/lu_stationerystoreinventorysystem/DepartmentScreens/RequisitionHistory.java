@@ -13,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Main.MainActivity;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.RequisitionPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Requisition;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
@@ -38,7 +39,7 @@ public class RequisitionHistory extends Activity {
         new AsyncTask<Void, Void, List<Requisition>>() {
             @Override
             protected List<Requisition> doInBackground(Void... params) {
-                return reqPopulator.getRequisitionList();
+                return reqPopulator.getRequisitionHistoryList(MainActivity.emp.getId());
 
             }
             @Override

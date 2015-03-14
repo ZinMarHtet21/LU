@@ -18,6 +18,7 @@ import java.util.List;
  * Created by student on 12/3/15.
  */
 public class DepartmentPopulator implements IDepartment {
+
     public final static String baseurl = UrlManager.APIROOTURL;
     public final static String departmentURL = baseurl + "departmentsApi";
 
@@ -29,6 +30,7 @@ public class DepartmentPopulator implements IDepartment {
             deptName = obj.getString("department_name").toString();
         }catch(JSONException e){
             e.printStackTrace();
+            Log.e("Department Name","JSON Error");
         }
         return(deptName);
     }
@@ -50,7 +52,7 @@ public class DepartmentPopulator implements IDepartment {
                 dept.setFax(obj.getString("department_fax").toString());
                 dept.setRepresentative(obj.getString("department_contact_name").toString());
 //                int collectionPointID = obj.getInt("");
-                //dept.setCollection_point(obj.getString("").toString());
+//                dept.setCollection_point(obj.getString("").toString());
                 deptList.add(dept);
             }
 
@@ -78,7 +80,27 @@ public class DepartmentPopulator implements IDepartment {
         return deptNameList;
     }
 
+    @Override
+    public int getDepartmentID(String deptName) {
 
+        int deptID = 0;
+        JSONArray arr = JSONParser.getJSONArrayFromUrl(String.format("%s", departmentURL));
+
+        try {
+            for (int i =0; i < arr.length(); i++) {
+                JSONObject obj = arr.getJSONObject(i);
+                String dname = obj.getString("department_name").toString();
+                if(dname.equals(deptName.trim())){
+                    deptID = obj.getInt("department_id");
+                }
+            }
+
+        } catch (Exception e) {
+            Log.e("Getting Department ID", "JSONArray error");
+        }
+
+        return deptID;
+    }
 
 
 }

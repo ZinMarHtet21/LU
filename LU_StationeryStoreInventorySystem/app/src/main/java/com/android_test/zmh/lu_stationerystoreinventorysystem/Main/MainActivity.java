@@ -22,7 +22,7 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
-    EmployeePopulator emppop = new EmployeePopulator();
+    EmployeePopulator empPopulator = new EmployeePopulator();
     EditText username;
     EditText password;
     Button loginBtn;
@@ -45,14 +45,19 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         new AsyncTask<Void,Void,Void>() {
 
             @Override
+            protected Void doInBackground(Void... params) {
+
+                emp = empPopulator.populateEmployeByUname(username.getText().toString());
+                return null;
+            }
+
+            @Override
             protected void onPostExecute(Void aVoid) {
 
                 if(emp.getType().equals("Clerk")){
-                    Intent i = new Intent(MainActivity.this, ClerkMainScreen.class);
-                    startActivity(i);
+                    startActivity(new Intent(MainActivity.this, ClerkMainScreen.class));
                 }else if(emp.getType().equals("Employee")){
-                    Intent i = new Intent(MainActivity.this, EmployeeMainScreen.class);
-                    startActivity(i);
+                    startActivity(new Intent(MainActivity.this, EmployeeMainScreen.class));
                 }else if(emp.getType().equals("HOD")){
                     startActivity(new Intent(MainActivity.this, HODMainScreen.class));
                 }else if(emp.getType().equals("Manager")){
@@ -61,17 +66,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                     startActivity(new Intent(MainActivity.this, RepresentativeMainScreen.class));
                 }else if(emp.getType().equals("Supervisor")){
                     startActivity(new Intent(MainActivity.this, SupervisorMainScreen.class));
-                }
-                else if(emp ==null){
+                }else if(emp ==null){
                     startActivity(new Intent(MainActivity.this, test.class));
                 }
-            }
-            @Override
-            protected Void doInBackground(Void... params) {
-                String url = UrlManager.APIROOTURL+"employeeApi";
-                emp = emppop.populateEmployeByUname(url, username.getText().toString());
-
-                return null;
             }
         }.execute();
 

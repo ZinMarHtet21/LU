@@ -14,6 +14,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Main.MainActivity;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.DepartmentPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.RequisitionPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Requisition;
@@ -41,7 +42,7 @@ public class RequisitionList extends Activity {
             @Override
             protected List<Requisition> doInBackground(Void... params) {
 
-                return reqPopulator.getRequisitionList();
+                return reqPopulator.getRequisitionList(MainActivity.emp.getDepartmentID());
 
             }
             @Override

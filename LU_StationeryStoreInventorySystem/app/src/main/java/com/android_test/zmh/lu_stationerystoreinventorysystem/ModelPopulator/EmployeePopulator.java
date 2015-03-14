@@ -5,6 +5,7 @@ import android.util.Log;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.IPopulator.IEmployee;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Employee;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.RequisitionDetail;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -19,6 +20,9 @@ import java.util.List;
  */
 public class EmployeePopulator implements IEmployee {
 
+    public final static String baseurl = UrlManager.APIROOTURL;
+    String empURL = baseurl+"employeeApi";
+
     @Override
     public List<Employee> PopulateEmployee() {
         // popluate the employee object ,
@@ -32,9 +36,9 @@ public class EmployeePopulator implements IEmployee {
     }
 
     @Override
-    public Employee populateEmployeByUname(String url,String name) {
+    public Employee populateEmployeByUname(String name) {
         Employee emp=null;
-            JSONObject result = JSONParser.getJSONFromUrl(String.format("%s/%s", url, name));
+            JSONObject result = JSONParser.getJSONFromUrl(String.format("%s/%s", empURL, name));
 
             try {
                 JSONObject obj = result;
@@ -53,12 +57,12 @@ public class EmployeePopulator implements IEmployee {
                 Log.e("list", "JSONArray error");
             }
 
-
         return  emp;
     }
 
     @Override
     public List<Employee> PopulateEmployeeFromWcf() {
+
         return null;
     }
 
@@ -70,10 +74,6 @@ public class EmployeePopulator implements IEmployee {
         Gson gson = new Gson();
         String jsonString = gson.toJson(emp, emp.getClass());
         return jsonString;
-
-
-
-
     }
 
 }
