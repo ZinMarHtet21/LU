@@ -7,14 +7,16 @@ import java.io.Serializable;
  */
 public class PurchaseOrderDetail implements Serializable{
     private String id;
+    private String purchase_id;
     private String itemName;
     private int qty;
     private double price;
 
     public PurchaseOrderDetail(){}
 
-    public PurchaseOrderDetail(String id, String itemName, int qty, double price) {
+    public PurchaseOrderDetail(String id, String purchase_id,String itemName, int qty, double price) {
         this.id = id;
+        this.purchase_id = purchase_id;
         this.itemName = itemName;
         this.qty = qty;
         this.price = price;
@@ -26,6 +28,14 @@ public class PurchaseOrderDetail implements Serializable{
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getPurchase_id() {
+        return purchase_id;
+    }
+
+    public void setPurchase_id(String purchase_id) {
+        this.purchase_id = purchase_id;
     }
 
     public String getItemName() {

@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.ApproveRejectStockAdjustment;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.ApproveRejectStockAdjustmentForManager;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.RetrievalList;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.UpdateProfile;
 
@@ -33,7 +34,7 @@ public class ManagerMainScreen extends ListActivity {
         }else if(item.equals("Retrieval List")){
             i = new Intent(this, RetrievalList.class);
         }else if(item.equals("Approve/Reject Stock Adjustment")){
-            i = new Intent(this,ApproveRejectStockAdjustment.class);
+            i = new Intent(this,ApproveRejectStockAdjustmentForManager.class);
         }
 
         startActivity(i);

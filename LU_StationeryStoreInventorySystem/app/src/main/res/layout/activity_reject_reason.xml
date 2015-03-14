@@ -30,7 +30,8 @@
         android:layout_height="134dp"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:id="@+id/editText6" />
+        android:id="@+id/et_reason"
+        android:text="Any spercific reason here..." />
 
     <Button
         android:layout_width="wrap_content"

@@ -12,7 +12,7 @@ import java.util.List;
 public class PurchaseOrder implements Serializable {
     private String id;
     private String number;
-    private Date date;
+    private String date;
     private String supplierName;
     private String orderBy;
     private String approvedBy;
@@ -22,7 +22,7 @@ public class PurchaseOrder implements Serializable {
     public PurchaseOrder(){}
 
     //private static final long Version = 1L;
-    public PurchaseOrder(String id, String number, Date date, String supplierName, String orderBy, String approvedBy, String status) {
+    public PurchaseOrder(String id, String number, String date, String supplierName, String orderBy, String approvedBy, String status) {
         this.id = id;
         this.number = number;
         this.date = date;
@@ -31,7 +31,13 @@ public class PurchaseOrder implements Serializable {
         this.approvedBy = approvedBy;
         this.status = status;
     }
-
+    public PurchaseOrder(String id, String number, String date, String supplierName,String status) {
+        this.id = id;
+        this.number = number;
+        this.date = date;
+        this.supplierName = supplierName;
+        this.status = status;
+    }
     public String getId() {
         return id;
     }
@@ -39,6 +45,8 @@ public class PurchaseOrder implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
+
+
 
     public String getNumber() {
         return number;
@@ -48,11 +56,11 @@ public class PurchaseOrder implements Serializable {
         this.number = number;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -103,7 +111,7 @@ public class PurchaseOrder implements Serializable {
                 ", number='" + number + '\'' +
                 ", date=" + date +
                 ", supplierName='" + supplierName + '\'' +
-                ", orderBy='" + orderBy + '\'' +
+               ", orderBy='" + orderBy + '\'' +
                 ", approvedBy='" + approvedBy + '\'' +
                 ", status='" + status + '\'' +
                 ", purchaseOrderDetail=" + purchaseOrderDetail +

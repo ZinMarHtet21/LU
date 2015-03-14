@@ -12,14 +12,14 @@ public class AdjustmentVoucher implements Serializable{
 
     private String id;
     private String voucher_id;
-    private Date date;
+    private String date;
     private String status;
     private String reason;
     private List<AdjustmentVoucherDetail> adjustmentVoucherDetails=new ArrayList<AdjustmentVoucherDetail>();
 
     public AdjustmentVoucher(){}
 
-    public AdjustmentVoucher(String id, String voucher_id, Date date, String status, String reason) {
+    public AdjustmentVoucher(String id, String voucher_id, String date, String status, String reason) {
         this.id = id;
         this.voucher_id = voucher_id;
         this.date = date;
@@ -43,11 +43,11 @@ public class AdjustmentVoucher implements Serializable{
         this.voucher_id = voucher_id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

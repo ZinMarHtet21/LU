@@ -1,6 +1,9 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.IPopulator;
 
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.AdjustmentVoucher;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.AdjustmentVoucherDetail;
+
+import org.json.JSONArray;
 
 import java.util.List;
 
@@ -12,5 +15,7 @@ public interface IAdjustmentVoucher {
     public void caculateAmount(List<AdjustmentVoucher> list);
     List<AdjustmentVoucher> populateManagerList();
     List<AdjustmentVoucher> populateSupervisorList();
-    List<AdjustmentVoucher> populateAdjustmentVoucherFromWcf();
+    List<AdjustmentVoucher> populateManagerListFromWcf();
+    List<AdjustmentVoucher> populateSupervisorListFromWcf();
+    List<AdjustmentVoucherDetail>populateAdjustmentDetailFromWcf(String url);
 }

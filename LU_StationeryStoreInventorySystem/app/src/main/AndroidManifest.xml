@@ -103,7 +103,7 @@
             android:label="@string/title_activity_purchase_order" >
         </activity>
         <activity
-            android:name=".StoreScreens.PurchaseOrderDetail"
+            android:name=".StoreScreens.PurchaseOrderDetailUI"
             android:label="@string/title_activity_purchase_order_detail" >
         </activity>
         <activity
@@ -116,6 +116,14 @@
         </activity>
         <activity
             android:name=".StoreScreens.ApproveRejectStockAdjustmentDetail"
+            android:label="@string/title_activity_approve_reject_stock_adjustment_detail" >
+        </activity>
+        <activity
+            android:name=".StoreScreens.ApproveRejectStockAdjustmentForManager"
+            android:label="@string/title_activity_approve_reject_stock_adjustment" >
+        </activity>
+        <activity
+            android:name=".StoreScreens.ApproveRejectStockAdjustmentDetailForManager"
             android:label="@string/title_activity_approve_reject_stock_adjustment_detail" >
         </activity>
         <activity
@@ -139,7 +147,7 @@
             android:label="@string/title_activity_disbursement_department_list_detail" >
         </activity>
         <activity
-            android:name=".StoreScreens.RejectReason"
+            android:name=".StoreScreens.RejectReason_order"
             android:label="@string/title_activity_reject_reason" >
         </activity>
     </application>

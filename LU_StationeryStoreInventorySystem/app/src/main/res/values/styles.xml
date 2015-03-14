@@ -5,4 +5,33 @@
         <!-- Customize your theme here. -->
     </style>
 
+
+    <style name = "CodeFont" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height"> wrap_content</item>
+        <item name="android:fontFamily"> </item>
+        <item name="android:textColor">#3399CC</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:textSize">12dp</item>
+
+        </style>
+
+
+       <!--  <style name ="Button" parent="Widget.AppCompat.ActionButton">
+
+        </style>
+
+    <style name = "ListView"parent="Base.Widget.AppCompat.ListView.DropDown">
+
+        </style>
+
+    <style name = "Spinner">
+
+        </style>
+
+    <style name="Background">
+
+        </style>-->
+
+
 </resources>

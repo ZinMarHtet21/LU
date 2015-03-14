@@ -2,6 +2,7 @@ package com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.AdjustmentPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.AdjustmentVoucher;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.PurchaseOrder;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
 
 import java.util.ArrayList;
@@ -23,45 +25,58 @@ import java.util.List;
 
 
 public class ApproveRejectStockAdjustment extends ActionBarActivity {
+    AdjustmentPopulator obj = new AdjustmentPopulator();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approve_reject_stock_adjustment);
-        AdjustmentPopulator obj = new AdjustmentPopulator();
-        final List<AdjustmentVoucher> orders = obj.populateSupervisorList();
-
-
-
-        ListView lv = (ListView) findViewById(R.id.list_voucher);
-        Adapter myadapter = new Adapter(this, orders);
-        lv.setAdapter(myadapter);
-        //click listener
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        new AsyncTask<Void, Void, List<AdjustmentVoucher>>() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(ApproveRejectStockAdjustment.this, ApproveRejectStockAdjustmentDetail.class);
-                i.putExtra("Adjustment", orders.get(position));
-                startActivity(i);
+            protected List<AdjustmentVoucher> doInBackground(Void... params) {
+
+                return obj.populateSupervisorListFromWcf();
+
             }
-        });
+            @Override
+            protected void onPostExecute(List<AdjustmentVoucher> result) {
+                ListView lv = (ListView) findViewById(R.id.list_voucher);
+
+
+                MyAdapter myadapter = new MyAdapter(ApproveRejectStockAdjustment.this,result);
+                lv.setAdapter(myadapter);
+
+                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent i = new Intent(ApproveRejectStockAdjustment.this,ApproveRejectStockAdjustmentDetail.class);
+                        String vi =  ((AdjustmentVoucher) parent.getAdapter().getItem(position)).getVoucher_id();
+                        i.putExtra("VoucherNo",  vi);
+
+                        startActivity(i);
+                    }
+                });
+
+            }
+        }.execute();
 
     }
 
 
-    public class Adapter extends BaseAdapter {
+    public class MyAdapter extends BaseAdapter {
 
-        // starts here...
+
         List<AdjustmentVoucher> list = new ArrayList<AdjustmentVoucher>();
         Context ctx;
         LayoutInflater inflater;
 
-        public Adapter(Context contxt, List<AdjustmentVoucher> orders) {
+        public MyAdapter(Context contxt, List<AdjustmentVoucher> orders) {
             ctx = contxt;
             list = orders;
             inflater = LayoutInflater.from(this.ctx);
         }
 
-        // ends here...
+
         @Override
         public int getCount() {
             return list.size();
@@ -82,8 +97,11 @@ public class ApproveRejectStockAdjustment extends ActionBarActivity {
 
             View v = inflater.inflate(R.layout.row_order_s, null, true);
             TextView tv1 = (TextView) v.findViewById(R.id.PO_s);
+            TextView tv2 = (TextView) v.findViewById(R.id.s_date);
+            TextView tv3 = (TextView) v.findViewById(R.id.s_status);
             tv1.setText("Voucher# "+list.get(position).getVoucher_id());
-
+            tv2.setText(list.get(position).getDate());
+            tv3.setText(list.get(position).getStatus());
             return v;
         }
 
