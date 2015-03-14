@@ -81,7 +81,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
             @Override
             protected void onPostExecute(Void aVoid) {
-
                 if(emp.getType().equals("Clerk")){
                     startActivity(new Intent(MainActivity.this, ClerkMainScreen.class));
                 }else if(emp.getType().equals("Employee")){

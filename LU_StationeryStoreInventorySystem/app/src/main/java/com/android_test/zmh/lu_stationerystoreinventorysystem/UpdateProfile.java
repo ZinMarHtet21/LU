@@ -36,7 +36,7 @@ import java.util.Map;
 
 public class UpdateProfile extends Activity {
 
-    EmployeePopulator empPop;
+    EmployeePopulator empPopulator;
     DepartmentPopulator deptPopulator;
     Employee emp = new Employee();
     int dept_id;
@@ -56,22 +56,23 @@ public class UpdateProfile extends Activity {
     String jsonString;
     String url;
 
-    EditText e_no,e_pwd,e_type,e_ph,e_email;
+    EditText e_no, e_pwd, e_type, e_ph, e_email;
     EditText e_name;
     Spinner upd_dept_spnr;
     Button updateBtn;
+    String jsonUpdateResult = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
-        empPop = new EmployeePopulator();
+        empPopulator = new EmployeePopulator();
         deptPopulator = new DepartmentPopulator();
 
         e_no = (EditText) findViewById(R.id.upd_empNumber_txt);
         e_name = (EditText) findViewById(R.id.upd_empName_txt);
         e_pwd = (EditText) findViewById(R.id.upd_empPwd_txt);
-        e_type = (EditText)findViewById(R.id.upd_empType_txt);
+        e_type = (EditText) findViewById(R.id.upd_empType_txt);
         e_ph = (EditText) findViewById(R.id.upd_empPh_txt);
         e_email = (EditText) findViewById(R.id.upd_empEmail_txt);
         upd_dept_spnr = (Spinner) findViewById(R.id.upd_empDept_Spnr);
@@ -84,7 +85,7 @@ public class UpdateProfile extends Activity {
         e_ph.setText(MainActivity.emp.getPhone());
         e_email.setText(MainActivity.emp.getEmail());
 
-        new AsyncTask<Void,Void,String>(){
+        new AsyncTask<Void, Void, String>() {
 
             @Override
             protected String doInBackground(Void... params) {
@@ -92,7 +93,7 @@ public class UpdateProfile extends Activity {
             }
 
             @Override
-            protected void onPostExecute(String result){
+            protected void onPostExecute(String result) {
                 dept_name = result;
             }
         }.execute();
@@ -118,7 +119,7 @@ public class UpdateProfile extends Activity {
             public void onItemSelected(AdapterView<?> adapter, View view, int position, long id) {
                 selectedDeptName = adapter.getItemAtPosition(position).toString();
 
-                new AsyncTask<Void, Void,Integer>() {
+                new AsyncTask<Void, Void, Integer>() {
                     @Override
                     protected Integer doInBackground(Void... params) {
                         return deptPopulator.getDepartmentID(selectedDeptName);
@@ -143,20 +144,60 @@ public class UpdateProfile extends Activity {
             @Override
             public void onClick(View v) {
 
-
-
-
                 // collect all the values from the edit text...
                 emp_id = MainActivity.emp.getId();
-                emp_name = e_name.getText().toString();
                 emp_type = e_type.getText().toString();
+                emp_name = e_name.getText().toString();
                 emp_no = e_no.getText().toString();
-                emp_pwd =  e_pwd.getText().toString();
-                emp_ph = e_ph.getText().toString();
                 emp_email = e_email.getText().toString();
+                emp_ph = e_ph.getText().toString();
+                emp_pwd = e_pwd.getText().toString();
+
+                AlertDialog alertDialog = new AlertDialog.Builder(UpdateProfile.this).create();
+
+                alertDialog.setTitle("Alert Dialog");
+                alertDialog.setMessage(Integer.toString(emp_deptID));
+                alertDialog.setMessage(emp_id + "\n" +
+                                emp_type + "\n" +
+                                emp_name + "\n" +
+                                emp_no + "\n" +
+                                emp_email + "\n" +
+                                emp_ph + "\n" +
+                                emp_pwd + "\n" +
+                                emp_deptID
+                );
+                alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                alertDialog.show();
+
+                new AsyncTask<Void, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        jsonUpdateResult = empPopulator.updateEmployeeProfile(new Employee(emp_id, emp_type, emp_name, MainActivity.emp.getGender(), emp_no, emp_email, emp_ph, emp_pwd, emp_deptID));
+                        System.out.println("JSON UPDATE");
+                        System.out.println(jsonUpdateResult);
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void result) {
+
+                    }
+
+                }.execute();
+            }
 
 
 
+        });
+
+
+    }
+}
 //
 //                MainActivity.emp.setPassword(emp_pwd);
 //                MainActivity.emp.setPhone(emp_ph);
@@ -181,23 +222,10 @@ public class UpdateProfile extends Activity {
 //                //empPop.populateEmployeByName(uname);
 //
 //
-               AlertDialog alertDialog = new AlertDialog.Builder(UpdateProfile.this).create();
 
-                        alertDialog.setTitle("Alert Dialog");
-                        alertDialog.setMessage(Integer.toString(emp_deptID));
-                       // alertDialog.setMessage(emp_no + "\n" + emp_name + "\n" + emp_pwd + "\n" + dept + "\n" + type + "\n" + emp_ph + "\n" + emp_email);
-                        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
-                            }
-                        });
 
-                        alertDialog.show();
-                    }
-                });
 
-    }
 
-}
+
 
 

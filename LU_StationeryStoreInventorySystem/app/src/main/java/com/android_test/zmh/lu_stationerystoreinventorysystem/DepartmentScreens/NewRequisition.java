@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -17,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
@@ -38,6 +41,8 @@ import java.util.Map;
 
 public class NewRequisition extends ActionBarActivity {
 
+    final Context context = this;
+
     Button sendReqBtn, addBtn;
     EditText itemQty;
     Spinner itemSpinner;
@@ -46,12 +51,16 @@ public class NewRequisition extends ActionBarActivity {
     String itemID;
     String itemDesc;
     int qty;
+    int pos;
 
     ItemPopulator iPop = new ItemPopulator();
-    ListView new_req_listView;
+    public ListView new_req_listView;
     HashMap<String, String> itemMap = new HashMap<String, String>();
-    ArrayList<TempItem> arrayOfItems = new ArrayList<TempItem>();
+    public static ArrayList<TempItem> arrayOfItems = new ArrayList<TempItem>();
+    public static ArrayList<TempItem> finalitems = new ArrayList<TempItem>();
+
     ArrayList itemDescList = new ArrayList();
+    AlertDialog builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +70,7 @@ public class NewRequisition extends ActionBarActivity {
         new AsyncTask<Void, Void, List<Item>>() {
             @Override
             protected List<Item> doInBackground(Void... params) {
+
                 return iPop.getItemList();
             }
 
@@ -105,29 +115,112 @@ public class NewRequisition extends ActionBarActivity {
         new_req_listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                final int pos = position;
+                pos = position;
+                System.out.println("LIST ITEM POSITION");
+                System.out.println(pos);
                 itemDesc = parent.getItemAtPosition(position).toString();
 
-                AlertDialog alertDialog = new AlertDialog.Builder(NewRequisition.this).create();
-                alertDialog.setTitle("Delete Item");
-                alertDialog.setMessage("Are you sure to delete?");
-                alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(NewRequisition.this);
+                alertDialog.setTitle("Action");
+                alertDialog.setMessage("What would you like to do?");
 
-                        arrayOfItems.remove(pos);
-                        itemAdapter = new ItemsAdapter(NewRequisition.this, arrayOfItems);
-                        new_req_listView.setAdapter(itemAdapter);
-                        itemAdapter.notifyDataSetChanged();
-                        Toast.makeText(getApplicationContext(), "Item Deleted Successfully!", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                alertDialog.setCancelable(true);
+                alertDialog.setPositiveButton("Edit",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+//                                Toast.makeText(getApplicationContext(), "You clicked on EDIT", Toast.LENGTH_SHORT).show();
+                                // get prompts.xml view
+                                LayoutInflater li = LayoutInflater.from(context);
+                                View promptsView = li.inflate(R.layout.prompt, null);
+                                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                                alertDialogBuilder.setView(promptsView);
+                                alertDialogBuilder.setTitle("Edit Quantity");
+
+                                final EditText new_qty = (EditText) promptsView
+                                        .findViewById(R.id.upd_empType_txt);
+
+                                // set dialog message
+                                alertDialogBuilder
+                                        .setCancelable(false)
+                                        .setPositiveButton("OK",
+                                                new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog,int id) {
+                                                        // get user input and set it to result
+                                                        // edit text
+//                                                        System.out.println("INSIDE PROMPT");
+//                                                        System.out.println(pos);
+                                                        TempItem element = (TempItem)itemAdapter.getItem(pos);
+                                                        element.iQty = 35;
+                                                        itemAdapter.notifyDataSetChanged();
+
+
+
+                                                        Toast.makeText(getApplicationContext(), "Edited" , Toast.LENGTH_SHORT).show();
+//                                                        text.setText();
+                                                    }
+                                                })
+                                        .setNegativeButton("Cancel",
+                                                new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog,int id) {
+                                                        dialog.cancel();
+                                                    }
+                                                });
+
+                                AlertDialog alertDialog = alertDialogBuilder.create();
+                                alertDialog.show();
+                            }
+                        });
+
+                alertDialog.setNegativeButton("Delete",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                arrayOfItems.remove(pos);
+                                itemAdapter = new ItemsAdapter(NewRequisition.this, arrayOfItems);
+                                new_req_listView.setAdapter(itemAdapter);
+                                itemAdapter.notifyDataSetChanged();
+                                Toast.makeText(getApplicationContext(), "Item Deleted Successfully!", Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+
                 alertDialog.show();
 
-
                 return false;
+
             }
         });
+
+
+//                AlertDialog alertDialog = new AlertDialog.Builder(NewRequisition.this).create();
+//                alertDialog.setTitle("Delete Item");
+//                alertDialog.setMessage("Actions for ");
+
+//                alertDialog.setButton("Edit", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+////                        arrayOfItems.remove(pos);
+////                        itemAdapter = new ItemsAdapter(NewRequisition.this, arrayOfItems);
+////                        new_req_listView.setAdapter(itemAdapter);
+////                        itemAdapter.notifyDataSetChanged();
+//                        Toast.makeText(getApplicationContext(), "Item Deleted Successfully!", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//                alertDialog.setButton("Delete", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+////                        arrayOfItems.remove(pos);
+////                        itemAdapter = new ItemsAdapter(NewRequisition.this, arrayOfItems);
+////                        new_req_listView.setAdapter(itemAdapter);
+////                        itemAdapter.notifyDataSetChanged();
+//                        Toast.makeText(getApplicationContext(), "Item Deleted Successfully!", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//                //alertDialog.setCancelable(true);
+//                alertDialog.show();
+
+
+
+
+
 
         itemQty = (EditText) findViewById(R.id.item_qty_et);
 
@@ -136,8 +229,22 @@ public class NewRequisition extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 qty = Integer.parseInt(itemQty.getText().toString());
-                arrayOfItems.add(new TempItem(itemDesc, qty));
+                TempItem it = new TempItem(itemDesc, qty);
+                arrayOfItems.add(it);
+                finalitems.add(it);
                 itemAdapter.notifyDataSetChanged();
+
+//                System.out.println("Before Edit Qty");
+//                System.out.println("<< arrayOfItems >>");
+//                for(TempItem i:arrayOfItems){
+//                    System.out.println(i.iName + " " + i.iQty);
+//
+//                }
+//                System.out.println("<< finalItems >>");
+//                for(TempItem i:finalitems){
+//                    System.out.println(i.iName + " " + i.iQty);
+//
+//                }
 
 //                AlertDialog alertDialog = new AlertDialog.Builder(NewRequisition.this).create();
 //                alertDialog.setTitle("Alert Dialog");
@@ -157,44 +264,75 @@ public class NewRequisition extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
+//                System.out.println("After Edit Qty");
+//                System.out.println("arrayOfItems");
+//                System.out.println(arrayOfItems.toString());
+//                System.out.println("finalItems");
+//                System.out.println(finalitems.toString());
+
             }
         });
 
     }
-}
 
-class TempItem{
-    String iName;
-    int iQty;
 
-    public TempItem(String iName,int iQty){
-        this.iName = iName;
-        this.iQty = iQty;
-    }
-}
+    class TempItem {
+        String iName;
+        int iQty;
 
-class ItemsAdapter extends ArrayAdapter<TempItem> {
-    public ItemsAdapter(Context context, ArrayList<TempItem> items) {
-        super(context, 0, items);
+        public TempItem(String iName, int iQty) {
+            this.iName = iName;
+            this.iQty = iQty;
+        }
     }
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-
-        TempItem item = getItem(position);
-
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_items, parent, false);
+    class ItemsAdapter extends ArrayAdapter<TempItem> {
+        public ItemsAdapter(Context context, ArrayList<TempItem> items) {
+            super(context, 0, items);
         }
 
-        TextView tvItemName = (TextView) convertView.findViewById(R.id.itemName_txt);
-        TextView tvItemQty = (TextView) convertView.findViewById(R.id.itemQty_txt);
+        @Override
+        public View getView(final int position, View convertView, final ViewGroup parent) {
 
-        tvItemName.setText(item.iName);
-        tvItemQty.setText(Integer.toString(item.iQty));
+            TempItem item = getItem(position);
 
-        return convertView;
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_items, parent, false);
+            }
+
+            TextView tvItemName = (TextView) convertView.findViewById(R.id.itemName_txt);
+            TextView tvItemQty = (TextView) convertView.findViewById(R.id.itemQty_et);
+
+//            tvItemQty.addTextChangedListener(new TextWatcher() {
+//                @Override
+//                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//                    try {
+//                        finalitems.get(position).iQty = Integer.parseInt(tvItemQty.getText().toString());
+//                        getItem(position).iQty = Integer.parseInt(tvItemQty.getText().toString());
+//
+//                    } catch (Exception e) {
+//
+//                    }
+//                }
+//
+//                @Override
+//                public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//                }
+//
+//                @Override
+//                public void afterTextChanged(Editable s) {
+//
+//                }
+//            });
+
+
+            tvItemName.setText(item.iName);
+            tvItemQty.setText(Integer.toString(item.iQty));
+
+            return convertView;
+        }
     }
-}
 
+}
 

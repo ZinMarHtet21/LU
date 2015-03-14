@@ -9,6 +9,7 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class EmployeePopulator implements IEmployee {
 
     public final static String baseurl = UrlManager.APIROOTURL;
     String empURL = baseurl+"employeeApi";
+    String empPostURL = empURL + "/edit";
 
     @Override
     public List<Employee> PopulateEmployee() {
@@ -67,13 +69,28 @@ public class EmployeePopulator implements IEmployee {
     }
 
     @Override
-    public String convertToJSONObj(Employee emp) {
-        System.out.println("EMPLOYEE OBJECT <=======");
-        System.out.println("========================");
-        System.out.println(emp.toString());
-        Gson gson = new Gson();
-        String jsonString = gson.toJson(emp, emp.getClass());
-        return jsonString;
+    public String updateEmployeeProfile(Employee emp) {
+        String result = null;
+        try{
+            String jsonString;
+            JSONObject empObj = new JSONObject();
+            empObj.put("emp_id",emp.getId());
+            empObj.put("emp_type",emp.getType());
+            empObj.put("emp_name",emp.getName());
+            empObj.put("emp_gender",emp.getGender());
+            empObj.put("emp_number",emp.getEmp_number());
+            empObj.put("emp_email",emp.getEmail());
+            empObj.put("emp_phone",emp.getPhone());
+            empObj.put("emp_pwd",emp.getPassword());
+            empObj.put("emp_deptID",emp.getDepartmentID());
+            String json = empObj.toString();
+            result = JSONParser.postStream(String.format("%s",empPostURL),json);
+
+        }catch(Exception e){
+            Log.e("Update Employee Profile","JSON Error");
+        }
+        return result;
     }
+
 
 }

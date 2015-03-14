@@ -2,6 +2,8 @@ package com.android_test.zmh.lu_stationerystoreinventorysystem.IPopulator;
 
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Employee;
 
+import org.json.JSONException;
+
 import java.util.List;
 
 /**
@@ -9,12 +11,14 @@ import java.util.List;
  */
 public interface IEmployee {
 
-    List<Employee> PopulateEmployee();
+    public List<Employee> PopulateEmployee();
 
-    Employee populateEmployeByUname(String name);
+    public Employee populateEmployeByUname(String name);
 
-    List<Employee> PopulateEmployeeFromWcf();
+    public List<Employee> PopulateEmployeeFromWcf();
 
-    String convertToJSONObj(Employee emp);
+    //String convertToJSONObj(Employee emp) throws JSONException;
+
+    public String updateEmployeeProfile(Employee emp);
 
 }
