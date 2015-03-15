@@ -90,10 +90,10 @@ public class ApproveRejectStockAdjustmentDetail extends ActionBarActivity {
 
 
                         Map<String,String > map = new HashMap<String, String>();
-                        map.put("orderId" ,vi);
+                        map.put("voucherId" ,vi);
                         map.put("outcome" ,"approve");
                         map.put("remark" ,"3");
-                        map.put("approvedby" ,"27");
+
                         final JSONObject jsonobject = new JSONObject(map);
 
 

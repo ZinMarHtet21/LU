@@ -32,7 +32,7 @@ public class RejectReason_order extends Activity implements AdapterView.OnItemSe
 
     {
         String reason;
-        EditText et = (EditText) findViewById(R.id.et_reason);
+        String text;
         String approveUrl = UrlManager.APIROOTURL +"purchase_orderApi/approve";
         private RequestQueue mRequestQueue;
         String poNumber;
@@ -41,9 +41,11 @@ public class RejectReason_order extends Activity implements AdapterView.OnItemSe
         protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reject_reason);
+            EditText et = (EditText) findViewById(R.id.et_reason);
+            text=et.getText().toString();
             if (getIntent()!= null) {
 
-                poNumber = getIntent().getSerializableExtra("PO").toString();
+                poNumber = getIntent().getSerializableExtra("Po").toString();
 
             }
 
@@ -56,9 +58,11 @@ public class RejectReason_order extends Activity implements AdapterView.OnItemSe
 
             Button btn =(Button) findViewById(R.id.btnSave);
             mRequestQueue = Volley.newRequestQueue(this);
+
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     Map<String,String > map = new HashMap<String, String>();
                     map.put("orderId" ,poNumber);
                     map.put("outcome" ,"reject");
@@ -83,11 +87,13 @@ public class RejectReason_order extends Activity implements AdapterView.OnItemSe
                     };
 
                     mRequestQueue.add(jsonRequest);
+
                     Intent i = new Intent(RejectReason_order.this, ApproveRejectPurchaseOrder.class);
 
                     startActivity(i);
                 }
             });
+
 
 
 
@@ -98,12 +104,20 @@ public class RejectReason_order extends Activity implements AdapterView.OnItemSe
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
             reason = parent.getItemAtPosition(position).toString();
+           // System.out.println(reason);
 
         }
 
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
-            reason = et.getText().toString();
+
+
+                reason = text;
+            //System.out.println(reason);
+
+
 
         }
+
+
     }

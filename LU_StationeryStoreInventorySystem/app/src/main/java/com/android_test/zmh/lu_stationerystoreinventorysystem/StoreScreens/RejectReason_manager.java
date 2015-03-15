@@ -32,7 +32,7 @@ public class RejectReason_manager extends Activity implements AdapterView.OnItem
 
 {
     String reason;
-    EditText et = (EditText) findViewById(R.id.et_reason);
+    String text;
     String approveUrl = UrlManager.APIROOTURL +"purchase_orderApi/approve";
     private RequestQueue mRequestQueue;
     String voucherId;
@@ -41,6 +41,8 @@ public class RejectReason_manager extends Activity implements AdapterView.OnItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reject_reason);
+        EditText et = (EditText) findViewById(R.id.et_reason);
+        text=et.getText().toString();
         if (getIntent()!= null) {
 
             voucherId = getIntent().getSerializableExtra("Voucher").toString();
@@ -103,7 +105,7 @@ public class RejectReason_manager extends Activity implements AdapterView.OnItem
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        reason = et.getText().toString();
+        reason = text;
 
     }
 }

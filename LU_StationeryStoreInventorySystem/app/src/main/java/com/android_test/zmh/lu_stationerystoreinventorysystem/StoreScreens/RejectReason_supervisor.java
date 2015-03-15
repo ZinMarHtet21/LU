@@ -32,7 +32,7 @@ public class RejectReason_supervisor extends Activity implements AdapterView.OnI
 
 {
     String reason;
-    EditText et = (EditText) findViewById(R.id.et_reason);
+    String text;
     String approveUrl = UrlManager.APIROOTURL +"purchase_orderApi/approve";
     private RequestQueue mRequestQueue;
     String voucherId;
@@ -41,6 +41,8 @@ public class RejectReason_supervisor extends Activity implements AdapterView.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reject_reason);
+        EditText et = (EditText) findViewById(R.id.et_reason);
+        text = et.getText().toString();
         if (getIntent()!= null) {
 
             voucherId = getIntent().getSerializableExtra("Voucher").toString();
@@ -55,6 +57,7 @@ public class RejectReason_supervisor extends Activity implements AdapterView.OnI
 
 
         Button btn =(Button) findViewById(R.id.btnSave);
+
         mRequestQueue = Volley.newRequestQueue(this);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +106,7 @@ public class RejectReason_supervisor extends Activity implements AdapterView.OnI
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        reason = et.getText().toString();
+        reason = text;
 
     }
 }

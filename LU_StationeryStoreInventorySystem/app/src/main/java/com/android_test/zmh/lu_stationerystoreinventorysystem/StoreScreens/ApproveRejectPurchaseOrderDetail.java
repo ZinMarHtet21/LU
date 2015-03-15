@@ -122,21 +122,22 @@ public class ApproveRejectPurchaseOrderDetail extends ActionBarActivity {
                            }
                });
 
-                tv2.setText(String.valueOf(amount));
-                btn2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(ApproveRejectPurchaseOrderDetail.this, RejectReason_order.class);
-                        i.putExtra("Po",po);
-                        startActivity(i);
-
-
-                    }
-                });
-
 
             }
         }.execute();
+
+
+        tv2.setText(String.valueOf(amount));
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ApproveRejectPurchaseOrderDetail.this, RejectReason_order.class);
+                i.putExtra("Po",po);
+                startActivity(i);
+
+
+            }
+        });
     }
         /*if (getIntent()!= null) {
             model = (PurchaseOrder) getIntent().getSerializableExtra("PurchaseOrder");

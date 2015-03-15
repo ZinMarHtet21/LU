@@ -150,6 +150,14 @@
             android:name=".StoreScreens.RejectReason_order"
             android:label="@string/title_activity_reject_reason" >
         </activity>
+        <activity
+            android:name=".StoreScreens.RejectReason_supervisor"
+            android:label="@string/title_activity_reject_reason" >
+        </activity>
+        <activity
+            android:name=".StoreScreens.RejectReason_manager"
+            android:label="@string/title_activity_reject_reason" >
+        </activity>
     </application>
 
 </manifest>

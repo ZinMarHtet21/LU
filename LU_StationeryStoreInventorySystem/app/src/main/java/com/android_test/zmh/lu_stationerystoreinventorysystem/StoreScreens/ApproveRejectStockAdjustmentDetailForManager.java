@@ -93,7 +93,7 @@ public class ApproveRejectStockAdjustmentDetailForManager extends ActionBarActiv
 
 
                         Map<String,String > map = new HashMap<String, String>();
-                        map.put("orderId" ,vi);
+                        map.put("voucherId" ,vi);
                         map.put("outcome" ,"approve");
                         map.put("remark" ,"3");
                         map.put("approvedby" ,"27");
