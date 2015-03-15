@@ -66,20 +66,20 @@ public class DisbursementListDetail extends ActionBarActivity {
 //        }.execute();
     }
 
-    public ArrayList<temp> convertModelToHashMapModel(Requisition model) {
-        ArrayList<temp> tempList = new ArrayList<temp>();
-        for(RequisitionDetail rd : model.getRequisitionDetails()) {
-            String qty = ""+rd.getQty();
-            tempList.add(new temp(rd.getItemName(),qty));
-        }
-        return  tempList;
-    }
-
-    public  class temp extends HashMap<String,String> {
-        public temp(String item,String qty) {
-            put("itemName", item);
-            put("qty", qty);
-        }
-    }
+//    public ArrayList<temp> convertModelToHashMapModel(Requisition model) {
+//        ArrayList<temp> tempList = new ArrayList<temp>();
+//        for(RequisitionDetail rd : model.getRequisitionDetails()) {
+//            String qty = "" + rd.getQty();
+//            tempList.add(new temp(rd.getItemName(),qty));
+//        }
+//        return  tempList;
+//    }
+//
+//    public  class temp extends HashMap<String,String> {
+//        public temp(String item,String qty) {
+//            put("itemName", item);
+//            put("qty", qty);
+//        }
+//    }
 
 }

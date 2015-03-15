@@ -133,7 +133,7 @@ public class RequisitionPopulator implements IRequisition {
                 RequisitionDetail reqDetail = new RequisitionDetail();
                 reqDetail.setId(obj.getInt("requisition_detail_id"));
                 reqDetail.setItemName(obj.getString("item"));
-                reqDetail.setQty(obj.getInt("requisition_detail_qty"));
+                reqDetail.setItem_detail_qty(obj.getInt("requisition_detail_qty"));
                 //reqDetail.setActualQty(obj.getInt(""));
                 list.add(reqDetail);
             }
@@ -145,6 +145,26 @@ public class RequisitionPopulator implements IRequisition {
         System.out.println("Requisition History Detail");
         System.out.println(list.toString());
         return(list);
+    }
+
+    @Override
+    public String sendNewRequisition(int empID, ArrayList<RequisitionDetail> reqDetails) {
+
+        String result = null;
+        try{
+            String jsonString;
+            JSONObject reqDetailObj = new JSONObject();
+            reqDetailObj.put("emp_id",empID);
+            reqDetailObj.put("req_detail_list",reqDetails);
+            String json = reqDetailObj.toString();
+
+            //************ NEED URL TO POST TO SERVER
+//            result = JSONParser.postStream(String.format("%s",empPostURL),json);
+
+        }catch(Exception e){
+            Log.e("Update Employee Profile","JSON Error");
+        }
+        return result;
     }
 
 

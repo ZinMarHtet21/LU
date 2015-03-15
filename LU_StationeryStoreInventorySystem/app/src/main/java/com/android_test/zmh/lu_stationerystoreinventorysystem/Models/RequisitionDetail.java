@@ -9,17 +9,18 @@ import java.io.Serializable;
 public class RequisitionDetail implements Serializable{
 
     private int id;
+    private String item_id;
     private String itemName;
-    private int qty;
-    private int actualQty;
+    private int item_detail_qty;
 
-    public RequisitionDetail(){}
+    public RequisitionDetail() {
+    }
 
-    public RequisitionDetail(int id, String itemName, int qty, int actualQty) {
+    public RequisitionDetail(int id, String item_id, String itemName, int item_detail_qty) {
         this.id = id;
+        this.item_id = item_id;
         this.itemName = itemName;
-        this.qty = qty;
-        this.actualQty = actualQty;
+        this.item_detail_qty = item_detail_qty;
     }
 
     public int getId() {
@@ -30,6 +31,14 @@ public class RequisitionDetail implements Serializable{
         this.id = id;
     }
 
+    public String getItem_id() {
+        return item_id;
+    }
+
+    public void setItem_id(String item_id) {
+        this.item_id = item_id;
+    }
+
     public String getItemName() {
         return itemName;
     }
@@ -38,30 +47,21 @@ public class RequisitionDetail implements Serializable{
         this.itemName = itemName;
     }
 
-    public int getQty() {
-        return qty;
+    public int getItem_detail_qty() {
+        return item_detail_qty;
     }
 
-    public void setQty(int qty) {
-        this.qty = qty;
-    }
-
-    public int getActualQty() {
-        return actualQty;
-    }
-
-    public void setActualQty(int actualQty) {
-        this.actualQty = actualQty;
+    public void setItem_detail_qty(int item_detail_qty) {
+        this.item_detail_qty = item_detail_qty;
     }
 
     @Override
     public String toString() {
         return "RequisitionDetail{" +
-                "id='" + id + '\'' +
+                "id=" + id +
+                ", item_id='" + item_id + '\'' +
                 ", itemName='" + itemName + '\'' +
-                ", qty=" + qty +
-                ", actualQty=" + actualQty +
+                ", item_detail_qty=" + item_detail_qty +
                 '}';
     }
-
 }

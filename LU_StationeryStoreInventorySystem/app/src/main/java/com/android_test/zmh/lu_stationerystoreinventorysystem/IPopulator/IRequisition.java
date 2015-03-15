@@ -23,4 +23,6 @@ public interface IRequisition {
 //    public List<RequisitionDetail> getRequisitionListDetails(String req_id, String url);
 
     public List<RequisitionDetail> getRequisitionDetail(String reqID,String url);
+
+    public String sendNewRequisition(int empID,ArrayList<RequisitionDetail> reqDetails);
 }

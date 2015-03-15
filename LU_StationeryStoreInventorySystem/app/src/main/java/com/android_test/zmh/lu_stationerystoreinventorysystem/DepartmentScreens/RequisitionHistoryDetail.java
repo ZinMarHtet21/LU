@@ -74,7 +74,7 @@ public class RequisitionHistoryDetail extends ActionBarActivity {
     public ArrayList<temp> convertModelToHashMapModel(Requisition model) {
         ArrayList<temp> tempList = new ArrayList<temp>();
         for(RequisitionDetail rd : model.getRequisitionDetails()) {
-            String qty = ""+rd.getQty();
+            String qty = ""+rd.getItem_detail_qty();
             tempList.add(new temp(rd.getItemName(),qty));
         }
         return  tempList;

@@ -32,44 +32,16 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        username = (EditText) findViewById(R.id.usernameET);
-        password = (EditText) findViewById(R.id.passswordET);
-        loginBtn = (Button) findViewById(R.id.loginBtn);
+        username = (EditText)findViewById(R.id.usernameET);
+        password = (EditText)findViewById(R.id.passswordET);
+        loginBtn = (Button)findViewById(R.id.loginBtn);
         loginBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        //Updated upstream
 
         // make a call to the webapi...abd fetch emp object...
-        if ((username.getText().toString()).equals("Employee")) {
-            Intent i = new Intent(MainActivity.this, EmployeeMainScreen.class);
-            startActivity(i);
-
-        }
-        else if ((username.getText().toString()).equals("Clerk")) {
-            Intent y = new Intent(MainActivity.this, ClerkMainScreen.class);
-            startActivity(y);
-        }
-        else if ((username.getText().toString()).equals("Supervisor")) {
-            startActivity(new Intent(MainActivity.this, SupervisorMainScreen.class));
-        }
-        else if ((username.getText().toString()).equals("Manager")) {
-            startActivity(new Intent(MainActivity.this, ManagerMainScreen.class));
-        }
-        else if(username.getText().toString().equals("HOD")) {
-            startActivity(new Intent(MainActivity.this, HODMainScreen.class));
-        }
-        else if(username.getText().toString().equals("Representative")) {
-            startActivity(new Intent(MainActivity.this, RepresentativeMainScreen.class));
-        }
-
-    }
-}
-/*
-// make a call to the webapi...abd fetch emp object...
->>>>>>> Stashed changes
         new AsyncTask<Void,Void,Void>() {
 
             @Override
@@ -101,4 +73,4 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     }
 
-}*/
+}
