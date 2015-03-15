@@ -41,35 +41,39 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-        // make a call to the webapi...abd fetch emp object...
-        new AsyncTask<Void,Void,Void>() {
+        if((username.getText().toString()).equals("emp1")){
+            startActivity(new Intent(MainActivity.this, EmployeeMainScreen.class));
+        }
 
-            @Override
-            protected Void doInBackground(Void... params) {
-
-                emp = empPopulator.populateEmployeByUname(username.getText().toString());
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                if(emp.getType().equals("Clerk")){
-                    startActivity(new Intent(MainActivity.this, ClerkMainScreen.class));
-                }else if(emp.getType().equals("Employee")){
-                    startActivity(new Intent(MainActivity.this, EmployeeMainScreen.class));
-                }else if(emp.getType().equals("HOD")){
-                    startActivity(new Intent(MainActivity.this, HODMainScreen.class));
-                }else if(emp.getType().equals("Manager")){
-                    startActivity(new Intent(MainActivity.this, ManagerMainScreen.class));
-                }else if(emp.getType().equals("Representative")){
-                    startActivity(new Intent(MainActivity.this, RepresentativeMainScreen.class));
-                }else if(emp.getType().equals("Supervisor")){
-                    startActivity(new Intent(MainActivity.this, SupervisorMainScreen.class));
-                }else if(emp ==null){
-                    startActivity(new Intent(MainActivity.this, test.class));
-                }
-            }
-        }.execute();
+//        // make a call to the webapi...abd fetch emp object...
+//        new AsyncTask<Void,Void,Void>() {
+//
+//            @Override
+//            protected Void doInBackground(Void... params) {
+//
+//                emp = empPopulator.populateEmployeByUname(username.getText().toString());
+//                return null;
+//            }
+//
+//            @Override
+//            protected void onPostExecute(Void aVoid) {
+//                if(emp.getType().equals("Clerk")){
+//                    startActivity(new Intent(MainActivity.this, ClerkMainScreen.class));
+//                }else if(emp.getType().equals("Employee")){
+//                    startActivity(new Intent(MainActivity.this, EmployeeMainScreen.class));
+//                }else if(emp.getType().equals("HOD")){
+//                    startActivity(new Intent(MainActivity.this, HODMainScreen.class));
+//                }else if(emp.getType().equals("Manager")){
+//                    startActivity(new Intent(MainActivity.this, ManagerMainScreen.class));
+//                }else if(emp.getType().equals("Representative")){
+//                    startActivity(new Intent(MainActivity.this, RepresentativeMainScreen.class));
+//                }else if(emp.getType().equals("Supervisor")){
+//                    startActivity(new Intent(MainActivity.this, SupervisorMainScreen.class));
+//                }else if(emp ==null){
+//                    startActivity(new Intent(MainActivity.this, test.class));
+//                }
+//            }
+//        }.execute();
 
     }
 
