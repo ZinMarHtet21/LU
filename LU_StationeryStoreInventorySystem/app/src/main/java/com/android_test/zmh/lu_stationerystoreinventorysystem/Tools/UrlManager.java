@@ -5,6 +5,6 @@ package com.android_test.zmh.lu_stationerystoreinventorysystem.Tools;
  */
 public class UrlManager {
 
-    public static String APIROOTURL ="http://10.10.1.200/LU_Store_MvcV1/api/";
+    public static String APIROOTURL ="http://10.10.1.202/LU_Store_MvcV1/api/";
 
 }

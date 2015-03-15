@@ -10,7 +10,10 @@
         android:layout_height="wrap_content"
         android:textColor="#093a60"
         android:textSize="18dp"
+        android:textStyle="bold"
         android:padding="10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"/>
 
