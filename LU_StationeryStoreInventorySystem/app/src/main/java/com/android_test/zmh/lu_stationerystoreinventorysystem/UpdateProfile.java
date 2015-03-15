@@ -143,6 +143,7 @@ public class UpdateProfile extends Activity {
 
             @Override
             public void onClick(View v) {
+                System.out.println("Click Login Btn");
 
                 // collect all the values from the edit text...
                 emp_id = MainActivity.emp.getId();

@@ -22,7 +22,7 @@ import java.util.List;
 public class ItemPopulator implements IItem {
 
     public final static String baseurl = UrlManager.APIROOTURL;
-    public final static String itemURL = baseurl +"itemApi";
+    public final static String itemURL = baseurl +"itemApi/all";
 
     @Override
     public List<Item> getItemList() {
@@ -33,16 +33,16 @@ public class ItemPopulator implements IItem {
 
             for (int i =0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
+
                 Item item = new Item();
                 item.setId(obj.getString("item_id").toString());
                 item.setCategory(obj.getInt("category_category_id"));
                 item.setDescription(obj.getString("item_description").toString());
                 item.setReorderLevel(obj.getInt("item_reorder_level"));
                 item.setReorderQty(obj.getInt("item_reorder_qty"));
-//                item.setBalance(obj.getInt(""));
+                item.setBalance(obj.getInt("item_balance"));
                 item.setVirtualBalance(obj.getInt("item_virtual_balance"));
-                item.setStatus(obj.getString("item_status").toString());
-                item.setUom(obj.getString("uom").toString());
+                item.setUom(obj.getString("uom_name").toString());
 
                 list.add(item);
             }

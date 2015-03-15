@@ -23,6 +23,7 @@ public class EmployeePopulator implements IEmployee {
 
     public final static String baseurl = UrlManager.APIROOTURL;
     String empURL = baseurl+"employeeApi";
+    String empGetURL = empURL + "/get";
     String empPostURL = empURL + "/edit";
 
     @Override
@@ -40,7 +41,7 @@ public class EmployeePopulator implements IEmployee {
     @Override
     public Employee populateEmployeByUname(String name) {
         Employee emp=null;
-            JSONObject result = JSONParser.getJSONFromUrl(String.format("%s/%s", empURL, name));
+            JSONObject result = JSONParser.getJSONFromUrl(String.format("%s/%s", empGetURL, name));
 
             try {
                 JSONObject obj = result;
@@ -48,7 +49,7 @@ public class EmployeePopulator implements IEmployee {
                             obj.getInt("employee_id"),
                             obj.getString("employee_type").toString(),
                             obj.getString("employee_name").toString(),
-                            obj.getString("employee_gender").toString(),
+                            //obj.getString("employee_gender").toString(),
                             obj.getString("employee_number").toString(),
                             obj.getString("employee_email").toString(),
                             obj.getString("employee_phone").toString(),
@@ -82,7 +83,7 @@ public class EmployeePopulator implements IEmployee {
             empObj.put("emp_email",emp.getEmail());
             empObj.put("emp_phone",emp.getPhone());
             empObj.put("emp_pwd",emp.getPassword());
-            empObj.put("emp_deptID",emp.getDepartmentID());
+//            empObj.put("emp_deptID",emp.getDepartmentID());
             String json = empObj.toString();
             result = JSONParser.postStream(String.format("%s",empPostURL),json);
 

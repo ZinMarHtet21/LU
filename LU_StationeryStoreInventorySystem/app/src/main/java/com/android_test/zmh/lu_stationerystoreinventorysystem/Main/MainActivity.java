@@ -32,80 +32,77 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        username = (EditText)findViewById(R.id.usernameET);
-        password = (EditText)findViewById(R.id.passswordET);
-        loginBtn = (Button)findViewById(R.id.loginBtn);
+        username = (EditText) findViewById(R.id.usernameET);
+        password = (EditText) findViewById(R.id.passswordET);
+        loginBtn = (Button) findViewById(R.id.loginBtn);
         loginBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
 
-/* Updated upstream
-        if((username.getText().toString()).equals("emp1")){
-            startActivity(new Intent(MainActivity.this, EmployeeMainScreen.class));
-        }
-=======
-
-        // make a call to the webapi...abd fetch emp object...
-        /*
-        new AsyncTask<Void,Void,Void>() {
->>>>>>> Stashed changes
 
 //        // make a call to the webapi...abd fetch emp object...
+//        /*
 //        new AsyncTask<Void,Void,Void>() {
-//
-//            @Override
-//            protected Void doInBackground(Void... params) {
-//
-//                emp = empPopulator.populateEmployeByUname(username.getText().toString());
-//                return null;
-//            }
-//
-//            @Override
-//            protected void onPostExecute(Void aVoid) {
-//                if(emp.getType().equals("Clerk")){
-//                    startActivity(new Intent(MainActivity.this, ClerkMainScreen.class));
-//                }else if(emp.getType().equals("Employee")){
-//                    startActivity(new Intent(MainActivity.this, EmployeeMainScreen.class));
-//                }else if(emp.getType().equals("HOD")){
-//                    startActivity(new Intent(MainActivity.this, HODMainScreen.class));
-//                }else if(emp.getType().equals("Manager")){
-//                    startActivity(new Intent(MainActivity.this, ManagerMainScreen.class));
-//                }else if(emp.getType().equals("Representative")){
-//                    startActivity(new Intent(MainActivity.this, RepresentativeMainScreen.class));
-//                }else if(emp.getType().equals("Supervisor")){
-//                    startActivity(new Intent(MainActivity.this, SupervisorMainScreen.class));
-//                }else if(emp ==null){
-//                    startActivity(new Intent(MainActivity.this, test.class));
-//                }
-//            }
-//        }.execute();
+
+        // make a call to the webapi...abd fetch emp object...
+        new AsyncTask<Void, Void, Void>() {
+
+            @Override
+            protected Void doInBackground(Void... params) {
+
+                emp = empPopulator.populateEmployeByUname(username.getText().toString());
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                System.out.println("EMPLOYEE OBJECT LOGIN");
+                System.out.println(emp.toString());
+                if (emp.getType().equals("Clerk")) {
+                    startActivity(new Intent(MainActivity.this, ClerkMainScreen.class));
+                } else if (emp.getType().equals("Employee")) {
+                    startActivity(new Intent(MainActivity.this, EmployeeMainScreen.class));
+                } else if (emp.getType().equals("HOD")) {
+                    startActivity(new Intent(MainActivity.this, HODMainScreen.class));
+                } else if (emp.getType().equals("Manager")) {
+                    startActivity(new Intent(MainActivity.this, ManagerMainScreen.class));
+                } else if (emp.getType().equals("Representative")) {
+                    startActivity(new Intent(MainActivity.this, RepresentativeMainScreen.class));
+                } else if (emp.getType().equals("Supervisor")) {
+                    startActivity(new Intent(MainActivity.this, SupervisorMainScreen.class));
+                } else if (emp == null) {
+                    startActivity(new Intent(MainActivity.this, test.class));
+                }
+            }
+        }.execute();
 
     }
-    */
-        if ((username.getText().toString()).equals("Employee")) {
-            Intent i = new Intent(MainActivity.this, EmployeeMainScreen.class);
-            startActivity(i);
-
-        }
-        else if ((username.getText().toString()).equals("Clerk")) {
-            Intent y = new Intent(MainActivity.this, ClerkMainScreen.class);
-            startActivity(y);
-        }
-        else if ((username.getText().toString()).equals("Supervisor")) {
-            startActivity(new Intent(MainActivity.this, SupervisorMainScreen.class));
-        }
-        else if ((username.getText().toString()).equals("Manager")) {
-            startActivity(new Intent(MainActivity.this, ManagerMainScreen.class));
-        }
-        else if(username.getText().toString().equals("HOD")) {
-            startActivity(new Intent(MainActivity.this, HODMainScreen.class));
-        }
-        else if(username.getText().toString().equals("Representative")) {
-            startActivity(new Intent(MainActivity.this, RepresentativeMainScreen.class));
-        }
-
-    }
-
 }
+
+//        if ((username.getText().toString()).equals("emp1")) {
+//            Intent i = new Intent(MainActivity.this, EmployeeMainScreen.class);
+//            startActivity(i);
+//
+//        }
+//        else if ((username.getText().toString()).equals("Clerk")) {
+//            Intent y = new Intent(MainActivity.this, ClerkMainScreen.class);
+//            startActivity(y);
+//        }
+//        else if ((username.getText().toString()).equals("Supervisor")) {
+//            startActivity(new Intent(MainActivity.this, SupervisorMainScreen.class));
+//        }
+//        else if ((username.getText().toString()).equals("Manager")) {
+//            startActivity(new Intent(MainActivity.this, ManagerMainScreen.class));
+//        }
+//        else if(username.getText().toString().equals("HOD")) {
+//            startActivity(new Intent(MainActivity.this, HODMainScreen.class));
+//        }
+//        else if(username.getText().toString().equals("Representative")) {
+//            startActivity(new Intent(MainActivity.this, RepresentativeMainScreen.class));
+//        }
+//
+//    }
+//
+//}

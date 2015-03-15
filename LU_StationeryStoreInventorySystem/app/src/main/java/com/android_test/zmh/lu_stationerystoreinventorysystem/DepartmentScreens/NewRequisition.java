@@ -26,7 +26,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Main.MainActivity;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.ItemPopulator;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.RequisitionPopulator;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Employee;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Item;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Requisition;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.RequisitionDetail;
@@ -53,11 +56,14 @@ public class NewRequisition extends ActionBarActivity {
     String itemDesc;
     int qty;
     int pos;
+    String jsonUpdateResult;
 
+    RequisitionPopulator reqPopulator = new RequisitionPopulator();
     ItemPopulator iPop = new ItemPopulator();
     public ListView new_req_listView;
     HashMap<String, String> itemMap = new HashMap<String, String>();
     public static ArrayList<TempItem> arrayOfItems = new ArrayList<TempItem>();
+    ArrayList<RequisitionDetail> reqDetailList = new ArrayList<RequisitionDetail>();
 //    public static ArrayList<TempItem> finalitems = new ArrayList<TempItem>();
 
     ArrayList itemDescList = new ArrayList();
@@ -267,7 +273,7 @@ public class NewRequisition extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                List<RequisitionDetail> reqDetailList = new ArrayList<RequisitionDetail>();
+
                 for(TempItem i:arrayOfItems){
 
                     RequisitionDetail rd = new RequisitionDetail();
@@ -277,9 +283,28 @@ public class NewRequisition extends ActionBarActivity {
                     reqDetailList.add(rd);
                 }
 
-                for(RequisitionDetail rd:reqDetailList){
-                    System.out.println("ITEM ID : " + rd.getItem_id() + " | ITEM QTY : " + rd.getItem_detail_qty());
-                }
+//                for(RequisitionDetail rd:reqDetailList){
+//                    System.out.println("ITEM ID : " + rd.getItem_id() + " | ITEM QTY : " + rd.getItem_detail_qty());
+//                }
+
+
+                new AsyncTask<Void, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        jsonUpdateResult = reqPopulator.sendNewRequisition(MainActivity.emp.getId(), reqDetailList);
+                        System.out.println("JSON UPDATE");
+                        System.out.println(jsonUpdateResult);
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void result) {
+
+                    }
+
+                }.execute();
+
+
 
 //                System.out.println("After Edit Qty");
 //                System.out.println("<< arrayOfItems >>");

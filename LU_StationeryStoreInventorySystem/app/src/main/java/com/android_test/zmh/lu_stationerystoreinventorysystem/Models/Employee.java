@@ -20,6 +20,17 @@ public class Employee  implements Serializable {
     public Employee() {
     }
 
+    public Employee(int id, String type, String name, String emp_number, String email, String phone, String password, int departmentID) {
+        this.id = id;
+        this.type = type;
+        this.name = name;
+        this.emp_number = emp_number;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+        this.departmentID = departmentID;
+    }
+
     public Employee(int id, String type, String name, String gender, String emp_number, String email, String phone, String password, int departmentID) {
         this.id = id;
         this.type = type;

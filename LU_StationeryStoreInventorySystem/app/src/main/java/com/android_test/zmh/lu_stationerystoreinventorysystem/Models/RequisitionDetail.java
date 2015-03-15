@@ -57,10 +57,7 @@ public class RequisitionDetail implements Serializable{
 
     @Override
     public String toString() {
-        return "RequisitionDetail{" +
-                "id=" + id +
-                ", item_id='" + item_id + '\'' +
-                ", itemName='" + itemName + '\'' +
+        return "{ item_id='" + item_id + '\'' +
                 ", item_detail_qty=" + item_detail_qty +
                 '}';
     }
