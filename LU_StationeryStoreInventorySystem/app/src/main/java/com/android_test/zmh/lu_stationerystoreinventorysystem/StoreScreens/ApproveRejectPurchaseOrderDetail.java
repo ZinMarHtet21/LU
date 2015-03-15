@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens.SupervisorMainScreen;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.PurchaseOrderPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.PurchaseOrder;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.PurchaseOrderDetail;
@@ -52,7 +54,7 @@ public class ApproveRejectPurchaseOrderDetail extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approve_reject_purchase_order_detail);
         final ListView lv = (ListView) findViewById(R.id.lv_sorder);
-        tv1 = (TextView) findViewById(R.id.poNumber);
+
         tv2 = (TextView) findViewById(R.id.Amount);
         btn1 = (Button) findViewById(R.id.btnApprove);
         btn2 = (Button) findViewById(R.id.btnReject);
@@ -116,6 +118,11 @@ public class ApproveRejectPurchaseOrderDetail extends ActionBarActivity {
                                };
 
                                mRequestQueue.add(jsonRequest);
+                       Intent intent = new Intent(ApproveRejectPurchaseOrderDetail.this,SupervisorMainScreen.class);
+                       //intent.putExtra("status",response);
+                       Toast.makeText(getApplicationContext(), " PO:" + po + "has been approved!",
+                               Toast.LENGTH_LONG).show();
+                       startActivity(intent);
 
 
 

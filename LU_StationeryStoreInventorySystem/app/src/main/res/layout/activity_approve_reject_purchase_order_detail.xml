@@ -4,36 +4,26 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.ApproveRejectPurchaseOrderDetail">
+    tools:context="com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.ApproveRejectPurchaseOrderDetail"
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/poNumber"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="43dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="    PO Number:"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/lv_sorder"
-        android:layout_below="@+id/poNumber"
         android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:divider="@color/lv_divider"
+        android:dividerHeight="2dp"
+        android:layout_below="@+id/imageView"
+        android:background="#fff9fff0"
+        android:footerDividersEnabled="true"
+        android:headerDividersEnabled="true"
+        android:padding="15dp"
         android:layout_marginTop="50dp"
-        android:layout_marginBottom="110dp"
-        />
+        android:layout_marginBottom="110dp"/>
+
 
     <Button
         style="@style/CodeFont"
@@ -42,32 +32,36 @@
         android:text="Approve"
         android:id="@+id/btnApprove"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/textView" />
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="50dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Reject"
         android:id="@+id/btnReject"
-        android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/poNumber" />
+        android:layout_alignTop="@+id/btnApprove"
+        android:layout_alignStart="@+id/Amount"
+        android:layout_alignBottom="@+id/btnApprove" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText4"
-        android:layout_below="@+id/textView"
         android:layout_alignEnd="@+id/lv_sorder"
         android:layout_alignParentStart="true"
-        android:text="Item                         Qty                        Price" />
+        android:text="Item          Qty          Price"
+        style="@style/text" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/editText5"
         android:text="       Total Amount: $"
         android:layout_above="@+id/btnApprove"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="#093a60" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -77,6 +71,7 @@
         android:id="@+id/Amount"
         android:layout_alignTop="@+id/editText5"
         android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/editText5" />
+        android:layout_toEndOf="@+id/editText5"
+        android:textColor="#093a60" />
 
 </RelativeLayout>

@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens.SupervisorMainScreen;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
 
@@ -88,7 +90,9 @@ public class RejectReason_order extends Activity implements AdapterView.OnItemSe
 
                     mRequestQueue.add(jsonRequest);
 
-                    Intent i = new Intent(RejectReason_order.this, ApproveRejectPurchaseOrder.class);
+                    Intent i = new Intent(RejectReason_order.this, SupervisorMainScreen.class);
+                    Toast.makeText(getApplicationContext(), " Voucher#" + poNumber + "has been rejected!",
+                            Toast.LENGTH_LONG).show();
 
                     startActivity(i);
                 }

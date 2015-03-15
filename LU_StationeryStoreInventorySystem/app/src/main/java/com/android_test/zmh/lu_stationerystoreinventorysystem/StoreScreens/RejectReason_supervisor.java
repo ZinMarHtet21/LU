@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens.SupervisorMainScreen;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
 
@@ -33,7 +35,7 @@ public class RejectReason_supervisor extends Activity implements AdapterView.OnI
 {
     String reason;
     String text;
-    String approveUrl = UrlManager.APIROOTURL +"purchase_orderApi/approve";
+    String approveUrl = UrlManager.APIROOTURL +"stockAdjustmentApi/approve";
     private RequestQueue mRequestQueue;
     String voucherId;
 
@@ -63,7 +65,7 @@ public class RejectReason_supervisor extends Activity implements AdapterView.OnI
             @Override
             public void onClick(View v) {
                 Map<String,String > map = new HashMap<String, String>();
-                map.put("orderId" ,voucherId);
+                map.put("voucherID" ,voucherId);
                 map.put("outcome" ,"reject");
                 map.put("remark" ,reason);
                 map.put("approvedby" ,"27");
@@ -86,8 +88,9 @@ public class RejectReason_supervisor extends Activity implements AdapterView.OnI
                 };
 
                 mRequestQueue.add(jsonRequest);
-                Intent i = new Intent(RejectReason_supervisor.this, ApproveRejectStockAdjustment.class);
-
+                Intent i = new Intent(RejectReason_supervisor.this, SupervisorMainScreen.class);
+                Toast.makeText(getApplicationContext(), " Voucher#"+voucherId+"has been rejected!",
+                        Toast.LENGTH_LONG).show();
                 startActivity(i);
             }
         });

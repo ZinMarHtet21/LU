@@ -41,9 +41,16 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
+/* Updated upstream
         if((username.getText().toString()).equals("emp1")){
             startActivity(new Intent(MainActivity.this, EmployeeMainScreen.class));
         }
+=======
+
+        // make a call to the webapi...abd fetch emp object...
+        /*
+        new AsyncTask<Void,Void,Void>() {
+>>>>>>> Stashed changes
 
 //        // make a call to the webapi...abd fetch emp object...
 //        new AsyncTask<Void,Void,Void>() {
@@ -74,6 +81,30 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 //                }
 //            }
 //        }.execute();
+
+    }
+    */
+        if ((username.getText().toString()).equals("Employee")) {
+            Intent i = new Intent(MainActivity.this, EmployeeMainScreen.class);
+            startActivity(i);
+
+        }
+        else if ((username.getText().toString()).equals("Clerk")) {
+            Intent y = new Intent(MainActivity.this, ClerkMainScreen.class);
+            startActivity(y);
+        }
+        else if ((username.getText().toString()).equals("Supervisor")) {
+            startActivity(new Intent(MainActivity.this, SupervisorMainScreen.class));
+        }
+        else if ((username.getText().toString()).equals("Manager")) {
+            startActivity(new Intent(MainActivity.this, ManagerMainScreen.class));
+        }
+        else if(username.getText().toString().equals("HOD")) {
+            startActivity(new Intent(MainActivity.this, HODMainScreen.class));
+        }
+        else if(username.getText().toString().equals("Representative")) {
+            startActivity(new Intent(MainActivity.this, RepresentativeMainScreen.class));
+        }
 
     }
 

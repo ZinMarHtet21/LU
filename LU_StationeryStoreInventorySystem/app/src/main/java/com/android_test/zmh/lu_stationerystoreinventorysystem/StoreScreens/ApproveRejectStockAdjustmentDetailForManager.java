@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,6 +18,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens.ManagerMainScreen;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens.SupervisorMainScreen;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.AdjustmentPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.AdjustmentVoucher;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.AdjustmentVoucherDetail;
@@ -53,7 +56,7 @@ public class ApproveRejectStockAdjustmentDetailForManager extends ActionBarActiv
         setContentView(R.layout.activity_approve_reject_stock_adjustment_detail);
         btn1 = (Button) findViewById(R.id.btApprove);
         btn2 = (Button) findViewById(R.id.btReject);
-        tv1 = (TextView) findViewById(R.id.tv_date);
+       
         tv2 = (TextView) findViewById(R.id.voucher_id);
         mRequestQueue = Volley.newRequestQueue(this);
         lv = (ListView) findViewById(R.id.lv_adDetail);
@@ -116,6 +119,11 @@ public class ApproveRejectStockAdjustmentDetailForManager extends ActionBarActiv
                         };
 
                         mRequestQueue.add(jsonRequest);
+                        Intent intent = new Intent(ApproveRejectStockAdjustmentDetailForManager.this,ManagerMainScreen.class);
+
+                        Toast.makeText(getApplicationContext(), " Voucher#" + vi + "has been approved!",
+                                Toast.LENGTH_LONG).show();
+                        startActivity(intent);
                     }
                 });
 
@@ -133,7 +141,6 @@ public class ApproveRejectStockAdjustmentDetailForManager extends ActionBarActiv
 
 
             }
-
 
 
 

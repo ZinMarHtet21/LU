@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,12 +19,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens.SupervisorMainScreen;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.AdjustmentPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.AdjustmentVoucher;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.AdjustmentVoucherDetail;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.PurchaseOrderDetail;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,10 +43,10 @@ public class ApproveRejectStockAdjustmentDetail extends ActionBarActivity {
     String approveUrl = UrlManager.APIROOTURL +"stockAdjustmentApi/approve";
     private RequestQueue mRequestQueue;
     String vi;
+    String response;
     Button btn1;
     Button btn2;
     TextView tv1 ;
-    TextView tv2;
     ListView lv;
 
     @Override
@@ -50,8 +55,8 @@ public class ApproveRejectStockAdjustmentDetail extends ActionBarActivity {
         setContentView(R.layout.activity_approve_reject_stock_adjustment_detail);
         btn1 = (Button) findViewById(R.id.btApprove);
         btn2 = (Button) findViewById(R.id.btReject);
-        tv1 = (TextView) findViewById(R.id.tv_date);
-        tv2 = (TextView) findViewById(R.id.voucher_id);
+        tv1 = (TextView) findViewById(R.id.voucher_id);
+        tv1.setText("");
         mRequestQueue = Volley.newRequestQueue(this);
         lv = (ListView) findViewById(R.id.lv_adDetail);
 
@@ -90,7 +95,7 @@ public class ApproveRejectStockAdjustmentDetail extends ActionBarActivity {
 
 
                         Map<String,String > map = new HashMap<String, String>();
-                        map.put("voucherId" ,vi);
+                        map.put("voucherID" ,vi);
                         map.put("outcome" ,"approve");
                         map.put("remark" ,"3");
 
@@ -100,6 +105,12 @@ public class ApproveRejectStockAdjustmentDetail extends ActionBarActivity {
                         JsonRequest<JSONObject> jsonRequest = new JsonObjectRequest(Request.Method.POST,approveUrl,jsonobject,new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject jsonObject) {
+                                try {
+                                    response= jsonObject.getString("outcome").toString();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
                                 System.out.println(jsonObject);
                             }
 
@@ -113,10 +124,15 @@ public class ApproveRejectStockAdjustmentDetail extends ActionBarActivity {
                         };
 
                         mRequestQueue.add(jsonRequest);
+                        Intent intent = new Intent(ApproveRejectStockAdjustmentDetail.this,SupervisorMainScreen.class);
+                        //intent.putExtra("status",response);
+                        Toast.makeText(getApplicationContext(), " Voucher#" + vi + "has been approved!",
+                                Toast.LENGTH_LONG).show();
+                        startActivity(intent);
                     }
                 });
 
-
+                tv1.setText(vi);
                 btn2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

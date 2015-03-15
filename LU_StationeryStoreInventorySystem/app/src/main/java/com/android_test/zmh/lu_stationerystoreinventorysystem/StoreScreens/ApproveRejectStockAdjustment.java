@@ -26,11 +26,14 @@ import java.util.List;
 
 public class ApproveRejectStockAdjustment extends ActionBarActivity {
     AdjustmentPopulator obj = new AdjustmentPopulator();
+    String status = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approve_reject_stock_adjustment);
+
+
         new AsyncTask<Void, Void, List<AdjustmentVoucher>>() {
             @Override
             protected List<AdjustmentVoucher> doInBackground(Void... params) {
@@ -61,6 +64,8 @@ public class ApproveRejectStockAdjustment extends ActionBarActivity {
         }.execute();
 
     }
+
+
 
 
     public class MyAdapter extends BaseAdapter {
@@ -101,7 +106,10 @@ public class ApproveRejectStockAdjustment extends ActionBarActivity {
             TextView tv3 = (TextView) v.findViewById(R.id.s_status);
             tv1.setText("Voucher# "+list.get(position).getVoucher_id());
             tv2.setText(list.get(position).getDate());
-            tv3.setText(list.get(position).getStatus());
+            if (status!="")
+                tv3.setText(status);
+            else
+                tv3.setText(list.get(position).getStatus());
             return v;
         }
 
