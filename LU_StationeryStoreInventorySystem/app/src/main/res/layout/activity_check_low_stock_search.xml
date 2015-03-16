@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Category"
+                android:text="Item"
                 android:textColor="@color/button_material_dark"
                 android:layout_weight="1" />
 
@@ -59,7 +59,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/dodgerblue"
                 android:text="/"
-                android:id="@+id/text_category"
+                android:id="@+id/text_item"
                 android:layout_weight="1" />
 
         </TableRow>
@@ -75,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Description"
+                android:text="UOM"
                 android:textColor="@color/button_material_dark"
                 android:layout_weight="1"/>
 
@@ -87,7 +87,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/dodgerblue"
                 android:text="/"
-                android:id="@+id/text_description"
+                android:id="@+id/text_uom"
                 android:layout_weight="1" />
 
         </TableRow>
@@ -173,6 +173,8 @@
 
         </TableRow>
 
+
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -219,6 +221,7 @@
                 android:layout_weight="1"
                 android:background="@color/green"
                 android:textColor="@color/white"
+
             />
         </TableRow>
     </TableLayout>

@@ -39,9 +39,10 @@ public class CheckLowStockMain extends ActionBarActivity implements AdapterView.
     IItem itemPopulator;
     TabHost th;
     private RequestQueue mRequestQueue;
-    private ArrayList<Item> stocklist;
-    //private String url = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=7c5c19eba3c21dc8bb16f00829b2be41&date=2015-02-09&format=json&nojsoncallback=1";
-    private String url = UrlManager.APIROOTURL+"itemApi";
+    private ArrayList<Item> lowstocklist;
+    private ArrayList<Item> allstocklist;
+    private String url = UrlManager.APIROOTURL+"itemApi/all";
+    private String url2 = UrlManager.APIROOTURL+"itemApi/low";
 
 
 
@@ -51,7 +52,7 @@ public class CheckLowStockMain extends ActionBarActivity implements AdapterView.
         boolean useAsync = true;
         itemPopulator = new ItemPopulator();
         setContentView(R.layout.activity_check_low_stock_main);
-        final ProgressDialog pd = ProgressDialog.show(this,"Loading...","Life is So Difficult...");
+      //  final ProgressDialog pd = ProgressDialog.show(this,"Loading...","Life is So Difficult...");
         mRequestQueue = Volley.newRequestQueue(this);
 
         final ArrayList<StockItem> photos = new ArrayList<StockItem>();
@@ -61,24 +62,42 @@ public class CheckLowStockMain extends ActionBarActivity implements AdapterView.
         th = (TabHost) findViewById(R.id.tabHost);
         th.setup();
 
-        TabHost.TabSpec ts = th.newTabSpec("lowStockItems");
-        ts.setContent(R.id.lowstock_list);
-        ts.setIndicator("Low Stock Items");
-        th.addTab(ts);
-
+        TabHost.TabSpec
         ts = th.newTabSpec("allStockItems");
         ts.setContent(R.id.allstock_list);
         ts.setIndicator("All Stock Items");
         th.addTab(ts);
 
-        JsonArrayRequest jr = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+        ts = th.newTabSpec("lowStockItems");
+        ts.setContent(R.id.lowstock_list);
+        ts.setIndicator("Low Stock Items");
+        th.addTab(ts);
+
+
+        JsonArrayRequest jr = new JsonArrayRequest(url2, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray jsonArray) {
-                stocklist = itemPopulator.populateItemList(jsonArray);
-                pd.dismiss();
-                System.out.println(stocklist.get(1).getBalance());
-                LowStockListAdapter adapter = new LowStockListAdapter(CheckLowStockMain.this, stocklist);
+                lowstocklist = itemPopulator.populateItemList(jsonArray);
+              //  pd.dismiss();
+                System.out.println(lowstocklist.get(0).getBalance());
+                LowStockListAdapter adapter = new LowStockListAdapter(CheckLowStockMain.this, lowstocklist);
                 list.setAdapter(adapter);
+              //  list2.setAdapter(adapter);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Log.i(TAG, error.getMessage());
+            }
+        });
+
+        JsonArrayRequest jr2 = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray jsonArray) {
+                allstocklist = itemPopulator.populateItemList(jsonArray);
+             //   pd.dismiss();
+                System.out.println(allstocklist.get(1).getBalance());
+                LowStockListAdapter adapter = new LowStockListAdapter(CheckLowStockMain.this, allstocklist);
                 list2.setAdapter(adapter);
             }
         }, new Response.ErrorListener() {
@@ -90,8 +109,21 @@ public class CheckLowStockMain extends ActionBarActivity implements AdapterView.
 
 
 
+        mRequestQueue.add(jr2);
         mRequestQueue.add(jr);
+
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Item item = (Item) parent.getAdapter().getItem(position);
+                Intent i = new Intent(view.getContext(), CheckLowStockSearch.class);
+                i.putExtra("from", 2);
+                i.putExtra("item", item);
+                startActivity(i);
+            }
+        });
+
+        list2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Item item = (Item) parent.getAdapter().getItem(position);

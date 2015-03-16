@@ -1,6 +1,8 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -22,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.IPopulator.IItem;
@@ -42,14 +45,15 @@ import java.util.Map;
 public class CheckLowStockSearch extends ActionBarActivity {
     private RequestQueue mRequestQueue;
     private IItem itemPopulator;
-    private String categoryUrl = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=7c5c19eba3c21dc8bb16f00829b2be41&date=2015-02-09&format=json&nojsoncallback=1";
-    private String categoriesUrl = UrlManager.APIROOTURL+"categoriesApi";
-    private String itemUrl = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=7c5c19eba3c21dc8bb16f00829b2be41&date=2015-02-09&format=json&nojsoncallback=1";
-    private String reportUrl = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=7c5c19eba3c21dc8bb16f00829b2be41&date=2015-02-09&format=json&nojsoncallback=1";
+    private String categoriesUrl = UrlManager.APIROOTURL+"itemApi/categories";
+    private String itemsUrl = UrlManager.APIROOTURL+"itemApi/category/";
+    private String itemDetailUrl = UrlManager.APIROOTURL+"itemApi/item";
+    private String supplierlUrl = UrlManager.APIROOTURL+"itemApi/suppliers/";
+    private String reportUrl = UrlManager.APIROOTURL+"stockAdjustmentApi/create";
     private Spinner spinner_category;
     private Spinner spinner_description;
-    private TextView text_category;
-    private TextView text_description;
+    private TextView text_item;
+    private TextView text_uom;
     private TextView text_reorderlevel;
     private TextView text_balance;
     private Button btn_submit;
@@ -57,11 +61,17 @@ public class CheckLowStockSearch extends ActionBarActivity {
     private EditText et_reason;
 
 
-    private String[] category = new String[]{"aa", "bb", "cc", "dd", "ee", "ff", "gg", "hh", "ii", "jj"};
+
+  //  private String[] category = new String[]{"aa", "bb", "cc", "dd", "ee", "ff", "gg", "hh", "ii", "jj"};
     private String[] categories;
+    private String[] items;
+    private String[] suppliers;
     private Item i;
     private ArrayAdapter<String> categoryAdapter = null;
-    private ArrayAdapter<String> descriptionAdapter = null;
+    private ArrayAdapter<String> itemsAdapter = null;
+    private String selectedSupplier;
+
+
 
 
     @Override
@@ -76,14 +86,15 @@ public class CheckLowStockSearch extends ActionBarActivity {
             spinner_description.setVisibility(View.INVISIBLE);
             spinner_category.setVisibility(View.INVISIBLE);
             i = (Item) intent.getExtras().getSerializable("item");
+            System.out.print(i.getId());
             this.setTitle(i.getDescription());
-            text_category.setText(i.getCategory());
-            text_description.setText(i.getDescription());
+            text_item.setText(i.getDescription());
+            text_uom.setText(i.getUom());
             text_reorderlevel.setText(String.valueOf(i.getReorderLevel()));
             text_balance.setText(String.valueOf(i.getBalance()));
+            setButtonOnclickListener();
         } else {
             getCategoryList();
-
         }
 
 
@@ -116,8 +127,8 @@ public class CheckLowStockSearch extends ActionBarActivity {
     public void findview() {
         spinner_category = (Spinner) findViewById(R.id.category);
         spinner_description = (Spinner) findViewById(R.id.description);
-        text_category = (TextView) findViewById(R.id.text_category);
-        text_description = (TextView) findViewById(R.id.text_description);
+        text_item = (TextView) findViewById(R.id.text_item);
+        text_uom = (TextView) findViewById(R.id.text_uom);
         text_reorderlevel = (TextView) findViewById(R.id.text_reorderlevel);
         text_balance = (TextView) findViewById(R.id.text_balance);
         btn_submit = (Button) findViewById(R.id.submit);
@@ -179,9 +190,10 @@ public class CheckLowStockSearch extends ActionBarActivity {
         spinner_description.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println("aa");
 
                 // getItemDetail(parent.getAdapter().getItem(position).toString());
-                getItemDetail(position);
+                getItemDetail(parent.getAdapter().getItem(position).toString());
             }
 
             @Override
@@ -189,72 +201,81 @@ public class CheckLowStockSearch extends ActionBarActivity {
 
             }
         });
+        setButtonOnclickListener();
+
+
+    }
+
+    public void setButtonOnclickListener(){
 
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("aaa");
-                StringRequest postRequest = new StringRequest(Request.Method.POST, reportUrl,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                Toast.makeText(CheckLowStockSearch.this, "Submit Successfully!", Toast.LENGTH_LONG).show();
-                                Log.v("Response", response);
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(CheckLowStockSearch.this, "Error, Please Try Again!", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                ) {
-                    @Override
-                    protected Map<String, String> getParams() {
-                        Map<String, String> params = new HashMap<String, String>();
-                        params.put("item", text_description.getText().toString());
-                        params.put("newBalance", et_newBalance.getText().toString());
-                        params.put("Reason", et_reason.getText().toString());
+                if ("".equals(et_reason.getText().toString().trim()) || "".equals(et_newBalance.getText().toString().trim())){
 
-                        return params;
-                    }
-                };
-                mRequestQueue.add(postRequest);
+                    Toast.makeText(CheckLowStockSearch.this,"Please Sumbit new balance and reason ^ ^",Toast.LENGTH_SHORT).show();
+
+                } else {
+                    getSuppliersAndConfirmSubmit();
+                }
             }
         });
-
     }
 
 
     public void getItemList(final String category) {
 
-        JsonObjectRequest jr = new JsonObjectRequest(Request.Method.GET, categoryUrl, null, new Response.Listener<JSONObject>() {
+        JsonArrayRequest jar  = new JsonArrayRequest(itemsUrl+category,new Response.Listener<JSONArray>() {
             @Override
-            public void onResponse(JSONObject response) {
-                System.out.println(category);
-                System.out.println(response.toString());
-                spinner_description.setAdapter(categoryAdapter);
+            public void onResponse(JSONArray jsonArray) {
+                ArrayList<String> a = new ArrayList<>();
+                for (int i=0;i<jsonArray.length();i++){
+
+                    try {
+                        a.add(jsonArray.getJSONObject(i).getString("item_description"));
+                        System.out.println(jsonArray.getJSONObject(i).getString("item_description"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                items = new String[a.size()];
+                items  = a.toArray(items);
+                for (int j = 0; j<items.length;j++){
+                    System.out.println(items[j]);
+                }
+                itemsAdapter = new ArrayAdapter<String>(CheckLowStockSearch.this,
+                        android.R.layout.simple_dropdown_item_1line,items);
+                spinner_description.setAdapter(itemsAdapter);
+              //  setSpinnerOnSelectedListener();
+
             }
-        }, new Response.ErrorListener() {
+        },new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                // Log.i(TAG, error.getMessage());
+            public void onErrorResponse(VolleyError volleyError) {
+
             }
         });
-
-        mRequestQueue.add(jr);
+        mRequestQueue.add(jar);
     }
 
-    public void getItemDetail(final int description) {
-        JsonObjectRequest jr = new JsonObjectRequest(Request.Method.GET, categoryUrl, null, new Response.Listener<JSONObject>() {
+    public void getItemDetail(final String description) {
+
+        Map<String,String> a = new HashMap<String,String>();
+        a.put("description",description);
+        JSONObject jo = new JSONObject(a);
+
+        JsonRequest<JSONObject> jr = new JsonObjectRequest(Request.Method.POST, itemDetailUrl, jo,
+                new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                System.out.print(response);
                 try {
-                    i = itemPopulator.populateItemDetail(response.getJSONObject("photos").getJSONArray("photo").getJSONObject(description));
-                    text_category.setText(i.getCategory());
-                    text_description.setText(i.getDescription());
+                    i = itemPopulator.populateItemDetail(response);
+                    text_item.setText(i.getDescription());
+                    text_uom.setText(i.getUom());
                     text_reorderlevel.setText(String.valueOf(i.getReorderLevel()));
                     text_balance.setText(String.valueOf(i.getBalance()));
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -265,65 +286,107 @@ public class CheckLowStockSearch extends ActionBarActivity {
             public void onErrorResponse(VolleyError error) {
                 // Log.i(TAG, error.getMessage());
             }
-        });
+        }){
+
+        };
 
         mRequestQueue.add(jr);
     }
-}
 
-//
-//
-//public class SpinAdapter extends ArrayAdapter<Item>{
-//
-//    // Your sent context
-//    private Context context;
-//    // Your custom values for the spinner (User)
-//    private  values;
-//
-//    public SpinAdapter(Context context, int textViewResourceId,
-//                       User[] values) {
-//        super(context, textViewResourceId, values);
-//        this.context = context;
-//        this.values = values;
-//    }
-//
-//    public int getCount(){
-//        return values.length;
-//    }
-//
-//    public User getItem(int position){
-//        return values[position];
-//    }
-//
-//    public long getItemId(int position){
-//        return position;
-//    }
-//
-//
-//    // And the "magic" goes here
-//    // This is for the "passive" state of the spinner
-//    @Override
-//    public View getView(int position, View convertView, ViewGroup parent) {
-//        // I created a dynamic TextView here, but you can reference your own  custom layout for each spinner item
-//        TextView label = new TextView(context);
-//        label.setTextColor(Color.BLACK);
-//        // Then you can get the current item using the values array (Users array) and the current position
-//        // You can NOW reference each method you has created in your bean object (User class)
-//        label.setText(values[position].getName());
-//
-//        // And finally return your dynamic (or custom) view for each spinner item
-//        return label;
-//    }
-//
-//    // And here is when the "chooser" is popped up
-//    // Normally is the same view, but you can customize it if you want
-//    @Override
-//    public View getDropDownView(int position, View convertView,
-//                                ViewGroup parent) {
-//        TextView label = new TextView(context);
-//        label.setTextColor(Color.BLACK);
-//        label.setText(values[position].getName());
-//
-//        return label;
-//    }
-//}
+
+    public void getSuppliersAndConfirmSubmit() {
+
+        JsonArrayRequest jar  = new JsonArrayRequest(supplierlUrl+i.getId(),new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray jsonArray) {
+                System.out.print("supplier"+jsonArray);
+
+        if (jsonArray.length() == 0 ){
+            Toast.makeText(CheckLowStockSearch.this,"Sorry,this item has no supplier.",Toast.LENGTH_SHORT).show();
+            //System.out.print("hehe");
+            }else {
+            ArrayList<String> a = new ArrayList<>();
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                try {
+                    a.add(jsonArray.getJSONObject(i).getString("supplier_name"));
+                    System.out.println(jsonArray.getJSONObject(i).getString("supplier_name"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            suppliers = new String[a.size()];
+            suppliers = a.toArray(suppliers);
+            selectedSupplier = suppliers[0];
+            System.out.println(selectedSupplier);
+
+
+            new AlertDialog.Builder(CheckLowStockSearch.this).setTitle("Please Select A Supplier").setSingleChoiceItems(suppliers, 0, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    selectedSupplier = suppliers[which];
+
+
+                }
+            }).setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    confirmSubmit();
+
+                }
+            }).setNegativeButton("Cancel", null).show();
+        }
+            }
+        },new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                System.out.println(volleyError.networkResponse);
+
+            }
+        });
+
+
+        mRequestQueue.add(jar);
+    }
+
+    private void confirmSubmit(){
+        System.out.print("hehe");
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("itemDescription", i.getDescription());
+        params.put("newBalance", et_newBalance.getText().toString());
+        params.put("reason", et_reason.getText().toString());
+        params.put("suppliername",selectedSupplier);
+        JSONObject jo = new JSONObject(params);
+
+        System.out.print(jo);
+
+        JsonRequest<JSONObject> postRequest = new JsonObjectRequest(Request.Method.POST, reportUrl,jo,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        System.out.print(response);
+                        Toast.makeText(CheckLowStockSearch.this, "Submit Successfully!", Toast.LENGTH_LONG).show();
+                        et_newBalance.setText("");
+                        et_reason.setText("");
+                     //   Log.v("Response", String.valueOf(response));
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(CheckLowStockSearch.this, "Error, Please Try Again!", Toast.LENGTH_LONG).show();
+                    }
+                }
+        ) {
+
+        };
+        mRequestQueue.add(postRequest);
+
+    }
+
+
+
+
+}

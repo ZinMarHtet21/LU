@@ -16,7 +16,8 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <TabWidget
                 android:id="@android:id/tabs"
@@ -26,26 +27,27 @@
             <FrameLayout
                 android:id="@android:id/tabcontent"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="417dp"
+                android:layout_weight="1">
+
+                <ListView
+                    android:id="@+id/allstock_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:clipToPadding="false"
+                    android:divider="@android:color/transparent"
+                    android:scrollbarStyle="outsideOverlay" />
 
                 <ListView
                     android:id="@+id/lowstock_list"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="fill_parent"
                     android:clipToPadding="false"
                     android:divider="@android:color/transparent"
                     android:dividerHeight="10dp"
                     android:padding="10dp"
                     android:scrollbarStyle="outsideOverlay" />
-                <ListView
-                    android:id="@+id/allstock_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipToPadding="false"
-                    android:divider="@android:color/transparent"
-                    android:dividerHeight="10dp"
-                    android:padding="10dp"
-                    android:scrollbarStyle="outsideOverlay" />
+
 
             </FrameLayout>
         </LinearLayout>

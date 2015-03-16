@@ -64,10 +64,11 @@ public class ItemPopulator implements IItem {
             try {
                 JSONObject jo = ja.getJSONObject(i);
                 Item item = new Item();
-                item.setCategory(jo.getInt("category"));
+                item.setUom(jo.getString("uom_name"));
                 item.setDescription(jo.getString("item_description"));
                 item.setReorderLevel(jo.getInt("item_reorder_level"));
-                item.setBalance(jo.getInt("item_virtual_balance"));
+                item.setBalance(jo.getInt("item_balance"));
+                item.setId(jo.getString("item_id"));
                 list.add(item);
                 // list.add(new (jo.getString("id"),jo.getString("server"),jo.getString("server")));
             } catch (JSONException e) {
@@ -99,10 +100,11 @@ public class ItemPopulator implements IItem {
     @Override
     public Item populateItemDetail(JSONObject jo) throws JSONException {
         Item i = new Item();
-        i.setCategory(jo.getInt("id"));
-        i.setDescription(jo.getString("id"));
-        i.setReorderLevel(jo.getInt("server"));
-        i.setBalance(jo.getInt("farm"));
+        i.setUom(jo.getString("uom_name"));
+        i.setDescription(jo.getString("item_description"));
+        i.setReorderLevel(jo.getInt("item_reorder_level"));
+        i.setBalance(jo.getInt("item_balance"));
+        i.setId(jo.getString("item_id"));
         return i;
     }
 }

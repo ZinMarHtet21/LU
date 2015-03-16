@@ -51,11 +51,11 @@ public class LowStockListAdapter extends BaseAdapter {
         }
 
         TextView text_description = (TextView)convertView.findViewById(R.id.description);
-        TextView text_reorderlevel= (TextView)convertView.findViewById(R.id.reorderlevel);
+     //   TextView text_reorderlevel= (TextView)convertView.findViewById(R.id.reorderlevel);
         TextView text_balance = (TextView)convertView.findViewById(R.id.balance);
 
         text_description.setText(list.get(position).getDescription());
-        text_reorderlevel.setText(String.valueOf(list.get(position).getReorderLevel()));
+       // text_reorderlevel.setText(String.valueOf(list.get(position).getReorderLevel()));
         text_balance.setText(String.valueOf(list.get(position).getBalance()));
 
         return convertView;

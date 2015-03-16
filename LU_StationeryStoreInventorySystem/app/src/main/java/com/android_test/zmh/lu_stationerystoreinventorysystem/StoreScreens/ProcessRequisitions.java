@@ -22,6 +22,7 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.IPopulator.IItem;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.ItemPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Item;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -109,7 +110,9 @@ public class ProcessRequisitions extends ActionBarActivity {
         Map<String, String> map = new HashMap<String, String>();
         map.put("orderID", "aa");
         map.put("not the attribute", "aa");
-       JSONArray ja = new JSONArray();
+
+
+
 
 
         final JSONObject jsonObject = new JSONObject(map);
