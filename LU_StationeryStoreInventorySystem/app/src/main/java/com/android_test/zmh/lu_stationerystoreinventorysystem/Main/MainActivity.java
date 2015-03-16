@@ -66,7 +66,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                     startActivity(new Intent(MainActivity.this, EmployeeMainScreen.class));
                 } else if (emp.getType().equals("HOD")) {
                     startActivity(new Intent(MainActivity.this, HODMainScreen.class));
-                } else if (emp.getType().equals("Manager")) {
+                } else if (emp.getType().equals("StoreManager")) {
                     startActivity(new Intent(MainActivity.this, ManagerMainScreen.class));
                 } else if (emp.getType().equals("Representative")) {
                     startActivity(new Intent(MainActivity.this, RepresentativeMainScreen.class));

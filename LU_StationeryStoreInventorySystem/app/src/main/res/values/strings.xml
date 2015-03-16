@@ -39,11 +39,11 @@
     <string name="title_activity_reject_reason">Reject Reason</string>
 
     <string-array name="reasons">
-        <item>Quanty needs to be change.</item>
+        <item>reason</item>
         <item>There are not enough stock.</item>
-        <item>Test1</item>
-        <item>Test2</item>
-        <item>Test3</item>
+        <item>Same item was ordered to many times </item>
+        <item>Needs more specific explanation</item>
+        <item>Reach upper limits</item>
     </string-array>
     <string-array name="department_array">
         <item>English</item>

@@ -46,7 +46,6 @@ public class ApproveRejectPurchaseOrderDetail extends ActionBarActivity {
     private RequestQueue mRequestQueue;
     Button btn1;
     Button btn2;
-    TextView tv1;
     TextView tv2;
 
     @Override
@@ -86,6 +85,7 @@ public class ApproveRejectPurchaseOrderDetail extends ActionBarActivity {
                         new String[]{"itemName", "qty", "price"},
                         new int[]{R.id.itemName,R.id.qty,R.id.price});
                 lv.setAdapter(mysimpleAdapter);
+                tv2.setText(String.valueOf(amount));
 
 
 
@@ -95,7 +95,7 @@ public class ApproveRejectPurchaseOrderDetail extends ActionBarActivity {
 
 
                                Map<String,String > map = new HashMap<String, String>();
-                               map.put("orderId" ,po);
+                               map.put("orderID" ,po);
                                map.put("outcome" ,"approve");
                                map.put("remark" ,"3");
                                map.put("approvedby" ,"27");
@@ -120,7 +120,7 @@ public class ApproveRejectPurchaseOrderDetail extends ActionBarActivity {
                                mRequestQueue.add(jsonRequest);
                        Intent intent = new Intent(ApproveRejectPurchaseOrderDetail.this,SupervisorMainScreen.class);
                        //intent.putExtra("status",response);
-                       Toast.makeText(getApplicationContext(), " PO:" + po + "has been approved!",
+                       Toast.makeText(getApplicationContext(), " Purchase order : " + po + " has been approved!",
                                Toast.LENGTH_LONG).show();
                        startActivity(intent);
 
@@ -134,7 +134,7 @@ public class ApproveRejectPurchaseOrderDetail extends ActionBarActivity {
         }.execute();
 
 
-        tv2.setText(String.valueOf(amount));
+
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,6 +178,7 @@ public class ApproveRejectPurchaseOrderDetail extends ActionBarActivity {
             hashlist.add(new hash(pd.getItemName(),qty,price));
         }
         return hashlist;
+
     }
 
 

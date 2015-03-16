@@ -8,18 +8,11 @@
     android:background="#fff9fff0">
 
     <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
         android:id="@+id/lv_manager"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:divider="@color/lv_divider"
-        android:dividerHeight="2dp"
         android:layout_below="@+id/imageView"
-        android:background="#fff9fff0"
-        android:footerDividersEnabled="true"
-        android:headerDividersEnabled="true"
-        android:padding="15dp"/>
+        style="@style/listview" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

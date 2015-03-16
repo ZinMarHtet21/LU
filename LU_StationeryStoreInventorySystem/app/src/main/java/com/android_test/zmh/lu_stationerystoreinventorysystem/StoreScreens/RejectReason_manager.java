@@ -19,6 +19,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens.ManagerMainScreen;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens.SupervisorMainScreen;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
 
@@ -34,40 +35,62 @@ public class RejectReason_manager extends Activity implements AdapterView.OnItem
 
 {
     String reason;
+    String reason1;
     String text;
     String approveUrl = UrlManager.APIROOTURL +"stockAdjustmentApi/approve";
     private RequestQueue mRequestQueue;
     String voucherId;
-
+    private Spinner spinner;
+    private ArrayAdapter<CharSequence> adapter;
+    private Button btn;
+    private EditText et;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reject_reason);
-        EditText et = (EditText) findViewById(R.id.et_reason);
-        text=et.getText().toString();
+        et = (EditText) findViewById(R.id.et_reason);
+        btn =(Button) findViewById(R.id.btnSave);
+        spinner = (Spinner)findViewById(R.id.spinner);
+        adapter = ArrayAdapter.createFromResource(this,R.array.reasons,android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+
+
         if (getIntent()!= null) {
 
             voucherId = getIntent().getSerializableExtra("Voucher").toString();
 
         }
 
-        Spinner spinner = (Spinner)findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.reasons,android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        spinner.setAdapter(adapter);
 
 
-        Button btn =(Button) findViewById(R.id.btnSave);
         mRequestQueue = Volley.newRequestQueue(this);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                text = et.getText().toString().trim();
+
+                if(reason.equals("reason")&&text!="")
+                    reason1 =text;
+                else if(reason.equals("reason")&&text.equals(""))
+                { et.setError("Please give a reason...");
+                    return;}
+
+                else
+                {reason1 = reason;
+                    Toast.makeText(getApplicationContext(), " Voucher# "+voucherId+" has been rejected!",
+                            Toast.LENGTH_LONG).show();}
+
+
+
                 Map<String,String > map = new HashMap<String, String>();
                 map.put("voucherID" ,voucherId);
                 map.put("outcome" ,"reject");
-                map.put("remark" ,reason);
+                map.put("remark" ,reason1);
                 map.put("approvedby" ,"27");
+
                 final JSONObject jsonobject = new JSONObject(map);
 
 
@@ -75,7 +98,6 @@ public class RejectReason_manager extends Activity implements AdapterView.OnItem
                     @Override
                     public void onResponse(JSONObject jsonObject) {
                         System.out.println(jsonObject);
-
                     }
 
                 },new Response.ErrorListener() {
@@ -89,8 +111,7 @@ public class RejectReason_manager extends Activity implements AdapterView.OnItem
 
                 mRequestQueue.add(jsonRequest);
                 Intent i = new Intent(RejectReason_manager.this, ManagerMainScreen.class);
-                Toast.makeText(getApplicationContext(), " Voucher#" + voucherId + "has been rejected!",
-                        Toast.LENGTH_LONG).show();
+
                 startActivity(i);
             }
         });
@@ -104,12 +125,15 @@ public class RejectReason_manager extends Activity implements AdapterView.OnItem
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         reason = parent.getItemAtPosition(position).toString();
+        //Toast.makeText(this,"You select"+reason, Toast.LENGTH_LONG).show();
+        System.out.println(reason);
 
     }
 
+
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        reason = text;
+        // reason = text;
 
     }
 }

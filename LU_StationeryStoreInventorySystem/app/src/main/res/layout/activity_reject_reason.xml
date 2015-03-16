@@ -5,56 +5,38 @@
     android:weightSum="1"
     android:background="#fff9fff0">
 
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:id="@+id/imageView"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/reject"
-        android:layout_below="@+id/spinner"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/et_reason" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Please select the reason here:"
-        android:textSize="20dp"
-        android:id="@+id/textView8"
-        style="@style/text"
-        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
         android:layout_alignParentStart="true" />
-
+    <TextView
+        android:text="Please select the reason here:"
+        android:textSize="15dp"
+        android:id="@+id/textView1"
+        style="@style/text"
+         />
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
         android:padding="5dp"
-        android:layout_below="@+id/textView8"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Any specific reason here:"
-        android:textSize="20dp"
-        android:id="@+id/textView7"
-        style="@style/text"
-        android:layout_alignBaseline="@+id/et_reason"
-        android:layout_alignBottom="@+id/et_reason"
-        android:layout_alignEnd="@+id/textView8" />
+        android:layout_below="@+id/textView1"
+        style="@style/text" />
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="134dp"
+        android:layout_height="match_parent"
         android:inputType="textMultiLine"
-        android:ems="10"
         android:id="@+id/et_reason"
         android:text=""
+        android:hint="Any specific reason here"
         android:layout_above="@+id/btnSave"
-        android:layout_alignParentStart="true" />
-
+        android:layout_below="@+id/imageView" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

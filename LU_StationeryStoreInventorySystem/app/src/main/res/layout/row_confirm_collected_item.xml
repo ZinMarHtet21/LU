@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:layout_margin="5dp"
     android:paddingTop="15dp"
-    android:paddingBottom="15dp">
+    android:paddingBottom="15dp"
+    android:background="#fff9fff0">
 
 
 <TextView
