@@ -142,7 +142,7 @@ public class CheckLowStockSearch extends ActionBarActivity {
         JsonArrayRequest jar  = new JsonArrayRequest(categoriesUrl,new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray jsonArray) {
-                ArrayList<String> a = new ArrayList<>();
+                ArrayList<String> a = new ArrayList<String>();
                 for (int i=0;i<jsonArray.length();i++){
 
                     try {
@@ -228,7 +228,7 @@ public class CheckLowStockSearch extends ActionBarActivity {
         JsonArrayRequest jar  = new JsonArrayRequest(itemsUrl+category,new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray jsonArray) {
-                ArrayList<String> a = new ArrayList<>();
+                ArrayList<String> a = new ArrayList<String>();
                 for (int i=0;i<jsonArray.length();i++){
 
                     try {
@@ -305,7 +305,7 @@ public class CheckLowStockSearch extends ActionBarActivity {
             Toast.makeText(CheckLowStockSearch.this,"Sorry,this item has no supplier.",Toast.LENGTH_SHORT).show();
             //System.out.print("hehe");
             }else {
-            ArrayList<String> a = new ArrayList<>();
+            ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < jsonArray.length(); i++) {
 
                 try {
