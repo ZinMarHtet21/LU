@@ -68,5 +68,6 @@
     <string name="title_activity_disbursement_department_list">DisbursementDepartmentList</string>
     <string name="title_activity_disbursement_department_list_detail"> DisbursementDepartmentListDetail</string>
     <string name="title_activity_purchase_order_uii">PurchaseOrderUII</string>
+    <string name="title_activity_retrival_list_detail">RetrivalListDetail</string>
 
 </resources>
