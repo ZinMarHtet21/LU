@@ -1,6 +1,7 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.IPopulator;
 
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Disbursement;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.DisbursementItem;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.RequisitionDetail;
 
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.List;
  */
 public interface IDisbursement {
 //    public List<Disbursement> populateDisbursement();
-    public List<Disbursement> getDisbursementList();
-    public List<RequisitionDetail> getDisbursementListDetails(String req_id, String url);
+    public List<DisbursementItem> getDisbursementList(int departmentID);
+
+    public String receiveDisbursementList(List<DisbursementItem> disbList);
+//    public List<RequisitionDetail> getDisbursementListDetails(String req_id, String url);
 }

@@ -13,12 +13,18 @@ public interface IEmployee {
 
     public List<Employee> PopulateEmployee();
 
-    public Employee populateEmployeByUname(String name);
+//    public Employee populateEmployeByUname(String empNo, String empPwd);
 
-    public List<Employee> PopulateEmployeeFromWcf();
+    public Employee LoginEmployee(String empNo,String empPwd);
+
+//    public List<Employee> PopulateEmployeeFromWcf();
 
     //String convertToJSONObj(Employee emp) throws JSONException;
 
     public String updateEmployeeProfile(Employee emp);
+
+    public String changePassword(int empID, String newPwd);
+
+
 
 }

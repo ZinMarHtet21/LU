@@ -13,4 +13,5 @@
         android:divider="@color/lv_divider"
         android:dividerHeight="1dp"
         android:layout_alignParentTop="true" />
+
 </RelativeLayout>

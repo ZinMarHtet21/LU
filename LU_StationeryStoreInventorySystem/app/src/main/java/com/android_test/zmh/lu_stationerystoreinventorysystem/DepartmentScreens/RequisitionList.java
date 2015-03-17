@@ -41,9 +41,7 @@ public class RequisitionList extends Activity {
         new AsyncTask<Void, Void, List<Requisition>>() {
             @Override
             protected List<Requisition> doInBackground(Void... params) {
-
                 return reqPopulator.getRequisitionList(MainActivity.emp.getDepartmentID());
-
             }
             @Override
             protected void onPostExecute(List<Requisition> result) {
@@ -57,7 +55,7 @@ public class RequisitionList extends Activity {
                         Intent i = new Intent(RequisitionList.this,RequisitionListDetail.class);
 //                      i.putExtra("Requisition_id",reqList.get(position).getId());
                         String req =  ((Requisition) parent.getAdapter().getItem(position)).getId();
-
+//                        i.putExtra("emp_id",MainActivity.emp.getId());
                         i.putExtra("req_id",req);
                         //i.putExtra("Requisition_id",reqList.get(position).getId());
                         startActivity(i);

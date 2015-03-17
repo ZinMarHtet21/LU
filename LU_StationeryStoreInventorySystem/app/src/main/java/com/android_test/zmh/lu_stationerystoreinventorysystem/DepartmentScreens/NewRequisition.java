@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Main.MainActivity;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens.EmployeeMainScreen;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.ItemPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.RequisitionPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Employee;
@@ -57,6 +58,7 @@ public class NewRequisition extends ActionBarActivity {
     int qty;
     int pos;
     String jsonUpdateResult;
+    int i=0;
 
     RequisitionPopulator reqPopulator = new RequisitionPopulator();
     ItemPopulator iPop = new ItemPopulator();
@@ -64,10 +66,7 @@ public class NewRequisition extends ActionBarActivity {
     HashMap<String, String> itemMap = new HashMap<String, String>();
     public static ArrayList<TempItem> arrayOfItems = new ArrayList<TempItem>();
     ArrayList<RequisitionDetail> reqDetailList = new ArrayList<RequisitionDetail>();
-//    public static ArrayList<TempItem> finalitems = new ArrayList<TempItem>();
-
     ArrayList itemDescList = new ArrayList();
-//    AlertDialog builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,7 +159,7 @@ public class NewRequisition extends ActionBarActivity {
 
                                                         TempItem test = arrayOfItems.get(pos);
 //                                                        System.out.println(test.iID + " / " + test.iName+ " / " + test.iQty);
-                                                        Toast.makeText(NewRequisition.this,"Item Edited Successfully",Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(NewRequisition.this,"Item Edited",Toast.LENGTH_SHORT).show();
 
                                                     }
                                                 })
@@ -184,7 +183,7 @@ public class NewRequisition extends ActionBarActivity {
                                 itemAdapter = new ItemsAdapter(NewRequisition.this, arrayOfItems);
                                 new_req_listView.setAdapter(itemAdapter);
                                 itemAdapter.notifyDataSetChanged();
-                                Toast.makeText(getApplicationContext(), "Item Deleted Successfully!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Item Deleted!", Toast.LENGTH_SHORT).show();
 
                             }
                         });
@@ -196,39 +195,6 @@ public class NewRequisition extends ActionBarActivity {
             }
         });
 
-
-//                AlertDialog alertDialog = new AlertDialog.Builder(NewRequisition.this).create();
-//                alertDialog.setTitle("Delete Item");
-//                alertDialog.setMessage("Actions for ");
-
-//                alertDialog.setButton("Edit", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//
-////                        arrayOfItems.remove(pos);
-////                        itemAdapter = new ItemsAdapter(NewRequisition.this, arrayOfItems);
-////                        new_req_listView.setAdapter(itemAdapter);
-////                        itemAdapter.notifyDataSetChanged();
-//                        Toast.makeText(getApplicationContext(), "Item Deleted Successfully!", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//                alertDialog.setButton("Delete", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//
-////                        arrayOfItems.remove(pos);
-////                        itemAdapter = new ItemsAdapter(NewRequisition.this, arrayOfItems);
-////                        new_req_listView.setAdapter(itemAdapter);
-////                        itemAdapter.notifyDataSetChanged();
-//                        Toast.makeText(getApplicationContext(), "Item Deleted Successfully!", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//                //alertDialog.setCancelable(true);
-//                alertDialog.show();
-
-
-
-
-
-
         itemQty = (EditText) findViewById(R.id.item_qty_et);
 
         addBtn = (Button) findViewById(R.id.button_add);
@@ -237,34 +203,38 @@ public class NewRequisition extends ActionBarActivity {
             public void onClick(View v) {
                 qty = Integer.parseInt(itemQty.getText().toString());
                 TempItem it = new TempItem(itemID ,itemDesc, qty);
-                arrayOfItems.add(it);
-//                finalitems.add(it);
+
+                //
+                if(arrayOfItems.size()>0) {
+                    // iterate through items...
+                    boolean status = true;
+                    for (i = 0; i < arrayOfItems.size(); i++) {
+                        TempItem t = arrayOfItems.get(i);
+
+                        if (t.iID.equals(itemID)) {
+                            int temp_qty = t.iQty;
+                            System.out.println("qty : " + qty + " | existing : " + t.iQty);
+                            // qty = qty + t.iQty;
+                            t.iQty = t.iQty + qty;
+                            // if any problem found... just update and break the loop..
+                            status = false;
+                            break;
+
+                        }
+                    }
+                    if(status){
+                        // status will be false , if for loops runs and breaked..
+                        // satstus will be true.. if the loop runs and no match foun...
+                        arrayOfItems.add(it);
+                    }
+                }
+                else{
+
+                    arrayOfItems.add(it);
+                }
                 itemAdapter.notifyDataSetChanged();
+                itemQty.setText("0");
 
-//                System.out.println("Before Edit Qty");
-//                System.out.println("<< arrayOfItems >>");
-//                for(TempItem i:arrayOfItems){
-//                    System.out.println(i.iName + " " + i.iQty);
-//
-//                }
-//                System.out.println(arrayOfItems.toString());
-//                System.out.println("<< finalItems >>");
-//                for(TempItem i:finalitems){
-//                    System.out.println(i.iName + " " + i.iQty);
-//
-//                }
-
-
-//                AlertDialog alertDialog = new AlertDialog.Builder(NewRequisition.this).create();
-//                alertDialog.setTitle("Alert Dialog");
-//                alertDialog.setMessage(itemID + "\n" + itemDesc + "\n" + qty);
-//                alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        //Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//
-//                alertDialog.show();
             }
         });
 
@@ -283,35 +253,26 @@ public class NewRequisition extends ActionBarActivity {
                     reqDetailList.add(rd);
                 }
 
-//                for(RequisitionDetail rd:reqDetailList){
-//                    System.out.println("ITEM ID : " + rd.getItem_id() + " | ITEM QTY : " + rd.getItem_detail_qty());
-//                }
-
-
-                new AsyncTask<Void, Void, Void>() {
+                new AsyncTask<Void, Void, String>() {
                     @Override
-                    protected Void doInBackground(Void... params) {
+                    protected String doInBackground(Void... params) {
                         jsonUpdateResult = reqPopulator.sendNewRequisition(MainActivity.emp.getId(), reqDetailList);
-                        System.out.println("JSON UPDATE");
-                        System.out.println(jsonUpdateResult);
-                        return null;
+                        return jsonUpdateResult;
                     }
 
                     @Override
-                    protected void onPostExecute(Void result) {
-
+                    protected void onPostExecute(String result) {
+                        if(!result.equals(null)){
+                            arrayOfItems.clear();
+                            finish();
+                            Toast.makeText(NewRequisition.this,"Send Request Successfully!",Toast.LENGTH_LONG).show();
+                        }
                     }
 
                 }.execute();
-
-
-
-//                System.out.println("After Edit Qty");
-//                System.out.println("<< arrayOfItems >>");
-//                for(TempItem i:arrayOfItems){
-//                    System.out.println(i.iID + " " + i.iName + " " + i.iQty);
-//                }
             }
+
+
         });
 
     }
@@ -323,7 +284,6 @@ public class NewRequisition extends ActionBarActivity {
         int iQty;
 
         public TempItem(String iID, String iName, int iQty) {
-//        public TempItem(String iName, int iQty) {
             this.iID = iID;
             this.iName = iName;
             this.iQty = iQty;

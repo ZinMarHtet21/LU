@@ -35,6 +35,7 @@ public class RequisitionPopulator implements IRequisition {
     public final static String reqListURL = baseurl + "requisitionsApi/department/Pending/";
     public final static String reqDetailURL = baseurl + "requisitionsApi/detail/";
     public final static String reqSendNewURL = baseurl + "requisitionsApi/create";
+    public final static String approveRejectURL = baseurl + "requisitionsApi/approve";
 
     @Override
     public List<Requisition> getRequisitionHistoryList(int deptID) {
@@ -149,8 +150,8 @@ public class RequisitionPopulator implements IRequisition {
             Log.e("list", "JSONArray error");
         }
 
-        System.out.println("Requisition History Detail");
-        System.out.println(list.toString());
+//        System.out.println("Requisition History Detail");
+//        System.out.println(list.toString());
         return (list);
     }
 
@@ -177,6 +178,26 @@ public class RequisitionPopulator implements IRequisition {
         String json = gson.toJson(newRequisitionObject);
 
         result = JSONParser.postStream(String.format("%s", reqSendNewURL), json);
+        return result;
+    }
+
+    @Override
+    public String sendRequisitionResponseByHOD(String reqID, String remark, String outcome) {
+
+        String result = null;
+        try{
+            String jsonString;
+            JSONObject obj = new JSONObject();
+//            obj.put("approved_by",approvedBy);
+            obj.put("requisitionID",reqID);
+            obj.put("remark",remark);
+            obj.put("outcome",outcome);
+            String json = obj.toString();
+            result = JSONParser.postStream(String.format("%s",approveRejectURL),json);
+
+        }catch(Exception e){
+            Log.e("Approve Reject Requisition","JSON Error");
+        }
         return result;
     }
 }

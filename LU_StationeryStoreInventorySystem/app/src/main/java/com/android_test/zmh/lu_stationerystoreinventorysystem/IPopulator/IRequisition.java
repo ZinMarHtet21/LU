@@ -25,4 +25,7 @@ public interface IRequisition {
     public List<RequisitionDetail> getRequisitionDetail(String reqID,String url);
 
     public String sendNewRequisition(int empID,ArrayList<RequisitionDetail> reqDetails);
+
+    public String sendRequisitionResponseByHOD(String reqID, String remark, String status);
+
 }
