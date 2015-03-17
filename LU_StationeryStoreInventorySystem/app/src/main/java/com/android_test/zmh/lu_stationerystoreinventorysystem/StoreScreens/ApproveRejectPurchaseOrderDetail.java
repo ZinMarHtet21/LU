@@ -1,5 +1,7 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -34,30 +36,50 @@ import java.util.Map;
 
 
 public class ApproveRejectPurchaseOrderDetail extends ActionBarActivity {
-
-    double amount=0;
     PurchaseOrder model = new PurchaseOrder();
-
     PurchaseOrderPopulator pop = new PurchaseOrderPopulator();
-
     String baseurl = UrlManager.APIROOTURL + "purchase_orderApi/detail/";
     String approveUrl = UrlManager.APIROOTURL +"purchase_orderApi/approve";
     String po;
+    double amount=0;
     private RequestQueue mRequestQueue;
-    Button btn1;
-    Button btn2;
-    TextView tv2;
+    private Button btn1;
+    private Button btn2;
+    private TextView tv1;
+    private ListView lv;
+    private AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approve_reject_purchase_order_detail);
-        final ListView lv = (ListView) findViewById(R.id.lv_sorder);
 
-        tv2 = (TextView) findViewById(R.id.Amount);
+
+        lv = (ListView) findViewById(R.id.lv_sorder);
+        tv1 = (TextView) findViewById(R.id.Amount);
         btn1 = (Button) findViewById(R.id.btnApprove);
         btn2 = (Button) findViewById(R.id.btnReject);
+        builder = new AlertDialog.Builder(this);
+        builder.setTitle("Tooltip");
+        builder.setMessage("Are you sure to approve/reject it?");
+        builder.setIcon(R.drawable.message);
+        builder.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "Sure!",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+        builder.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "Cancel it!",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
         mRequestQueue = Volley.newRequestQueue(this);
+
+
 
         if (getIntent()!= null) {
 
@@ -85,7 +107,7 @@ public class ApproveRejectPurchaseOrderDetail extends ActionBarActivity {
                         new String[]{"itemName", "qty", "price"},
                         new int[]{R.id.itemName,R.id.qty,R.id.price});
                 lv.setAdapter(mysimpleAdapter);
-                tv2.setText(String.valueOf(amount));
+                tv1.setText(String.valueOf(amount));
 
 
 
@@ -118,6 +140,7 @@ public class ApproveRejectPurchaseOrderDetail extends ActionBarActivity {
                                };
 
                                mRequestQueue.add(jsonRequest);
+                       builder.show();
                        Intent intent = new Intent(ApproveRejectPurchaseOrderDetail.this,SupervisorMainScreen.class);
                        //intent.putExtra("status",response);
                        Toast.makeText(getApplicationContext(), " Purchase order : " + po + " has been approved!",

@@ -59,7 +59,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             @Override
             protected void onPostExecute(Void aVoid) {
                 System.out.println("EMPLOYEE OBJECT LOGIN");
-                System.out.println(emp.toString());
+               // System.out.println(emp.toString());
                 if (emp.getType().equals("Clerk")) {
                     startActivity(new Intent(MainActivity.this, ClerkMainScreen.class));
                 } else if (emp.getType().equals("Employee")) {

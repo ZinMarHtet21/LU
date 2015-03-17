@@ -30,6 +30,13 @@
         <item name="android:padding">15dp</item>
         </style>
 
+    <style name="Button">
+        <item name="android:textColor">#ffffff</item>
+       <item name="android:textSize">18dp</item>
+        <item name="android:textStyle">bold</item>
+       <item name="android:background">#98d944</item>
+        <item name="android:shadowColor">#ffbaffaf</item>
+    </style>
 
     <!--<style name="button_text">-->
         <!--<item name="android:layout_width">fill_parent</item>-->

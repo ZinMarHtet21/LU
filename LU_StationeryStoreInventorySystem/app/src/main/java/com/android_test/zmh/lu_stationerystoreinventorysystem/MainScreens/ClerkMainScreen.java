@@ -57,7 +57,7 @@ public class ClerkMainScreen extends Activity implements AdapterView.OnItemClick
             i = new Intent(this, RetrievalList.class);
         }else if(item.equals("Disbursement List")){
             i = new Intent(this, DisbursementDepartmentList.class);
-        }else if(item.equals("CheckLowStockMain")){
+        }else if(item.equals("Check Low Stock")){
             i = new Intent(this, CheckLowStockMain.class);
         }else if(item.equals("Purchase Order")){
             i = new Intent(this, PurchaseOrderUII.class);
