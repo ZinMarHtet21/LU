@@ -6,6 +6,7 @@
     tools:context="com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.RequisitionHistoryDetail">
 
     <TextView
+        android:id="@+id/req_history_date_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Date : SomeDate"
@@ -13,19 +14,17 @@
         android:textSize="20dp"
         android:padding="20dp"
         android:textColor="#093a60"
-        android:id="@+id/textView_Date"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_height="400dp"
         android:id="@+id/listView_ReqDetails"
         android:divider="@color/lv_divider"
         android:dividerHeight="1dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/textView_Date" />
+        android:layout_below="@+id/req_history_date_tv"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

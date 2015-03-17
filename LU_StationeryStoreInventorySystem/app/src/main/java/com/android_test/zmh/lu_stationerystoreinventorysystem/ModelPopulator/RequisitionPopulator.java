@@ -46,9 +46,17 @@ public class RequisitionPopulator implements IRequisition {
 
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
+
+                System.out.println("OBJECT");
+                System.out.println(obj.toString());
+
+
                 Requisition req = new Requisition();
                 req.setId(obj.getString("requisition_id").toString());
-                req.setDate(obj.getString("requisition_date").toString());
+                String date = obj.getString("requisition_date").toString();
+                String substringDate = date.substring(0, 10);
+                String formattedDate = dateFormatter(substringDate);
+                req.setDate(formattedDate);
                 req.setStatus(obj.getString("requisition_status").toString());
                 list.add(req);
             }
@@ -58,6 +66,23 @@ public class RequisitionPopulator implements IRequisition {
         }
 
         return (list);
+    }
+
+    public String dateFormatter(String dateString){
+
+        String strCurrentDate = dateString;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date newDate = null;
+        try {
+            newDate = format.parse(strCurrentDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        format = new SimpleDateFormat("dd MMM yyyy");
+        String formattedDate = format.format(newDate);
+        return formattedDate;
+
     }
 
 //    @Override
@@ -94,7 +119,10 @@ public class RequisitionPopulator implements IRequisition {
                 JSONObject obj = arr.getJSONObject(i);
                 Requisition req = new Requisition();
                 req.setId(obj.getString("requisition_id").toString());
-                req.setDate(obj.getString("requisition_date").toString());
+                String date = obj.getString("requisition_date").toString();
+                String substringDate = date.substring(0, 10);
+                String formattedDate = dateFormatter(substringDate);
+                req.setDate(formattedDate);
                 req.setStatus(obj.getString("requisition_status").toString());
                 list.add(req);
             }

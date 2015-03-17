@@ -43,9 +43,11 @@ public class RequisitionListDetail extends ActionBarActivity implements View.OnC
 //    String popUpResult = null;
     int emp_id;
     String req_id;
+    String req_date;
     Requisition model;
     ListView lv;
     Button approve_btn, reject_btn;
+    TextView req_list_date;
     SimpleAdapter mysimpleAdapter;
 
     @Override
@@ -55,6 +57,8 @@ public class RequisitionListDetail extends ActionBarActivity implements View.OnC
         lv = (ListView) findViewById(R.id.listView_ReqDetails);
         approve_btn = (Button)findViewById(R.id.button_approve);
         reject_btn = (Button)findViewById(R.id.button_reject);
+        req_list_date = (TextView)findViewById(R.id.req_list_date);
+
 
         model = new Requisition();
         Bundle extras = getIntent().getExtras();
@@ -62,6 +66,9 @@ public class RequisitionListDetail extends ActionBarActivity implements View.OnC
 //            emp_id = extras.getInt("emp_id");
 //            emp_id = getIntent().getIntExtra("emp_id");
             req_id = extras.getString("req_id").toString();
+            req_date = getIntent().getStringExtra("req_date").toString();
+            String dateText = "Date : " + req_date;
+            req_list_date.setText(dateText);
 //            req_id = getIntent().getStringExtra("req_id").toString();
             baseurl = UrlManager.APIROOTURL + "requisition_detailApi/new/";
             //    ("Requisition",listdata.get(position));

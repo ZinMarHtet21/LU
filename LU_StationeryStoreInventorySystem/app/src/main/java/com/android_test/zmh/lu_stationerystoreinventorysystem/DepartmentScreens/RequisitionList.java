@@ -55,7 +55,9 @@ public class RequisitionList extends Activity {
                         Intent i = new Intent(RequisitionList.this,RequisitionListDetail.class);
 //                      i.putExtra("Requisition_id",reqList.get(position).getId());
                         String req =  ((Requisition) parent.getAdapter().getItem(position)).getId();
+                        String req_date = ((Requisition)parent.getAdapter().getItem(position)).getDate();
 //                        i.putExtra("emp_id",MainActivity.emp.getId());
+                        i.putExtra("req_date", req_date);
                         i.putExtra("req_id",req);
                         //i.putExtra("Requisition_id",reqList.get(position).getId());
                         startActivity(i);

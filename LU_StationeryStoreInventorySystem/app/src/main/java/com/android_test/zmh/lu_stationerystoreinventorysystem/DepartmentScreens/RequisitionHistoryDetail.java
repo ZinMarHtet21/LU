@@ -37,7 +37,9 @@ public class RequisitionHistoryDetail extends ActionBarActivity {
     String baseurl = UrlManager.APIROOTURL + "requisition_detailApi/new";
 
     String req_id;
+    String req_date;
     Requisition model;
+    TextView req_history_date;
     ListView lv;
 
     @Override
@@ -46,10 +48,14 @@ public class RequisitionHistoryDetail extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requisition_history_detail);
         lv = (ListView) findViewById(R.id.listView_ReqDetails);
+        req_history_date = (TextView)findViewById(R.id.req_history_date_tv);
         //model = new Requisition();
 
         if (getIntent() != null) {
             req_id = getIntent().getStringExtra("req_id").toString();
+            req_date = getIntent().getStringExtra("req_date").toString();
+            String dateText = "Date : " + req_date;
+            req_history_date.setText(dateText);
             //    ("Requisition",listdata.get(position));
         }
 
