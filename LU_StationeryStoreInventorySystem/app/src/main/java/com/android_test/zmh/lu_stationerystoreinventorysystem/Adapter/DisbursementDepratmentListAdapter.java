@@ -55,7 +55,7 @@ public class DisbursementDepratmentListAdapter extends BaseAdapter {
         TextView text_representative= (TextView)convertView.findViewById(R.id.representative);
         TextView text_collectionpoint = (TextView)convertView.findViewById(R.id.collectionpoint);
 
-        text_department.setText(list.get(position).getDepartment().getName());
+        text_department.setText(list.get(position).getDepartment().getCode());
         text_representative.setText(list.get(position).getDepartment().getRepresentative());
         text_collectionpoint.setText(list.get(position).getDepartment().getCollection_point());
 

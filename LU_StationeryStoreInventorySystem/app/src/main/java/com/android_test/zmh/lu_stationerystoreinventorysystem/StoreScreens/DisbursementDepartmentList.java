@@ -15,6 +15,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Adapter.DisbursementDepratmentListAdapter;
@@ -23,7 +24,9 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.Dep
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.DepartmentDisbursementList;
 
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -34,8 +37,7 @@ public class DisbursementDepartmentList extends ActionBarActivity {
     private IDepartmentDisbursementList departmentDisbursementListPopulator;
     private RequestQueue mRequestQueue;
     private ArrayList<DepartmentDisbursementList> disbursementDepartmentList;
-    private String url = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=7c5c19eba3c21dc8bb16f00829b2be41&date=2015-02-09&format=json&nojsoncallback=1";
-
+    private String url = UrlManager.APIROOTURL+"disbursementlistApi/getdepartment";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +49,12 @@ public class DisbursementDepartmentList extends ActionBarActivity {
         mRequestQueue = Volley.newRequestQueue(this);
         final ListView list = (ListView) findViewById(R.id.departmentlist);
 
-        JsonObjectRequest jr = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        JsonArrayRequest jr = new JsonArrayRequest( url, new Response.Listener<JSONArray>() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(JSONArray response) {
                 try {
-                    disbursementDepartmentList = departmentDisbursementListPopulator.populateDepartmentDisbursementList(response.getJSONObject("photos").getJSONArray("photo"));
-                } catch (JSONException e) {
+                    disbursementDepartmentList = departmentDisbursementListPopulator.populateDepartmentDisbursementList(response);
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 System.out.println(disbursementDepartmentList.get(1).toString());

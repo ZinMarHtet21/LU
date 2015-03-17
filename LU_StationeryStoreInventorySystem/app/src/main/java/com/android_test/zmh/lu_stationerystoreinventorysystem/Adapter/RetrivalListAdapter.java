@@ -58,6 +58,10 @@ public class RetrivalListAdapter extends BaseAdapter{
         TextView text_actual_qty= (TextView)convertView.findViewById(R.id.actual_qty);
         TextView text_edit =  (TextView)convertView.findViewById(R.id.edit);
 
+        text_description.setText(list.get(position).getItem_desc());
+        text_qty.setText(list.get(position).getItem_qty());
+        text_actual_qty.setText(list.get(position).getItem_actual());
+
 
 //        text_description.setText(list.get(position).getDescription());
 //        text_qty.setText(String.valueOf(list.get(position).getBalance()));

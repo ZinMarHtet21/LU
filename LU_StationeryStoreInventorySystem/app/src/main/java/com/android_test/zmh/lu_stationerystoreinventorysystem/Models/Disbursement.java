@@ -12,6 +12,7 @@ public class Disbursement implements Serializable{
     private String id;
     private Date date;
     private String itemName;
+    private String itemCode;
     private String departmentName;
     private int qty;
     private int actualQty;
@@ -25,6 +26,14 @@ public class Disbursement implements Serializable{
         this.departmentName = departmentName;
         this.qty = qty;
         this.actualQty = actualQty;
+    }
+
+    public String getItemCode() {
+        return itemCode;
+    }
+
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
     }
 
     public String getId() {
