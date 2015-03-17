@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * Created by JiawenHuang on 6/3/15.
  */
 
-public class RetrivalItem{
+public class RetrivalItem implements Serializable {
     private String item_code;
     private String item_qty;
     private String  item_desc;

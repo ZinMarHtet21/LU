@@ -154,9 +154,9 @@ public class CheckLowStockSearch extends ActionBarActivity {
                 }
                 categories = new String[a.size()];
                 categories  = a.toArray(categories);
-                for (int j = 0; j<categories.length;j++){
-                    System.out.println(categories[j]);
-                }
+//                for (int j = 0; j<categories.length;j++){
+//                    System.out.println(categories[j]);
+//                }
                 categoryAdapter = new ArrayAdapter<String>(CheckLowStockSearch.this,
                         android.R.layout.simple_dropdown_item_1line,categories);
                 spinner_category.setAdapter(categoryAdapter);

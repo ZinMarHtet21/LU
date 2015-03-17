@@ -49,7 +49,6 @@ public class CheckLowStockMain extends ActionBarActivity implements AdapterView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        boolean useAsync = true;
         itemPopulator = new ItemPopulator();
         setContentView(R.layout.activity_check_low_stock_main);
       //  final ProgressDialog pd = ProgressDialog.show(this,"Loading...","Life is So Difficult...");
@@ -79,7 +78,7 @@ public class CheckLowStockMain extends ActionBarActivity implements AdapterView.
             public void onResponse(JSONArray jsonArray) {
                 lowstocklist = itemPopulator.populateItemList(jsonArray);
               //  pd.dismiss();
-                System.out.println(lowstocklist.get(0).getBalance());
+             //   System.out.println(lowstocklist.get(0).getBalance());
                 LowStockListAdapter adapter = new LowStockListAdapter(CheckLowStockMain.this, lowstocklist);
                 list.setAdapter(adapter);
               //  list2.setAdapter(adapter);
@@ -96,7 +95,7 @@ public class CheckLowStockMain extends ActionBarActivity implements AdapterView.
             public void onResponse(JSONArray jsonArray) {
                 allstocklist = itemPopulator.populateItemList(jsonArray);
              //   pd.dismiss();
-                System.out.println(allstocklist.get(1).getBalance());
+            //    System.out.println(allstocklist.get(1).getBalance());
                 LowStockListAdapter adapter = new LowStockListAdapter(CheckLowStockMain.this, allstocklist);
                 list2.setAdapter(adapter);
             }

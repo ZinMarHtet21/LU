@@ -34,13 +34,14 @@ public class RetrievalList extends ActionBarActivity {
     private RequestQueue mRequestQueue;
     private ArrayList<RetrivalItem> items;
     private String url = UrlManager.APIROOTURL+"retrivalformApi/pendingcollect";
-
+    private ListView list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mRequestQueue = Volley.newRequestQueue(this);
         setContentView(R.layout.activity_retrieval_list);
-        final ListView list = (ListView) findViewById(R.id.listView);
+
+        list  = (ListView) findViewById(R.id.listView);
         items = new ArrayList<RetrivalItem>();
         JsonArrayRequest jr = new JsonArrayRequest(url,new Response.Listener<JSONArray>() {
             @Override
@@ -61,6 +62,7 @@ public class RetrievalList extends ActionBarActivity {
                 }
                 RetrivalListAdapter adapter = new RetrivalListAdapter(RetrievalList.this,items);
                 list.setAdapter(adapter);
+
             }
         },new Response.ErrorListener() {
             @Override
@@ -95,5 +97,19 @@ public class RetrievalList extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setListOnClickListenliner(){
+ list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+     @Override
+     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+         RetrivalItem ri = (RetrivalItem) parent.getAdapter().getItem(position);
+         Intent i = new Intent(view.getContext(), DisbursementDepartmentListDetail.class);
+         i.putExtra("retrivalitem", ri);
+         startActivity(i);
+     }
+ });
+
+
     }
 }
