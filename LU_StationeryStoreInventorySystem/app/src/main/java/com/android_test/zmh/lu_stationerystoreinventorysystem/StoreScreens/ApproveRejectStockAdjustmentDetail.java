@@ -73,10 +73,13 @@ public class ApproveRejectStockAdjustmentDetail extends ActionBarActivity {
         builder.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(ApproveRejectStockAdjustmentDetail.this,SupervisorMainScreen.class);
                 Toast.makeText(getApplicationContext(), " Voucher#" + vi + "has been approved!",
                         Toast.LENGTH_LONG).show();
-                startActivity(intent);
+
+                finish();
+
+                //Intent intent = new Intent(ApproveRejectStockAdjustmentDetail.this,SupervisorMainScreen.class);
+                //startActivity(intent);
             }
         });
         builder.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {

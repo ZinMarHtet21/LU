@@ -66,10 +66,11 @@ public class ApproveRejectPurchaseOrderDetail extends ActionBarActivity {
         builder.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(ApproveRejectPurchaseOrderDetail.this,SupervisorMainScreen.class);
+                //Intent intent = new Intent(ApproveRejectPurchaseOrderDetail.this,SupervisorMainScreen.class);
                 Toast.makeText(getApplicationContext(), " Purchase order : " + po + " has been approved!",
                         Toast.LENGTH_LONG).show();
-                startActivity(intent);
+                //startActivity(intent);
+                finish();
             }
         });
         builder.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
@@ -142,7 +143,7 @@ public class ApproveRejectPurchaseOrderDetail extends ActionBarActivity {
                                };
 
                                mRequestQueue.add(jsonRequest);
-                       builder.show();
+                               builder.show();
 
 
 

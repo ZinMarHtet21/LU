@@ -1,29 +1,19 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.DisbursementList;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.NewRequisition;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.RequisitionHistory;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.DisbursementDepartment;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.CheckLowStockMain;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.CheckLowStockSearch;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.DisbursementDepartmentList;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.ProcessRequisitions;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.PurchaseOrderUII;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.ReportDiscrepency;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.PurchaseOrderUI;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.RetrievalList;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.UpdateProfile;
 
@@ -60,7 +50,7 @@ public class ClerkMainScreen extends Activity implements AdapterView.OnItemClick
         }else if(item.equals("Check Stock")){
             i = new Intent(this, CheckLowStockMain.class);
         }else if(item.equals("Check Purchase Order")){
-            i = new Intent(this, PurchaseOrderUII.class);
+            i = new Intent(this, PurchaseOrderUI.class);
         }else if(item.equals("Report Discrepency")){
             i = new Intent(this, CheckLowStockSearch.class);
         }else if(item.equals("Process Requisitions")){

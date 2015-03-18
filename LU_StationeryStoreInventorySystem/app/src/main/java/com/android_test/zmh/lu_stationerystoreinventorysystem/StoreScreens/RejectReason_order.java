@@ -45,20 +45,22 @@ public class RejectReason_order extends Activity implements AdapterView.OnItemSe
         private EditText et;
         private Button btn;
         private AlertDialog.Builder builder;
+
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reject_reason);
-
-
          et = (EditText) findViewById(R.id.et_reason);
          spinner = (Spinner)findViewById(R.id.spinner);
+         btn =(Button) findViewById(R.id.btnSave);
+
          ArrayAdapter <CharSequence> adapter = ArrayAdapter.createFromResource(this,
                     R.array.reasons,android.R.layout.simple_spinner_item);
          adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
          spinner.setAdapter(adapter);
          spinner.setOnItemSelectedListener(this);
-         btn =(Button) findViewById(R.id.btnSave);
+
          mRequestQueue = Volley.newRequestQueue(this);
          builder = new AlertDialog.Builder(this);
          builder.setTitle("Tooltip");
@@ -70,8 +72,6 @@ public class RejectReason_order extends Activity implements AdapterView.OnItemSe
 
 
            public void onClick(DialogInterface dialog, int which) {
-
-
               Intent intent = new Intent(RejectReason_order.this,SupervisorMainScreen.class);
               if(reason.equals("reason")&&text!="")
                   reason1 =text;
