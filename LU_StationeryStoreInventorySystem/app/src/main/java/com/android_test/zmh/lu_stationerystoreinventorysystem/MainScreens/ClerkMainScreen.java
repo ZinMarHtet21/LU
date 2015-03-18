@@ -25,7 +25,7 @@ public class ClerkMainScreen extends Activity implements AdapterView.OnItemClick
 
 
     String[] clerk_menu = {"Process Requisitions","Check Retrieval Form",
-            "Check Disbursement List","Check Stock","Check Purchase Order","Report Discrepancy","Update Profile"};
+            "Check Disbursement List","Check Stock","Check Purchase Order","Report Discrepancy","Update Profile","Logout"};
 
 
 
