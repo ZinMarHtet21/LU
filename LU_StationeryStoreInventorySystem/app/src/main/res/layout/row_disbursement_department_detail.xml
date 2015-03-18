@@ -16,6 +16,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_weight="1"
         android:text="Large Text"
+        android:textColor="@color/OurTextColor"
         android:id="@+id/item"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
@@ -26,6 +27,7 @@
         android:layout_weight="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
+        android:textColor="@color/OurTextColor"
         android:id="@+id/qty"
         android:layout_alignParentStart="true"
         />
@@ -36,6 +38,7 @@
         android:layout_weight="1"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
+        android:textColor="@color/OurTextColor"
         android:layout_alignParentStart="true"
         android:id="@+id/actual_qty" />
 

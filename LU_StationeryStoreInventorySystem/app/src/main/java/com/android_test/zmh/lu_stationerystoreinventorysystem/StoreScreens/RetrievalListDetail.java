@@ -1,5 +1,6 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -47,6 +48,11 @@ public class RetrievalListDetail extends ActionBarActivity {
     private ListView list;
     private TextView itemName;
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getdata();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,40 +66,8 @@ public class RetrievalListDetail extends ActionBarActivity {
         mRequestQueue = Volley.newRequestQueue(this);
         Intent i = getIntent();
         item = (RetrivalItem) i.getExtras().getSerializable("retrivalitem");
-        String itemcode = item.getItem_code();
         itemName.setText(item.getItem_desc());
 
-        System.out.print(itemcode);
-
-        JsonArrayRequest jar = new JsonArrayRequest(url + itemcode, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray jsonArray) {
-                System.out.print(jsonArray);
-
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    try {
-                        JSONObject o = jsonArray.getJSONObject(i);
-                        RetrivalItemDetail itemDetail = new RetrivalItemDetail();
-                        itemDetail.setDepartmentName(o.getString("Dept"));
-                        itemDetail.setNeededQty(o.getInt("qty"));
-                        itemDetails.add(itemDetail);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                RetrivalListItemDetailAdapter adapter = new RetrivalListItemDetailAdapter(RetrievalListDetail.this, itemDetails);
-                list.setAdapter(adapter);
-
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-
-            }
-        });
-
-        mRequestQueue.add(jar);
 
 
         btnSave.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +79,7 @@ public class RetrievalListDetail extends ActionBarActivity {
                     @Override
                     public void onResponse(JSONObject jsonObject) {
                         Toast.makeText(RetrievalListDetail.this,"Change Actual Quantity Successfully!",Toast.LENGTH_SHORT).show();
-
+                        getdata();
                         finish();
 
 
@@ -119,6 +93,7 @@ public class RetrievalListDetail extends ActionBarActivity {
                 };
 
                 mRequestQueue.add(request);
+
             }
         });
     }
@@ -128,7 +103,7 @@ public class RetrievalListDetail extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_retrival_list_detail, menu);
-        return true;
+        return false;
     }
 
     @Override
@@ -172,5 +147,39 @@ public class RetrievalListDetail extends ActionBarActivity {
         }
         Log.i("total",jo.toString());
         return jo;
+    }
+
+    public void getdata(){
+
+        JsonArrayRequest jar = new JsonArrayRequest(url + item.getItem_code(), new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray jsonArray) {
+                System.out.print(jsonArray);
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    try {
+                        JSONObject o = jsonArray.getJSONObject(i);
+                        RetrivalItemDetail itemDetail = new RetrivalItemDetail();
+                        itemDetail.setDepartmentName(o.getString("Dept"));
+                        itemDetail.setNeededQty(o.getInt("qty"));
+                        itemDetails.add(itemDetail);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                RetrivalListItemDetailAdapter adapter = new RetrivalListItemDetailAdapter(RetrievalListDetail.this, itemDetails);
+                list.setAdapter(adapter);
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+            }
+        });
+        mRequestQueue.add(jar);
+
+
     }
 }

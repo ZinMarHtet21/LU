@@ -13,28 +13,20 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_weight="1"
         android:text="Large Text"
+        android:textColor="@color/OurTextColor"
         android:id="@+id/department"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="2"
-        android:id="@+id/qty"
-        android:gravity="center"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:inputType="number"
+        android:textColor="@color/OurTextColor"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="2"
         android:gravity="center"
