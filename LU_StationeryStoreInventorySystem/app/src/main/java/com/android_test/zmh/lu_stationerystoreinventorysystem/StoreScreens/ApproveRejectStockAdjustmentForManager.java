@@ -67,7 +67,7 @@ public class ApproveRejectStockAdjustmentForManager extends ActionBarActivity {
         setContentView(R.layout.activity_approve_reject_stock_adjustment);
 
         lv = (ListView) findViewById(R.id.list_voucher);
-       
+
     }
 
     public class MyAdapter extends BaseAdapter {

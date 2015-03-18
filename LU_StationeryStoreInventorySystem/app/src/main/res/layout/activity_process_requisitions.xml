@@ -4,13 +4,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-<<<<<<< HEAD
     tools:context="com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.ProcessRequisitions"
     android:background="#fff9fff0">
-=======
-    android:background="@color/OurBackGroundColor"
-    tools:context="com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.ProcessRequisitions">
->>>>>>> origin/master
 
 
     <LinearLayout
@@ -61,13 +56,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
-            android:text="Confirm Collected From Store"
-=======
             android:text="Process Requisitions"
             android:background="@color/OurGreenButton"
->>>>>>> origin/master
-            android:textColor="@color/white"
             android:id="@+id/button"
             style="@style/Button" />
     </LinearLayout>
