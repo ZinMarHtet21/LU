@@ -149,7 +149,8 @@
         android:layout_marginBottom="3dp"
         android:layout_below="@+id/upd_empPh_tv"
         android:background="@drawable/edittext_bg"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:inputType="phone|number" />
 
     <TextView
         android:id="@+id/upd_empEmail_tv"

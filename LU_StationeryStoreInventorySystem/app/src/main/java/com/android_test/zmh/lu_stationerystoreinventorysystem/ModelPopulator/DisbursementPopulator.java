@@ -51,11 +51,55 @@ public class DisbursementPopulator implements IDisbursement {
         return(list);
    }
 
+//    @Override
+//    public JSONObject receiveDisbursementList(int deptID, String remark, List<DisbursementItemList> disbList) {
+//     //   String result = null;
+//       // String json = null;
+//        if(remark.equals("")){
+//            remark = "Received no remark";
+//        }
+//
+//        System.out.println("RECEIVE DISBURSEMENT LIST");
+//        System.out.println("DEPT ID : " + deptID);
+//        System.out.println("REMARK : " + remark);
+//        System.out.println("DISBURSEMENT LIST : " + disbList.toString());
+//        JSONObject obj = new JSONObject();
+//        JSONArray arr = new JSONArray();
+//        try{
+//
+//            obj.put("departmentID",deptID);
+//            obj.put("remark",remark);
+//
+//            for(int i =0; i<disbList.size();i++){
+//
+//                JSONObject itemdetail = new JSONObject();
+//                itemdetail.put("itemCode",disbList.get(i).getItemCode());
+//                itemdetail.put("lblAcutal",disbList.get(i).getLblAcutal());
+//
+//                arr.put(obj);
+//            }
+//            obj.put("list",arr);
+//
+//          //  obj.put("list",disbList);
+//          //  json = obj.toString();
+//           // result = JSONParser.postStream(String.format("%s",receiveDisbURL),json);
+//        }catch(Exception e){
+//            Log.e("Receive Disbursement List", "JSON Error");
+//        }
+//        Log.i("Json",obj.toString());
+//
+//        System.out.println("CONVERTED JSON");
+//        System.out.println(obj);
+//
+//        return obj;
+//    }
+
+//
     @Override
     public String receiveDisbursementList(int deptID, String remark, List<DisbursementItemList> disbList) {
         String result = null;
-        String json = null;
-        if(remark==""){
+       // String json = null;
+        if(remark.equals("")){
             remark = "Received no remark";
         }
 
@@ -64,26 +108,37 @@ public class DisbursementPopulator implements IDisbursement {
         System.out.println("REMARK : " + remark);
         System.out.println("DISBURSEMENT LIST : " + disbList.toString());
 
-//        try{
-//            JSONObject obj = new JSONObject();
-//            obj.put("departmentID",deptID);
-//            obj.put("remark",remark);
-//            //obj.put("List",disbList);
-//
-//            JSONArray jsonArr = new JSONArray(disbList);
-//            obj.put("List",jsonArr);
-//
-//            Gson gson = new Gson();
-//            json = gson.toJson(obj);
-//        }catch(Exception e){
-//            Log.e("Receive Disbursement List", "JSON Error");
-//        }
-//
-//        System.out.println("CONVERTED JSON");
-//        System.out.println(json);
+        JSONObject obj = new JSONObject();
+        JSONArray jar = new JSONArray();
+        try{
 
+            obj.put("departmentID",deptID);
+            obj.put("remark",remark);
 
-//        result = JSONParser.postStream(String.format("%s", receiveDisbURL), json);
+            for(int i =0; i<disbList.size();i++){
+
+                String itemcode = disbList.get(i).getItemCode();
+                String lalActual = String.valueOf(disbList.get(i).getLblAcutal());
+
+                JSONObject itemdetail = new JSONObject();
+                itemdetail.put("itemCode",itemcode);
+                itemdetail.put("lblAcutal",lalActual);
+
+                jar.put(itemdetail);
+            }
+           obj.put("list",jar);
+         //   System.out.print("JSONSSSSS"+obj.toString());
+
+         //   obj.put("list",disbList);
+            String json = obj.toString();
+            result = JSONParser.postStream(String.format("%s",receiveDisbURL),json);
+        }catch(Exception e){
+            Log.e("Receive Disbursement List", "JSON Error");
+        }
+
+    //    System.out.println("CONVERTED JSON");
+     //   System.out.println(json);
+
         return result;
     }
 

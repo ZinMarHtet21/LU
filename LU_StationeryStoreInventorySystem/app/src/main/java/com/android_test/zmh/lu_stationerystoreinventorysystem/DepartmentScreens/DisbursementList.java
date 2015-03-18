@@ -18,12 +18,21 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
+import com.android.volley.toolbox.Volley;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Main.MainActivity;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.DisbursementPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Disbursement;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.DisbursementItem;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.DisbursementItemList;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
+import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
@@ -36,13 +45,17 @@ public class DisbursementList extends ActionBarActivity {
     final Context context = this;
     DisbursementPopulator disbPopulator = new DisbursementPopulator();
     List<DisbursementItem> disbList;
-//    List<DisbursementItemList> disbItemList;
+    List<DisbursementItemList> disbItemList;
     ListView disburment_lv;
     String remark;
+    public final static String receiveDisbURL = UrlManager.APIROOTURL + "disbursementlistApi" + "/confirmcollect";
+
 
     Button receiveBtn;
     Myadapter myadapter;
     String jsonUpdateResult;
+   // JSONObject jsonUpdateResult;
+   // private RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +63,7 @@ public class DisbursementList extends ActionBarActivity {
         setContentView(R.layout.activity_disbursement_list);
         disburment_lv = (ListView) findViewById(R.id.disb_lv);
         receiveBtn = (Button)findViewById(R.id.button_receive);
+      //  requestQueue = Volley.newRequestQueue(this);
 
         new AsyncTask<Void, Void, List<DisbursementItem>>() {
             @Override
@@ -95,13 +109,13 @@ public class DisbursementList extends ActionBarActivity {
                                         Toast.makeText(DisbursementList.this, "Item Edited", Toast.LENGTH_SHORT).show();
 
                                     }
+                                })
+                        .setNegativeButton("Cancel",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
                                 });
-//                        .setNegativeButton("Cancel",
-//                                new DialogInterface.OnClickListener() {
-//                                    public void onClick(DialogInterface dialog,int id) {
-//                                        dialog.cancel();
-//                                    }
-//                                });
 
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
@@ -113,39 +127,10 @@ public class DisbursementList extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                changeDisbursementItemToList(disbList);
+                disbItemList = changeDisbursementItemToList(disbList);
                 showPopUpForRemark();
             }
         });
-    }
-
-    public void sendReceiveDisbursementList(){
-        Toast.makeText(DisbursementList.this,"receiveBtn",Toast.LENGTH_SHORT).show();
-
-//
-//                jsonUpdateResult = disbPopulator.receiveDisbursementList(MainActivity.emp.getDepartmentID(),remark,disbItemList);
-//                System.out.println("JSON UPDATE");
-//                System.out.println(jsonUpdateResult);
-
-
-//                new AsyncTask<Void, Void, String>() {
-//                    @Override
-//                    protected String doInBackground(Void... params) {
-//                        jsonUpdateResult = disbPopulator.receiveDisbursementList(disbList);
-//                        System.out.println("JSON UPDATE");
-//                        System.out.println(jsonUpdateResult);
-//                        return jsonUpdateResult;
-//                    }
-//
-//                    @Override
-//                    protected void onPostExecute(String result) {
-//                        if(!result.equals(null)){
-//                            finish();
-//                            Toast.makeText(DisbursementList.this,"Receive Disbursement DisbursementItemList Successfully!",Toast.LENGTH_LONG).show();
-//                        }
-//                    }
-//
-//                }.execute();
     }
 
     public List<DisbursementItemList> changeDisbursementItemToList(List<DisbursementItem> disbItems){
@@ -172,20 +157,70 @@ public class DisbursementList extends ActionBarActivity {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
                         remark = remarkET.getText().toString();
-                        Toast.makeText(DisbursementList.this,"Remark"+remark,Toast.LENGTH_SHORT).show();
-
+                        sendReceiveDisbursementList();
                     }
-                })
-                .setNegativeButton("Cancel",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-                                dialog.cancel();
-                            }
-                        });
+                });
+//                .setNegativeButton("Cancel",
+//                        new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog,int id) {
+//                                dialog.cancel();
+//                            }
+//                        });
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
+//    public void sendReceiveDisbursementList(){
+//              jsonUpdateResult = disbPopulator.receiveDisbursementList(MainActivity.emp.getDepartmentID(),remark,disbItemList);
+//        Log.i("jsonResult",jsonUpdateResult.toString());
+////        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,receiveDisbURL, jsonUpdateResult,new Response.Listener<JSONObject>() {
+////            @Override
+////            public void onResponse(JSONObject jsonObject) {
+////                System.out.println(jsonObject);
+////            }
+////        },new Response.ErrorListener() {
+////            @Override
+////            public void onErrorResponse(VolleyError volleyError) {
+////
+////            }
+////        })
+////        {
+////        };
+////
+////        requestQueue.add(request);
+//
+//    }
+
+
+
+    public void sendReceiveDisbursementList(){
+//        Toast.makeText(DisbursementList.this,"receiveBtn",Toast.LENGTH_SHORT).show();
+//        jsonUpdateResult = disbPopulator.receiveDisbursementList(MainActivity.emp.getDepartmentID(),remark,disbItemList);
+//                        System.out.println("JSON UPDATE");
+//                        System.out.println(jsonUpdateResult);
+
+                new AsyncTask<Void, Void, String>() {
+                    @Override
+                    protected String doInBackground(Void... params) {
+                        jsonUpdateResult = disbPopulator.receiveDisbursementList(MainActivity.emp.getDepartmentID(),remark,disbItemList);
+                        System.out.println("JSON UPDATE");
+                        System.out.println(jsonUpdateResult);
+                        return jsonUpdateResult;
+                    }
+
+                    @Override
+                    protected void onPostExecute(String result) {
+                        if(!result.equals(null)){
+                            finish();
+                            Toast.makeText(DisbursementList.this,"Receive Disbursement DisbursementItemList Successfully!",Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                }.execute();
+    }
+
+
+
 
     public class Myadapter extends BaseAdapter {
 

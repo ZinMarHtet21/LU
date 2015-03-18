@@ -68,10 +68,6 @@
     <string name="title_activity_disbursement_department_list">Disbursement List</string>
     <string name="title_activity_disbursement_department_list_detail"> Disbursement List Detail</string>
     <string name="title_activity_purchase_order_uii">PurchaseOrderUII</string>
-<<<<<<< HEAD
     <string name="title_activity_change_password">ChangePassword</string>
-=======
     <string name="title_activity_retrival_list_detail">RetrivalListDetail</string>
->>>>>>> origin/master
-
 </resources>

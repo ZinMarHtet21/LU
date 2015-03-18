@@ -23,7 +23,7 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.UpdateProfile;
 
 public class RepresentativeMainScreen extends Activity implements AdapterView.OnItemClickListener {
 
-    String[] rep_menu = {"Update Profile", "New Requisition", "DisbursementItemList", "Requisition History"};
+    String[] rep_menu = {"Update Profile", "New Requisition", "Disbursement Item List", "Requisition History"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class RepresentativeMainScreen extends Activity implements AdapterView.On
             i = new Intent(this, UpdateProfile.class);
         } else if (item.equals("New Requisition")) {
             i = new Intent(this, NewRequisition.class);
-        }else if (item.equals("DisbursementItemList")) {
+        }else if (item.equals("Disbursement Item List")) {
             i = new Intent(this, DisbursementList.class);
         } else if (item.equals("Requisition History")) {
             i = new Intent(this, RequisitionHistory.class);

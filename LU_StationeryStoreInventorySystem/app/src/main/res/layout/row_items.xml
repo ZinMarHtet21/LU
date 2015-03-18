@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/itemName_txt"
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:text="text1"
         android:textColor="#093a60"
@@ -18,15 +18,16 @@
 
     <TextView
         android:id="@+id/itemQty_et"
-        android:layout_width="50dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="text1"
+        android:text="text2"
         android:textColor="#093a60"
         android:padding="10dp"
         android:layout_marginLeft="20dp"
         android:textSize="18dp"
         android:gravity="right"
-        android:layout_toEndOf="@+id/itemName_txt"/>
+        android:layout_toEndOf="@+id/itemName_txt"
+        android:inputType="number" />
 
 
 

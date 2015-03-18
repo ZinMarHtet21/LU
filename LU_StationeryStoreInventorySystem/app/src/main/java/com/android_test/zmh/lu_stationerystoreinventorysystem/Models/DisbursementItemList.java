@@ -32,10 +32,10 @@ public class DisbursementItemList {
         this.lblAcutal = lblAcutal;
     }
 
-    @Override
-    public String toString() {
-        return "{itemCode='" + itemCode + '\'' +
-                ", lblAcutal='" + lblAcutal + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "{itemCode='" + itemCode + '\'' +
+//                ", lblAcutal='" + lblAcutal + '\'' +
+//                '}';
+//    }
 }

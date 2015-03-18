@@ -66,10 +66,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             alertDialog.show();
         } else {
 
-<<<<<<< HEAD
-            System.out.println(emp_no);
-            System.out.println(emp_pwd);
-
             new AsyncTask<Void, Void, Void>() {
 
                 @Override
@@ -77,71 +73,65 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
                     emp = empPopulator.LoginEmployee(emp_no, emp_pwd);
                     return null;
-=======
-//        // make a call to the webapi...abd fetch emp object...
-//        /*
-//        new AsyncTask<Void,Void,Void>() {
-
-        // make a call to the webapi...abd fetch emp object...
-        new AsyncTask<Void, Void, Void>() {
-
-            @Override
-            protected Void doInBackground(Void... params) {
-
-                emp = empPopulator.populateEmployeByUname(username.getText().toString());
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                System.out.println("EMPLOYEE OBJECT LOGIN");
-               // System.out.println(emp.toString());
-                if (emp.getType().equals("Clerk")) {
-                    startActivity(new Intent(MainActivity.this, ClerkMainScreen.class));
-                } else if (emp.getType().equals("Employee")) {
-                    startActivity(new Intent(MainActivity.this, EmployeeMainScreen.class));
-                } else if (emp.getType().equals("HOD")) {
-                    startActivity(new Intent(MainActivity.this, HODMainScreen.class));
-                } else if (emp.getType().equals("StoreManager")) {
-                    startActivity(new Intent(MainActivity.this, ManagerMainScreen.class));
-                } else if (emp.getType().equals("Representative")) {
-                    startActivity(new Intent(MainActivity.this, RepresentativeMainScreen.class));
-                } else if (emp.getType().equals("Supervisor")) {
-                    startActivity(new Intent(MainActivity.this, SupervisorMainScreen.class));
-                } else if (emp == null) {
-                    startActivity(new Intent(MainActivity.this, test.class));
->>>>>>> origin/master
                 }
 
                 @Override
                 protected void onPostExecute(Void aVoid) {
-                    if (emp != null) {
-                        System.out.println("GOT EMP OBJ");
-                        if (emp.getType().equals("Clerk")) {
-                            startActivity(new Intent(MainActivity.this, ClerkMainScreen.class));
-                        } else if (emp.getType().equals("Employee")) {
-                            startActivity(new Intent(MainActivity.this, EmployeeMainScreen.class));
-                        } else if (emp.getType().equals("HOD")) {
-                            startActivity(new Intent(MainActivity.this, HODMainScreen.class));
-                        } else if (emp.getType().equals("Manager")) {
-                            startActivity(new Intent(MainActivity.this, ManagerMainScreen.class));
-                        } else if (emp.getType().equals("Representative")) {
-                            startActivity(new Intent(MainActivity.this, RepresentativeMainScreen.class));
-                        } else if (emp.getType().equals("Supervisor")) {
-                            startActivity(new Intent(MainActivity.this, SupervisorMainScreen.class));
-                        } else if (emp == null) {
-                            startActivity(new Intent(MainActivity.this, test.class));
-                        }
-                    } else {
-                        Toast.makeText(MainActivity.this, "User Not Found!", Toast.LENGTH_LONG).show();
-                    }
-                    empNo.setText("");
-                    empPwd.setText("");
+
+                   if(emp == null){
+                    Toast.makeText(MainActivity.this,"EmployeeID or Password is wrong! Please try again!",Toast.LENGTH_SHORT).show();
+                   }else{
+                       if (emp.getType().equals("Clerk")) {
+                           startActivity(new Intent(MainActivity.this, ClerkMainScreen.class));
+                       } else if (emp.getType().equals("Employee")) {
+                           startActivity(new Intent(MainActivity.this, EmployeeMainScreen.class));
+                       } else if (emp.getType().equals("HOD")) {
+                           startActivity(new Intent(MainActivity.this, HODMainScreen.class));
+                       } else if (emp.getType().equals("StoreManager")) {
+                           startActivity(new Intent(MainActivity.this, ManagerMainScreen.class));
+                       } else if (emp.getType().equals("Representative")) {
+                           startActivity(new Intent(MainActivity.this, RepresentativeMainScreen.class));
+                       } else if (emp.getType().equals("Supervisor")) {
+                           startActivity(new Intent(MainActivity.this, SupervisorMainScreen.class));
+                       } else if (emp == null) {
+                           startActivity(new Intent(MainActivity.this, test.class));
+                       }
+                       Toast.makeText(MainActivity.this,"Welcome "+MainActivity.emp.getName()+ "!", Toast.LENGTH_SHORT).show();
+                   }
                 }
             }.execute();
         }
     }
 }
+//                @Override
+//                protected void onPostExecute(Void aVoid) {
+//                    if (emp != null) {
+//                        System.out.println("GOT EMP OBJ");
+//                        if (emp.getType().equals("Clerk")) {
+//                            startActivity(new Intent(MainActivity.this, ClerkMainScreen.class));
+//                        } else if (emp.getType().equals("Employee")) {
+//                            startActivity(new Intent(MainActivity.this, EmployeeMainScreen.class));
+//                        } else if (emp.getType().equals("HOD")) {
+//                            startActivity(new Intent(MainActivity.this, HODMainScreen.class));
+//                        } else if (emp.getType().equals("Manager")) {
+//                            startActivity(new Intent(MainActivity.this, ManagerMainScreen.class));
+//                        } else if (emp.getType().equals("Representative")) {
+//                            startActivity(new Intent(MainActivity.this, RepresentativeMainScreen.class));
+//                        } else if (emp.getType().equals("Supervisor")) {
+//                            startActivity(new Intent(MainActivity.this, SupervisorMainScreen.class));
+//                        } else if (emp == null) {
+//                            startActivity(new Intent(MainActivity.this, test.class));
+//                        }
+//                    } else {
+//                        Toast.makeText(MainActivity.this, "User Not Found!", Toast.LENGTH_LONG).show();
+//                    }
+//                    empNo.setText("");
+//                    empPwd.setText("");
+//                }
+//            }.execute();
+//        }
+//    }
+//}
 
 
 
