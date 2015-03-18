@@ -87,7 +87,18 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 protected void onPostExecute(Void aVoid) {
 
                    if(emp == null){
-                    Toast.makeText(MainActivity.this,"EmployeeID or Password is wrong! Please try again!",Toast.LENGTH_SHORT).show();
+                       AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                       alertDialog.setTitle("Login Error");
+                       alertDialog.setMessage("Username or Password is wrong! Please try again!");
+                       alertDialog.setCancelable(false);
+                       alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+
+                           @Override
+                           public void onClick(DialogInterface dialog, int which) {
+                               dialog.cancel();
+                           }
+                       });
+//                    Toast.makeText(MainActivity.this,"EmployeeID or Password is wrong! Please try again!",Toast.LENGTH_SHORT).show();
                    }else{
                        if (emp.getType().equals("Clerk")) {
                            startActivity(new Intent(MainActivity.this, ClerkMainScreen.class));

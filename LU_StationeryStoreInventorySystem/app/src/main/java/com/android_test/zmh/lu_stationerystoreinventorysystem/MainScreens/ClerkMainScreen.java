@@ -1,27 +1,15 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens;
 
 import android.app.Activity;
-<<<<<<< HEAD
 import android.app.AlertDialog;
-import android.app.ListActivity;
 import android.content.DialogInterface;
-=======
->>>>>>> origin/master
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-<<<<<<< HEAD
-import com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.DisbursementList;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.NewRequisition;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.RequisitionHistory;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Main.MainActivity;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.DisbursementDepartment;
-=======
->>>>>>> origin/master
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.CheckLowStockMain;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.CheckLowStockSearch;
@@ -35,16 +23,11 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.UpdateProfile;
 public class ClerkMainScreen extends Activity implements AdapterView.OnItemClickListener{
 
 
-<<<<<<< HEAD
-    String[] clerk_menu = {"Update Profile","Retrieval DisbursementItemList",
-            "Disbursement DisbursementItemList","Check Low Stock","Purchase Order","Report Discrepency","Logout"};
-=======
+
     String[] clerk_menu = {"Process Requisitions","Check Retrieval Form",
             "Check Disbursement List","Check Stock","Check Purchase Order","Report Discrepancy","Update Profile"};
->>>>>>> origin/master
 
-//    String[] clerk_menu = {"Process Requisitions","Check Retrieval List",
-//            "Check Disbursement List","Check Stock","Check Purchase Order","Report Discrepency","Update Profile"};
+
 
 
     @Override
@@ -73,16 +56,9 @@ public class ClerkMainScreen extends Activity implements AdapterView.OnItemClick
         if(item.equals("Update Profile")){
             i = new Intent(this, UpdateProfile.class);
             startActivity(i);
-        }else if(item.equals("Retrieval DisbursementItemList")){
-            i = new Intent(this, RetrievalList.class);
-<<<<<<< HEAD
-            startActivity(i);
-        }else if(item.equals("Disbursement DisbursementItemList")){
-        }else if(item.equals("Check Retrieval List")){
-=======
         }else if(item.equals("Check Retrieval Form")){
->>>>>>> origin/master
             i = new Intent(this, RetrievalList.class);
+
             startActivity(i);
         }else if(item.equals("Check Disbursement List")){
             i = new Intent(this, DisbursementDepartmentList.class);
@@ -91,14 +67,11 @@ public class ClerkMainScreen extends Activity implements AdapterView.OnItemClick
             i = new Intent(this, CheckLowStockMain.class);
             startActivity(i);
         }else if(item.equals("Check Purchase Order")){
-<<<<<<< HEAD
-            i = new Intent(this, PurchaseOrderUII.class);
-            startActivity(i);
-        }else if(item.equals("Report Discrepency")){
-=======
+
             i = new Intent(this, PurchaseOrderUI.class);
+            startActivity(i);
         }else if(item.equals("Report Discrepancy")){
->>>>>>> origin/master
+
             i = new Intent(this, CheckLowStockSearch.class);
             startActivity(i);
         }else if(item.equals("Process Requisitions")){
