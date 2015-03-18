@@ -25,9 +25,9 @@
     <string name="title_activity_disbursement_list_detail">Disbursement List Detail</string>
     <string name="title_activity_check_low_stock">Check Low Stock</string>
     <string name="title_activity_retrieval_list">Retrieval List</string>
-    <string name="title_activity_check_low_stock_main">Check Low Stock Main</string>
+    <string name="title_activity_check_low_stock_main">Check Stock Balance</string>
     <string name="title_activity_check_low_stock_all_stock">Check Low Stock All Stock</string>
-    <string name="title_activity_check_low_stock_search">Check Low Stock Search</string>
+    <string name="title_activity_check_low_stock_search"> Search Items</string>
     <string name="title_activity_purchase_order">Purchase Order</string>
     <string name="title_activity_purchase_order_detail">Purchase Order Detail</string>
     <string name="title_activity_report_discrepency">Report Discrepency</string>
@@ -64,14 +64,10 @@
     <string name="title_activity_test">test</string>
     <string name="title_activity_requisition_history_detail">RequisitionHistoryDetail</string>
     <string name="itemlist_prompt">Choose an item</string>
-    <string name="title_activity_process_requisitions">ProcessRequisitions</string>
-    <string name="title_activity_disbursement_department_list">DisbursementDepartmentList</string>
-    <string name="title_activity_disbursement_department_list_detail"> DisbursementDepartmentListDetail</string>
+    <string name="title_activity_process_requisitions">Process Requisitions</string>
+    <string name="title_activity_disbursement_department_list">Disbursement List</string>
+    <string name="title_activity_disbursement_department_list_detail"> Disbursement List Detail</string>
     <string name="title_activity_purchase_order_uii">PurchaseOrderUII</string>
-<<<<<<< HEAD
     <string name="title_activity_change_password">ChangePassword</string>
-=======
     <string name="title_activity_retrival_list_detail">RetrivalListDetail</string>
->>>>>>> origin/master
-
 </resources>

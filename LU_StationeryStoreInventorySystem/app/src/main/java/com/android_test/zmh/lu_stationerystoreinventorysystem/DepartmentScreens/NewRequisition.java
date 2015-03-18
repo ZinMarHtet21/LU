@@ -74,7 +74,6 @@ public class NewRequisition extends ActionBarActivity {
         setContentView(R.layout.activity_new_requisition);
 
 
-
         new AsyncTask<Void, Void, List<Item>>() {
             @Override
             protected List<Item> doInBackground(Void... params) {
@@ -225,7 +224,11 @@ public class NewRequisition extends ActionBarActivity {
                 }
                 else{
 
-                    arrayOfItems.add(it);
+                    if(itemQty.getText().toString()=="0"){
+                        Toast.makeText(NewRequisition.this,"Quantity should not be zero!",Toast.LENGTH_SHORT).show();
+                    }else{
+                        arrayOfItems.add(it);
+                    }
                 }
                 itemAdapter.notifyDataSetChanged();
                 itemQty.setText("0");
@@ -239,32 +242,36 @@ public class NewRequisition extends ActionBarActivity {
             public void onClick(View v) {
 
 
-                for(TempItem i:arrayOfItems){
+               if(arrayOfItems.size()==0){
+                    Toast.makeText(NewRequisition.this,"Need at least one item to send request!",Toast.LENGTH_SHORT).show();
+               }else{
+                   for(TempItem i:arrayOfItems){
 
-                    RequisitionDetail rd = new RequisitionDetail();
-                    rd.setItem_id(i.iID);
-                    rd.setItem_detail_qty(i.iQty);
+                       RequisitionDetail rd = new RequisitionDetail();
+                       rd.setItem_id(i.iID);
+                       rd.setItem_detail_qty(i.iQty);
 
-                    reqDetailList.add(rd);
-                }
+                       reqDetailList.add(rd);
+                   }
 
-                new AsyncTask<Void, Void, String>() {
-                    @Override
-                    protected String doInBackground(Void... params) {
-                        jsonUpdateResult = reqPopulator.sendNewRequisition(MainActivity.emp.getId(), reqDetailList);
-                        return jsonUpdateResult;
-                    }
+                   new AsyncTask<Void, Void, String>() {
+                       @Override
+                       protected String doInBackground(Void... params) {
+                           jsonUpdateResult = reqPopulator.sendNewRequisition(MainActivity.emp.getId(), reqDetailList);
+                           return jsonUpdateResult;
+                       }
 
-                    @Override
-                    protected void onPostExecute(String result) {
-                        if(!result.equals(null)){
-                            arrayOfItems.clear();
-                            finish();
-                            Toast.makeText(NewRequisition.this,"Send Request Successfully!",Toast.LENGTH_LONG).show();
-                        }
-                    }
+                       @Override
+                       protected void onPostExecute(String result) {
+                           if(!result.equals(null)){
+                               arrayOfItems.clear();
+                               finish();
+                               Toast.makeText(NewRequisition.this,"Send Request Successfully!",Toast.LENGTH_LONG).show();
+                           }
+                       }
 
-                }.execute();
+                   }.execute();
+               }
             }
 
 

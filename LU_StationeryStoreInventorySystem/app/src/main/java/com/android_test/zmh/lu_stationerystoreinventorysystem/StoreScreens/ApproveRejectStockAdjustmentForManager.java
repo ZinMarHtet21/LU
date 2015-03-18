@@ -65,14 +65,9 @@ public class ApproveRejectStockAdjustmentForManager extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approve_reject_stock_adjustment);
-<<<<<<< HEAD
+
         lv = (ListView) findViewById(R.id.list_voucher);
-=======
-        AdjustmentPopulator obj = new AdjustmentPopulator();
-        final DisbursementItemList<AdjustmentVoucher> orders2 = obj.populateManagerList();
->>>>>>> origin/master
-
-
+       
     }
 
     public class MyAdapter extends BaseAdapter {

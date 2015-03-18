@@ -97,33 +97,37 @@ public class ChangePassword extends ActionBarActivity {
             public void onClick(View v) {
                 new_pwd = newPwd.getText().toString();
                 confirm_pwd = confirmPwd.getText().toString();
-                if (flag) {
-                    if (new_pwd.equals(confirm_pwd)) {
+                if((oldPwd.getText().toString().equals("")) || (newPwd.getText().toString().equals("")) || (confirmPwd.getText().toString().equals(""))){
+                    Toast.makeText(ChangePassword.this,"Password fields are required!",Toast.LENGTH_SHORT).show();
+                }else{
+                    if (flag) {
+                        if (new_pwd.equals(confirm_pwd)) {
 
-                        new AsyncTask<Void, Void, String>() {
-                            @Override
-                            protected String doInBackground(Void... params) {
-                                jsonUpdateResult = empPopulator.changePassword(MainActivity.emp.getId(),new_pwd);
-                                return jsonUpdateResult;
-                            }
-
-                            @Override
-                            protected void onPostExecute(String result) {
-                                if(!result.equals(null)){
-                                    System.out.println("RESULT");
-                                    System.out.println(result);
-                                    finish();
-                                    Toast.makeText(ChangePassword.this,"Change Password Successfully!",Toast.LENGTH_SHORT).show();
+                            new AsyncTask<Void, Void, String>() {
+                                @Override
+                                protected String doInBackground(Void... params) {
+                                    jsonUpdateResult = empPopulator.changePassword(MainActivity.emp.getId(),new_pwd);
+                                    return jsonUpdateResult;
                                 }
 
-                            }
+                                @Override
+                                protected void onPostExecute(String result) {
+                                    if(!result.equals(null)){
+                                        System.out.println("RESULT");
+                                        System.out.println(result);
+                                        finish();
+                                        Toast.makeText(ChangePassword.this,"Change Password Successfully!",Toast.LENGTH_SHORT).show();
+                                    }
 
-                        }.execute();
+                                }
+
+                            }.execute();
 
 
-                    } else {
-                        System.out.println("Passwords mismatch");
-                        Toast.makeText(ChangePassword.this, "Password mismatch! Try Again!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            System.out.println("Passwords mismatch");
+                            Toast.makeText(ChangePassword.this, "Password mismatch! Try Again!", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }

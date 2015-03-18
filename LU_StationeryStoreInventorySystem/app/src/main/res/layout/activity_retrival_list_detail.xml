@@ -2,14 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.RetrievalList"
     android:orientation="vertical"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@color/OurBackGroundColor">
 
     <TableLayout
         android:layout_width="match_parent"
@@ -22,21 +23,14 @@
             android:layout_marginRight="15dp"
             android:layout_weight="3">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Item"
-                android:textColor="@color/gray"
-                android:layout_weight="1"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="/"
-                android:gravity="right"
+                android:gravity="center"
                 android:id="@+id/itemName"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/darkblue"
                 android:layout_weight="1" />
 
@@ -51,16 +45,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Needed Qty"
-                android:gravity="center"
-                android:id="@+id/qty"
-                android:layout_alignParentStart="true"
-                />
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -86,6 +71,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Save Change"
+        android:background="@color/OurGreenButton"
+        android:textColor="@color/white"
         android:id="@+id/Save" />
 
 

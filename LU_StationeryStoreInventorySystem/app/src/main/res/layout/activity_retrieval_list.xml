@@ -9,7 +9,8 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.RetrievalList"
     android:orientation="vertical"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@color/OurBackGroundColor">
 
 
     <TableLayout
@@ -20,15 +21,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:layout_weight="2">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Item Description"
+                android:text="Item"
                 android:textColor="@color/darkblue"
                 android:layout_weight="1"/>
             <TextView
@@ -53,8 +52,8 @@
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Confirm Collected The Items"
-        android:background="@color/green"
+        android:text="Confirm Collected From Store"
+        android:background="@color/OurGreenButton"
         android:textColor="@color/white"
         android:id="@+id/button" />
 

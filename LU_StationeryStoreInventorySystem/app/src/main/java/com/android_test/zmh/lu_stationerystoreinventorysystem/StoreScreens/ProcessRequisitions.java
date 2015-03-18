@@ -1,6 +1,9 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.DownloadManager;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -40,8 +44,15 @@ public class ProcessRequisitions extends ActionBarActivity {
     private RequestQueue mRequestQueue;
     private ArrayList<Item> retrivalItems;
     private String url = UrlManager.APIROOTURL+"retrivalformApi/pendingprocess";
-    private String url2 = "http://10.10.1.202/LU_Store_MvcV1/api/purchase_orderApi/approve";
+    private String url2 = UrlManager.APIROOTURL+"retrivalformApi/process";
     private Button button ;
+    private ListView list;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,35 +64,7 @@ public class ProcessRequisitions extends ActionBarActivity {
 
         itemPopulator = new ItemPopulator();
         mRequestQueue = Volley.newRequestQueue(this);
-        final ListView list = (ListView) findViewById(R.id.item_list);
-
-
-        JsonArrayRequest jr = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                try {
-
-                    retrivalItems = itemPopulator.populatePendingProcessedItem(response);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            //    System.out.println(retrivalItems.get(1).toString());
-//                SimpleAdapter adapter = new SimpleAdapter(ProcessRequisitions.this,
-//                        retrivalItems, R.layout.row_retrivalitem,
-//                        new String[]{"description", "qty"},
-//                        new int[]{R.id.description, R.id.qty});
-                ProcessRequisitionAdapter adapter = new ProcessRequisitionAdapter(ProcessRequisitions.this, retrivalItems);
-                list.setAdapter(adapter);
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // Log.i(TAG,error.getMessage());
-            }
-        });
-        mRequestQueue.add(jr);
-
+       list = (ListView) findViewById(R.id.item_list);
 
     }
 
@@ -110,35 +93,68 @@ public class ProcessRequisitions extends ActionBarActivity {
 
     public void setButtonOnclick(){
 
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("orderID", "aa");
-        map.put("not the attribute", "aa");
-
-
-
-
-
-        final JSONObject jsonObject = new JSONObject(map);
         button.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(ProcessRequisitions.this).setTitle("Confirm")
+                        .setMessage("Confirm Process All the Requisitions?").setPositiveButton("Confirm",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        process();
+                        Toast.makeText(ProcessRequisitions.this,"Process Successfully!",Toast.LENGTH_SHORT).show();
+                        getData();
 
-               JsonRequest<JSONObject> jsonRequest = new JsonObjectRequest(Request.Method.POST,url2,jsonObject,
-                       new Response.Listener<JSONObject>() {
-                           @Override
-                           public void onResponse(JSONObject response) {
-                               System.out.println(response);
-                           }
-                       }, new Response.ErrorListener() {
-                   @Override
-                   public void onErrorResponse(VolleyError error) {
-                   }
-               })
-               {
-               };
-               mRequestQueue.add(jsonRequest);
-           }
-       });
+                    }
+                }).setNegativeButton("Cancel",null).show();
+
+            }
+
+        });
+    }
+
+    private void process(){
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET,url2,null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+        mRequestQueue.add(jsonRequest);
+    }
+
+    private void getData(){
+        JsonArrayRequest jr = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+
+                    retrivalItems = itemPopulator.populatePendingProcessedItem(response);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                //    System.out.println(retrivalItems.get(1).toString());
+//                SimpleAdapter adapter = new SimpleAdapter(ProcessRequisitions.this,
+//                        retrivalItems, R.layout.row_retrivalitem,
+//                        new String[]{"description", "qty"},
+//                        new int[]{R.id.description, R.id.qty});
+                ProcessRequisitionAdapter adapter = new ProcessRequisitionAdapter(ProcessRequisitions.this, retrivalItems);
+                list.setAdapter(adapter);
+
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Log.i(TAG,error.getMessage());
+            }
+        });
+        mRequestQueue.add(jr);
 
     }
 }

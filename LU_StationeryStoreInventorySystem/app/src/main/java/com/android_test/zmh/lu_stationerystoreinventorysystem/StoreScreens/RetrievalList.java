@@ -1,5 +1,8 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -9,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,6 +40,7 @@ public class RetrievalList extends ActionBarActivity {
     private RequestQueue mRequestQueue;
     private ArrayList<RetrivalItem> items;
     private String url = UrlManager.APIROOTURL+"retrivalformApi/pendingcollect";
+    private String url2 = UrlManager.APIROOTURL+"retrivalformApi/confirmcollect";
     private ListView list;
     private Button btn_confirmCollect;
     @Override
@@ -45,11 +50,75 @@ public class RetrievalList extends ActionBarActivity {
         setContentView(R.layout.activity_retrieval_list);
         btn_confirmCollect =(Button)findViewById(R.id.button);
         list  = (ListView) findViewById(R.id.listView);
+        setBtn_confirmCollectOnClick();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+         getData();
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_retrieval_list, menu);
+        return false;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return false;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void setBtn_confirmCollectOnClick(){
+        btn_confirmCollect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(RetrievalList.this).setTitle("Confirm")
+                        .setMessage("Confirm Collecting All the Item?").setPositiveButton("Confirm",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        confirmCollect();
+                        Toast.makeText(RetrievalList.this,"Confirm Successfully!",Toast.LENGTH_SHORT).show();
+
+                    }
+                }).setNegativeButton("Cancel",null).show();
+
+            }
+
+        });
+    }
+
+    private void confirmCollect(){
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET,url2,null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+        mRequestQueue.add(jsonRequest);
+        getData();
+    }
+
+    private void getData(){
 
         items = new ArrayList<RetrivalItem>();
         JsonArrayRequest jr = new JsonArrayRequest(url,new Response.Listener<JSONArray>() {
@@ -90,33 +159,8 @@ public class RetrievalList extends ActionBarActivity {
 
             }
         });
-
-
         mRequestQueue.add(jr);
-
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_retrieval_list, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
 
 }
+

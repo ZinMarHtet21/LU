@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:layout_margin="5dp"
     android:paddingTop="15dp"
     android:paddingBottom="15dp">
@@ -13,9 +14,11 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_weight="1"
         android:text="Large Text"
+        android:textColor="@color/OurTextColor"
         android:id="@+id/description"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -24,6 +27,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="2"
         android:id="@+id/qty"
+        android:textColor="@color/OurTextColor"
         android:gravity="center"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
@@ -36,7 +40,9 @@
         android:text="2"
         android:gravity="center"
         android:id="@+id/actual_qty"
+        android:textColor="@color/OurTextColor"
         android:layout_alignParentTop="true"
+
         android:layout_alignParentStart="true"
          />
 
