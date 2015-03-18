@@ -10,16 +10,37 @@
 
     <ListView
         android:id="@+id/lv_OrderDetail"
-        android:layout_below="@+id/editText3"
+        android:layout_below="@+id/text1"
         style="@style/listview" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText3"
+        android:id="@+id/text1"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/lv_OrderDetail"
-        android:text="Item        Qty        Price"
+        android:layout_marginLeft="20dp"
+        android:text="Item"
         style="@style/text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text2"
+        android:layout_marginLeft="20dp"
+        android:text="Qty"
+        style="@style/text"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text3"
+        android:layout_marginLeft="20dp"
+        android:text="Price"
+        style="@style/text"
+        android:layout_marginEnd="37dp"
+        android:layout_above="@+id/lv_OrderDetail"
+        android:layout_alignEnd="@+id/lv_OrderDetail" />
 
 </RelativeLayout>

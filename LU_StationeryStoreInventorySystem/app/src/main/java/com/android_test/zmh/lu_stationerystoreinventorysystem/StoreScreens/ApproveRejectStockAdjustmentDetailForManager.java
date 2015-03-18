@@ -59,7 +59,7 @@ public class ApproveRejectStockAdjustmentDetailForManager extends ActionBarActiv
         btn1 = (Button) findViewById(R.id.btApprove);
         btn2 = (Button) findViewById(R.id.btReject);
         tv1 = (TextView) findViewById(R.id.voucher_id);
-        tv1.setText(vi);
+
         mRequestQueue = Volley.newRequestQueue(this);
         lv = (ListView) findViewById(R.id.lv_adDetail);
 
@@ -153,7 +153,7 @@ public class ApproveRejectStockAdjustmentDetailForManager extends ActionBarActiv
                     }
                 });
 
-
+                tv1.setText(vi);
                 btn2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

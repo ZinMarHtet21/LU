@@ -61,7 +61,7 @@ public class ApproveRejectStockAdjustmentDetail extends ActionBarActivity {
         btn1 = (Button) findViewById(R.id.btApprove);
         btn2 = (Button) findViewById(R.id.btReject);
         tv1 = (TextView) findViewById(R.id.voucher_id);
-        tv1.setText("");
+
         mRequestQueue = Volley.newRequestQueue(this);
         lv = (ListView) findViewById(R.id.lv_adDetail);
 
