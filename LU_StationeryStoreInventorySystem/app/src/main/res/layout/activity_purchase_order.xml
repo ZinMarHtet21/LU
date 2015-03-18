@@ -11,6 +11,7 @@
 
         android:id="@+id/orderlist"
         android:layout_below="@+id/editText"
+        android:layout_marginTop="20dp"
         style="@style/listview" />
 
     <TextView

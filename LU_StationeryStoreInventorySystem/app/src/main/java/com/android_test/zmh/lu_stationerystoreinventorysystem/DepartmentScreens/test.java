@@ -2,26 +2,20 @@ package com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens
 
 import android.app.ListActivity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.RequisitionPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Requisition;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.CheckLowStockMain;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.PurchaseOrderUII;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.PurchaseOrderUI;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.ReportDiscrepency;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.RetrievalList;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.UpdateProfile;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -53,7 +47,7 @@ public class test extends ListActivity {
         }else if(item.equals("Check Low Stock")){
             i = new Intent(this, CheckLowStockMain.class);
         }else if(item.equals("Purchase Order")){
-            i = new Intent(this, PurchaseOrderUII.class);
+            i = new Intent(this, PurchaseOrderUI.class);
         }else if(item.equals("Report Discrepency")){
             i = new Intent(this, ReportDiscrepency.class);
         }

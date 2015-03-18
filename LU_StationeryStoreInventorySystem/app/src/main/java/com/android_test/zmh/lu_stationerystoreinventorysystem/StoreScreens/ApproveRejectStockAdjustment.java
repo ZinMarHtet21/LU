@@ -27,12 +27,13 @@ import java.util.List;
 public class ApproveRejectStockAdjustment extends ActionBarActivity {
     AdjustmentPopulator obj = new AdjustmentPopulator();
     String status = "";
+    private ListView lv ;
+    private MyAdapter myadapter;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_approve_reject_stock_adjustment);
-
+    protected void onResume() {
+        super.onResume();
 
         new AsyncTask<Void, Void, List<AdjustmentVoucher>>() {
             @Override
@@ -43,12 +44,10 @@ public class ApproveRejectStockAdjustment extends ActionBarActivity {
             }
             @Override
             protected void onPostExecute(List<AdjustmentVoucher> result) {
-                ListView lv = (ListView) findViewById(R.id.list_voucher);
 
 
-                MyAdapter myadapter = new MyAdapter(ApproveRejectStockAdjustment.this,result);
+                myadapter = new MyAdapter(ApproveRejectStockAdjustment.this,result);
                 lv.setAdapter(myadapter);
-
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -60,8 +59,18 @@ public class ApproveRejectStockAdjustment extends ActionBarActivity {
                     }
                 });
 
+
             }
         }.execute();
+
+
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_approve_reject_stock_adjustment);
+        lv = (ListView) findViewById(R.id.list_voucher);
 
     }
 

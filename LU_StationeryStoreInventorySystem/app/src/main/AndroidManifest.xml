@@ -101,7 +101,7 @@
             android:label="@string/title_activity_check_low_stock_search" >
         </activity>
         <activity
-            android:name=".StoreScreens.PurchaseOrderUII"
+            android:name=".StoreScreens.PurchaseOrderUI"
             android:label="@string/title_activity_purchase_order" >
         </activity>
         <activity

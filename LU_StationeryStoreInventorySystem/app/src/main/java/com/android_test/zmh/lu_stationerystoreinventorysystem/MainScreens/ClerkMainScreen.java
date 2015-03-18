@@ -1,32 +1,33 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens;
 
 import android.app.Activity;
+<<<<<<< HEAD
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
+=======
+>>>>>>> origin/master
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
+<<<<<<< HEAD
 import com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.DisbursementList;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.NewRequisition;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.RequisitionHistory;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Main.MainActivity;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.DisbursementDepartment;
+=======
+>>>>>>> origin/master
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.CheckLowStockMain;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.CheckLowStockSearch;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.DisbursementDepartmentList;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.ProcessRequisitions;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.PurchaseOrderUII;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.ReportDiscrepency;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.PurchaseOrderUI;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.RetrievalList;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.UpdateProfile;
 
@@ -34,8 +35,13 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.UpdateProfile;
 public class ClerkMainScreen extends Activity implements AdapterView.OnItemClickListener{
 
 
+<<<<<<< HEAD
     String[] clerk_menu = {"Update Profile","Retrieval DisbursementItemList",
             "Disbursement DisbursementItemList","Check Low Stock","Purchase Order","Report Discrepency","Logout"};
+=======
+    String[] clerk_menu = {"Process Requisitions","Check Retrieval Form",
+            "Check Disbursement List","Check Stock","Check Purchase Order","Report Discrepancy","Update Profile"};
+>>>>>>> origin/master
 
 //    String[] clerk_menu = {"Process Requisitions","Check Retrieval List",
 //            "Check Disbursement List","Check Stock","Check Purchase Order","Report Discrepency","Update Profile"};
@@ -69,9 +75,13 @@ public class ClerkMainScreen extends Activity implements AdapterView.OnItemClick
             startActivity(i);
         }else if(item.equals("Retrieval DisbursementItemList")){
             i = new Intent(this, RetrievalList.class);
+<<<<<<< HEAD
             startActivity(i);
         }else if(item.equals("Disbursement DisbursementItemList")){
         }else if(item.equals("Check Retrieval List")){
+=======
+        }else if(item.equals("Check Retrieval Form")){
+>>>>>>> origin/master
             i = new Intent(this, RetrievalList.class);
             startActivity(i);
         }else if(item.equals("Check Disbursement List")){
@@ -81,9 +91,14 @@ public class ClerkMainScreen extends Activity implements AdapterView.OnItemClick
             i = new Intent(this, CheckLowStockMain.class);
             startActivity(i);
         }else if(item.equals("Check Purchase Order")){
+<<<<<<< HEAD
             i = new Intent(this, PurchaseOrderUII.class);
             startActivity(i);
         }else if(item.equals("Report Discrepency")){
+=======
+            i = new Intent(this, PurchaseOrderUI.class);
+        }else if(item.equals("Report Discrepancy")){
+>>>>>>> origin/master
             i = new Intent(this, CheckLowStockSearch.class);
             startActivity(i);
         }else if(item.equals("Process Requisitions")){

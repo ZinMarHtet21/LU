@@ -1,5 +1,7 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -41,24 +43,53 @@ public class ApproveRejectStockAdjustmentDetail extends ActionBarActivity {
     AdjustmentPopulator ap = new AdjustmentPopulator();
     String baseurl = UrlManager.APIROOTURL + "stockAdjustmentApi/detail/";
     String approveUrl = UrlManager.APIROOTURL +"stockAdjustmentApi/approve";
-    private RequestQueue mRequestQueue;
     String vi;
     String response;
-    Button btn1;
-    Button btn2;
-    TextView tv1 ;
-    ListView lv;
+    private RequestQueue mRequestQueue;
+    private Button btn1;
+    private Button btn2;
+    private TextView tv1 ;
+    private ListView lv;
+    private AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approve_reject_stock_adjustment_detail);
+
+
         btn1 = (Button) findViewById(R.id.btApprove);
         btn2 = (Button) findViewById(R.id.btReject);
         tv1 = (TextView) findViewById(R.id.voucher_id);
-        tv1.setText("");
+
         mRequestQueue = Volley.newRequestQueue(this);
         lv = (ListView) findViewById(R.id.lv_adDetail);
+
+
+        builder = new AlertDialog.Builder(this);
+        builder.setTitle("Tooltip");
+        builder.setMessage("Are you sure to approve/reject it?");
+        builder.setIcon(R.drawable.message);
+        builder.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), " Voucher#" + vi + "has been approved!",
+                        Toast.LENGTH_LONG).show();
+
+                finish();
+
+                //Intent intent = new Intent(ApproveRejectStockAdjustmentDetail.this,SupervisorMainScreen.class);
+                //startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "Cancel it!",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+
 
 
         if (getIntent()!= null) {
@@ -124,11 +155,7 @@ public class ApproveRejectStockAdjustmentDetail extends ActionBarActivity {
                         };
 
                         mRequestQueue.add(jsonRequest);
-                        Intent intent = new Intent(ApproveRejectStockAdjustmentDetail.this,SupervisorMainScreen.class);
-                        //intent.putExtra("status",response);
-                        Toast.makeText(getApplicationContext(), " Voucher#" + vi + "has been approved!",
-                                Toast.LENGTH_LONG).show();
-                        startActivity(intent);
+                        builder.show();
                     }
                 });
 

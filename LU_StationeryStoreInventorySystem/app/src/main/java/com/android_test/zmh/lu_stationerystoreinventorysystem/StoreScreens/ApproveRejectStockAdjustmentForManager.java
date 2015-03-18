@@ -25,11 +25,12 @@ import java.util.List;
  */
 public class ApproveRejectStockAdjustmentForManager extends ActionBarActivity {
     AdjustmentPopulator obj = new AdjustmentPopulator();
-    List<AdjustmentVoucher> orders;
+    private ListView lv;
+    private MyAdapter myadapter;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_approve_reject_stock_adjustment);
+    protected void onResume() {
+        super.onResume();
         new AsyncTask<Void, Void, List<AdjustmentVoucher>>() {
             @Override
             protected List<AdjustmentVoucher> doInBackground(Void... params) {
@@ -40,10 +41,8 @@ public class ApproveRejectStockAdjustmentForManager extends ActionBarActivity {
 
             @Override
             protected void onPostExecute(List<AdjustmentVoucher> result) {
-                ListView lv = (ListView) findViewById(R.id.list_voucher);
 
-
-                MyAdapter myadapter = new MyAdapter(ApproveRejectStockAdjustmentForManager.this, result);
+                myadapter = new MyAdapter(ApproveRejectStockAdjustmentForManager.this, result);
                 lv.setAdapter(myadapter);
 
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -62,31 +61,14 @@ public class ApproveRejectStockAdjustmentForManager extends ActionBarActivity {
         }.execute();
     }
 
-
-    /*@Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approve_reject_stock_adjustment);
-        AdjustmentPopulator obj = new AdjustmentPopulator();
-        final DisbursementItemList<AdjustmentVoucher> orders2 = obj.populateManagerList();
 
+        lv = (ListView) findViewById(R.id.list_voucher);
 
-
-        ListView lv2 = (ListView) findViewById(R.id.list_voucher);
-        Adapter myadapter = new Adapter(this, orders2);
-        lv2.setAdapter(myadapter);
-        //click listener
-        lv2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(ApproveRejectStockAdjustmentForManager.this, ApproveRejectStockAdjustmentDetailForManager.class);
-                i.putExtra("AdjustmentForManager", orders2.get(position));
-                startActivity(i);
-            }
-        });
-
-    }*/
-
+    }
 
     public class MyAdapter extends BaseAdapter {
 

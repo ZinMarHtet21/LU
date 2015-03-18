@@ -21,7 +21,7 @@ public class PurchaseOrderDetailUI extends ActionBarActivity {
     PurchaseOrderPopulator pop = new PurchaseOrderPopulator();
     String baseurl = UrlManager.APIROOTURL + "purchase_orderApi/detail/";
     String po;
-    ListView lv;
+    private ListView lv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +32,11 @@ public class PurchaseOrderDetailUI extends ActionBarActivity {
 
         if (getIntent()!= null) {
             po = getIntent().getSerializableExtra("PurchaseOrderId").toString();
-           // po=getIntent().getSerializableExtra("PONumber").toString();
-            //model = (PurchaseOrder) getIntent().getSerializableExtra("PurchaseOrderId");
-            //po=model.getId();
+
         }
 
-//convert model to hash map
-        //ListView lv = (ListView) findViewById(R.id.lv_OrderDetail);
+        //convert model to hash map
+
         new AsyncTask<Void, Void, List<PurchaseOrderDetail>>() {
             @Override
             protected List<PurchaseOrderDetail> doInBackground(Void... params) {
@@ -62,14 +60,6 @@ public class PurchaseOrderDetailUI extends ActionBarActivity {
         }
        }.execute();
     }
-
-
-    /*SimpleAdapter mysimpleAdapter = new SimpleAdapter(this, convertModelToHashMapModel(model),
-                R.layout.row_orderdetail,
-                new String[]{"itemName", "qty", "price"},
-                new int[]{R.id.itemName,R.id.qty,R.id.price});
-        lv.setAdapter(mysimpleAdapter);
-*/
 
 
     public ArrayList<hash> convertModelToHashMapModel(PurchaseOrder model) {

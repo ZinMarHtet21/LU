@@ -1,32 +1,24 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens;
 
 import android.app.Activity;
+<<<<<<< HEAD
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
+=======
+>>>>>>> origin/master
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Main.MainActivity;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.ApproveRejectPurchaseOrder;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.ApproveRejectStockAdjustment;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.CheckLowStockMain;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.CheckLowStockSearch;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.DisbursementDepartmentList;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.PurchaseOrderUII;
-import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.RetrievalList;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.UpdateProfile;
-
-import java.util.List;
 
 
 public class SupervisorMainScreen extends Activity implements AdapterView.OnItemClickListener {

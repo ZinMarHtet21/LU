@@ -17,10 +17,10 @@
             android:text="category"
             android:id="@+id/text1"
             style="@style/text"
-            android:padding="5dp"
+            android:padding="3dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:textSize="25dp"
+            android:textSize="15dp"
             />
 
 
@@ -29,7 +29,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:spinnerMode="dialog"
-            android:layout_toEndOf="@+id/text1" />
+            android:layout_toEndOf="@+id/text1"
+            android:layout_above="@+id/description" />
 
 
         <TextView
@@ -38,10 +39,10 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Item"
             android:id="@+id/text2"
-            android:textSize="25dp"
+            android:textSize="15dp"
             android:layout_below="@id/text1"
             style="@style/text"
-            android:padding="5dp"
+            android:padding="3dp"
             />
 
         <Spinner
@@ -52,7 +53,8 @@
             android:spinnerMode="dialog"
             android:layout_below="@+id/text1"
             android:layout_alignParentEnd="true"
-            android:layout_alignStart="@+id/category" />
+            android:layout_alignBottom="@+id/edit1"
+            android:layout_toEndOf="@+id/text1" />
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -75,7 +77,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Item"
                 android:layout_weight="1"
-                android:textSize="20dp"
+                android:textSize="13dp"
                 style="@style/text" />
 
             <TextView
@@ -103,7 +105,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="UOM"
                 android:layout_weight="1"
-                android:textSize="20dp"
+                android:textSize="13dp"
                 style="@style/text" />
 
 
@@ -132,7 +134,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Reorder Level"
                 android:layout_weight="1"
-                android:textSize="20dp"
+                android:textSize="13dp"
                 style="@style/text" />
 
             <TextView
@@ -160,7 +162,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Balance"
                 android:layout_weight="1"
-                android:textSize="20dp"
+                android:textSize="13dp"
                 style="@style/text" />
 
             <TextView

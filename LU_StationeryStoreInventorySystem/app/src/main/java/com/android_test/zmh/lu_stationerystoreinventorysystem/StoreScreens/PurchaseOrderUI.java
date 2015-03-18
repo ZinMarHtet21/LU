@@ -21,16 +21,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class PurchaseOrderUII extends ActionBarActivity {
+public class PurchaseOrderUI extends ActionBarActivity {
 
     PurchaseOrderPopulator obj = new PurchaseOrderPopulator();
-     List<PurchaseOrder> orders ;
-
+    private ListView lv;
+    private MyAdapter myadapter;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_purchase_order);
-
+    protected void onResume() {
+        super.onResume();
         new AsyncTask<Void, Void, List<PurchaseOrder>>() {
             @Override
             protected List<PurchaseOrder> doInBackground(Void... params) {
@@ -40,20 +38,19 @@ public class PurchaseOrderUII extends ActionBarActivity {
             }
             @Override
             protected void onPostExecute(List<PurchaseOrder> result) {
-                ListView lv = (ListView) findViewById(R.id.orderlist);
 
 
-                MyAdapter myadapter = new MyAdapter(PurchaseOrderUII.this,result);
+
+                myadapter = new MyAdapter(PurchaseOrderUI.this,result);
                 lv.setAdapter(myadapter);
 
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent i = new Intent(PurchaseOrderUII.this,PurchaseOrderDetailUI.class);
-//
+                        Intent i = new Intent(PurchaseOrderUI.this,PurchaseOrderDetailUI.class);
+
                         String po =  ((PurchaseOrder) parent.getAdapter().getItem(position)).getId();
 
-                        //i.putExtra("PONumber",po);
                         i.putExtra("PurchaseOrderId", po);
 
                         startActivity(i);
@@ -62,26 +59,14 @@ public class PurchaseOrderUII extends ActionBarActivity {
 
             }
         }.execute();
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_purchase_order);
+        lv = (ListView) findViewById(R.id.orderlist);
 
-        //get the data list from populator(orders)
-      /*  PurchaseOrderPopulator obj = new PurchaseOrderPopulator();
-        final DisbursementItemList<PurchaseOrder> orders = obj.PopulatePurchaseOrder();
 
-
-
-        //create an adapter and pass the data ,set the adapter for the listView
-        ListView lv = (ListView) findViewById(R.id.orderlist);
-        //MyAdapter myadapter = new MyAdapter(this, orders);
-        lv.setAdapter(myadapter);
-        //click listener
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(PurchaseOrderUII.this,PurchaseOrderDetail.class);
-                i.putExtra("PurchaseOrders",  orders.get(position));
-                startActivity(i);
-            }
-        });*/
 
     }
 

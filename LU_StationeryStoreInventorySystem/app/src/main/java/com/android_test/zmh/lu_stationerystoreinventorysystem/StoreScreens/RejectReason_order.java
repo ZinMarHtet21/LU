@@ -1,6 +1,8 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -42,6 +44,8 @@ public class RejectReason_order extends Activity implements AdapterView.OnItemSe
         private Spinner spinner;
         private EditText et;
         private Button btn;
+        private AlertDialog.Builder builder;
+
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +53,52 @@ public class RejectReason_order extends Activity implements AdapterView.OnItemSe
         setContentView(R.layout.activity_reject_reason);
          et = (EditText) findViewById(R.id.et_reason);
          spinner = (Spinner)findViewById(R.id.spinner);
+         btn =(Button) findViewById(R.id.btnSave);
+
          ArrayAdapter <CharSequence> adapter = ArrayAdapter.createFromResource(this,
                     R.array.reasons,android.R.layout.simple_spinner_item);
          adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
          spinner.setAdapter(adapter);
          spinner.setOnItemSelectedListener(this);
+
+         mRequestQueue = Volley.newRequestQueue(this);
+         builder = new AlertDialog.Builder(this);
+         builder.setTitle("Tooltip");
+         builder.setMessage("Are you sure to approve/reject it?");
+         builder.setIcon(R.drawable.message);
+         builder.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+
+          @Override
+
+
+           public void onClick(DialogInterface dialog, int which) {
+              Intent intent = new Intent(RejectReason_order.this,SupervisorMainScreen.class);
+              if(reason.equals("reason")&&text!="")
+                  reason1 =text;
+              else if(reason.equals("reason")&&text.equals(""))
+              { et.setError("Please give a reason...");
+                  return;}
+
+              else
+              {reason1 = reason;
+                  Toast.makeText(getApplicationContext(), " Purchase order: " + poNumber + " has been rejected!",
+                          Toast.LENGTH_LONG).show();}
+
+
+
+                    startActivity(intent);
+                }
+            });
+
+
+            builder.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(getApplicationContext(), "Cancel it!",
+                            Toast.LENGTH_LONG).show();
+                }
+            });
+
 
 
             if (getIntent()!= null) {
@@ -62,27 +107,10 @@ public class RejectReason_order extends Activity implements AdapterView.OnItemSe
 
             }
 
-
-            btn =(Button) findViewById(R.id.btnSave);
-            mRequestQueue = Volley.newRequestQueue(this);
-
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     text=et.getText().toString();
-
-
-                    if(reason.equals("reason")&&text!="")
-                        reason1 =text;
-                    else if(reason.equals("reason")&&text.equals(""))
-                    { et.setError("Please give a reason...");
-                        return;}
-
-                    else
-                    {reason1 = reason;
-                        Toast.makeText(getApplicationContext(), " Purchase order: " + poNumber + " has been rejected!",
-                                Toast.LENGTH_LONG).show();}
-
                     Map<String,String > map = new HashMap<String, String>();
                     map.put("orderID" ,poNumber);
                     map.put("outcome" ,"reject");
@@ -107,11 +135,9 @@ public class RejectReason_order extends Activity implements AdapterView.OnItemSe
                     };
 
                     mRequestQueue.add(jsonRequest);
+                    builder.show();
 
-                    Intent i = new Intent(RejectReason_order.this, SupervisorMainScreen.class);
 
-
-                    startActivity(i);
                 }
             });
 
