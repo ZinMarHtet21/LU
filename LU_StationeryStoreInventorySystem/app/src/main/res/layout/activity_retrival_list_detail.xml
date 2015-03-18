@@ -26,31 +26,67 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Department"
-                android:textColor="@color/darkblue"
+                android:text="Item"
+                android:textColor="@color/gray"
                 android:layout_weight="1"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Representative"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/darkblue"
-                android:layout_weight="1" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Collection Point"
+                android:text="/"
+                android:gravity="right"
+                android:id="@+id/itemName"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/darkblue"
                 android:layout_weight="1" />
 
         </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_weight="1"
+                android:text="Department"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Needed Qty"
+                android:gravity="center"
+                android:id="@+id/qty"
+                android:layout_alignParentStart="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Actual Qty"
+                android:gravity="center"
+                android:layout_alignParentStart="true"
+                android:id="@+id/actual_qty" />
+
+        </TableRow>
+
     </TableLayout>
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/departmentlist" />
+        android:layout_height="440dp"
+        android:id="@+id/departmentlist"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Change"
+        android:id="@+id/Save" />
 
 
 </LinearLayout>

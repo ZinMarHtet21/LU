@@ -13,6 +13,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
@@ -22,6 +23,7 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.IPopulator.IItem;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.ItemPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Item;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
 import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
@@ -34,10 +36,10 @@ import java.util.Map;
 
 public class ProcessRequisitions extends ActionBarActivity {
 
-    IItem itemPopulator;
+    private IItem itemPopulator;
     private RequestQueue mRequestQueue;
     private ArrayList<Item> retrivalItems;
-    private String url = "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=7c5c19eba3c21dc8bb16f00829b2be41&date=2015-02-09&format=json&nojsoncallback=1";
+    private String url = UrlManager.APIROOTURL+"retrivalformApi/pendingprocess";
     private String url2 = "http://10.10.1.202/LU_Store_MvcV1/api/purchase_orderApi/approve";
     private Button button ;
 
@@ -54,15 +56,16 @@ public class ProcessRequisitions extends ActionBarActivity {
         final ListView list = (ListView) findViewById(R.id.item_list);
 
 
-        JsonObjectRequest jr = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        JsonArrayRequest jr = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(JSONArray response) {
                 try {
-                    retrivalItems = itemPopulator.populatePendingProcessedItem(response.getJSONObject("photos").getJSONArray("photo"));
-                } catch (JSONException e) {
+
+                    retrivalItems = itemPopulator.populatePendingProcessedItem(response);
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-                System.out.println(retrivalItems.get(1).toString());
+            //    System.out.println(retrivalItems.get(1).toString());
 //                SimpleAdapter adapter = new SimpleAdapter(ProcessRequisitions.this,
 //                        retrivalItems, R.layout.row_retrivalitem,
 //                        new String[]{"description", "qty"},

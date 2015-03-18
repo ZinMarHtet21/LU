@@ -8,27 +8,64 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Adapter.DisbursementDepratmentListDetailAdapter;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.IPopulator.IDepartmentDisbursementList;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator.DepartmentDisbursementListPopulator;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.DepartmentDisbursementList;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 public class DisbursementDepartmentListDetail extends ActionBarActivity {
-    DepartmentDisbursementList ddl;
+   private DepartmentDisbursementList ddl;
+    private  RequestQueue mRequestQueue ;
+    private  String url = UrlManager.APIROOTURL+"disbursementlistApi/getdepartment/";
+    private IDepartmentDisbursementList idl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mRequestQueue = Volley.newRequestQueue(this);
         setContentView(R.layout.activity_disbursement_department_list_detail);
-        ListView list = (ListView) findViewById(R.id.itemlist);
+        idl = new DepartmentDisbursementListPopulator();
+        final ListView list = (ListView) findViewById(R.id.itemlist);
         TextView text_depratmentName = (TextView) findViewById(R.id.departmentName);
         Intent i = getIntent();
         ddl = (DepartmentDisbursementList) i.getExtras().getSerializable("disbursementlist");
-        text_depratmentName.setText(ddl.getDepartment().getName());
-        DisbursementDepratmentListDetailAdapter adapter = new DisbursementDepratmentListDetailAdapter(DisbursementDepartmentListDetail.this, ddl);
-        list.setAdapter(adapter);
+       String path = ddl.getDepartment().getCode();
+
+        text_depratmentName.setText(ddl.getDepartment().getCode());
 
 
-        System.out.println(ddl.getDepartment().getRepresentative());
+        JsonArrayRequest jar = new JsonArrayRequest(url+path,new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                try {
+                    ddl.setDisbursementList(idl.populateDisbursementForADepartment(response));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+                DisbursementDepratmentListDetailAdapter adapter = new DisbursementDepratmentListDetailAdapter(DisbursementDepartmentListDetail.this, ddl);
+                list.setAdapter(adapter);
+            }
+        },new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+            }
+        });
+        mRequestQueue.add(jar);
+
     }
 
 

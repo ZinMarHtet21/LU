@@ -4,6 +4,7 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.IPopulator.IDepart
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Department;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.DepartmentDisbursementList;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Disbursement;
+import com.google.gson.JsonObject;
 
 
 import org.json.JSONArray;
@@ -26,29 +27,32 @@ public class DepartmentDisbursementListPopulator implements IDepartmentDisbursem
                 DepartmentDisbursementList ddl = new DepartmentDisbursementList();
                 //department info
                 Department department = new Department();
-                department.setName("departmentName");
-                department.setRepresentative("RepresentativeName");
-                department.setCollection_point("collection point");
+                department.setCode(jo.getString("dept"));
+                department.setRepresentative(jo.getString("rep"));
+                department.setCollection_point(jo.getString("CollectionPoint"));
                 ddl.setDepartment(department);
-                //department related disbursement
-                ArrayList <Disbursement> disbursementlist = new ArrayList<Disbursement>();
-                for (int j = 0; j < 100; j++) {
-                    Disbursement disbursement = new Disbursement();
-                    disbursement.setItemName("item name");
-                    disbursement.setQty(2);
-                    disbursement.setActualQty(4);
-                    disbursementlist.add(disbursement);
-                }
-
-
-                ddl.setDisbursementList(disbursementlist);
+                ArrayList<Disbursement> disbursements = new ArrayList<Disbursement>();
+                ddl.setDisbursementList(disbursements);
                 list.add(ddl);
-                // list.add(new (jo.getString("id"),jo.getString("server"),jo.getString("server")));
-            } catch (JSONException e) {
+                } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-
         return list;
+    }
+
+    @Override
+    public ArrayList<Disbursement> populateDisbursementForADepartment(JSONArray ja) throws JSONException {
+        ArrayList<Disbursement> ad = new ArrayList<Disbursement>();
+        for (int i =0;i<ja.length();i++){
+            JSONObject o = ja.getJSONObject(i);
+            Disbursement d = new Disbursement();
+            d.setQty(o.getInt("item_qty"));
+            d.setActualQty(o.getInt("item_actual"));
+            d.setItemCode(o.getString("item_code"));
+            d.setItemName(o.getString("item_desc"));
+            ad.add(d);;
+        }
+        return ad;
     }
 }

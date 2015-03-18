@@ -30,8 +30,13 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.UpdateProfile;
 
 public class ClerkMainScreen extends Activity implements AdapterView.OnItemClickListener{
 
+<<<<<<< HEAD
     String[] clerk_menu = {"Update Profile","Retrieval DisbursementItemList",
             "Disbursement DisbursementItemList","Check Low Stock","Purchase Order","Report Discrepency"};
+=======
+    String[] clerk_menu = {"Process Requisitions","Check Retrieval List",
+            "Check Disbursement List","Check Stock","Check Purchase Order","Report Discrepency","Update Profile"};
+>>>>>>> origin/master
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,16 +58,24 @@ public class ClerkMainScreen extends Activity implements AdapterView.OnItemClick
 
         if(item.equals("Update Profile")){
             i = new Intent(this, UpdateProfile.class);
+<<<<<<< HEAD
         }else if(item.equals("Retrieval DisbursementItemList")){
             i = new Intent(this, RetrievalList.class);
         }else if(item.equals("Disbursement DisbursementItemList")){
+=======
+        }else if(item.equals("Check Retrieval List")){
+            i = new Intent(this, RetrievalList.class);
+        }else if(item.equals("Check Disbursement List")){
+>>>>>>> origin/master
             i = new Intent(this, DisbursementDepartmentList.class);
-        }else if(item.equals("CheckLowStockMain")){
+        }else if(item.equals("Check Stock")){
             i = new Intent(this, CheckLowStockMain.class);
-        }else if(item.equals("Purchase Order")){
+        }else if(item.equals("Check Purchase Order")){
             i = new Intent(this, PurchaseOrderUII.class);
         }else if(item.equals("Report Discrepency")){
             i = new Intent(this, CheckLowStockSearch.class);
+        }else if(item.equals("Process Requisitions")){
+            i = new Intent(this, ProcessRequisitions.class);
         }
         startActivity(i);
     }

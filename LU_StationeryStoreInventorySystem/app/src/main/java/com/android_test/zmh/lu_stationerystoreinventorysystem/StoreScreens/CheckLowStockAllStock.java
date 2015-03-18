@@ -13,7 +13,7 @@ public class CheckLowStockAllStock extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_check_low_stock_all_stock);
+      //  setContentView(R.layout.activity_check_low_stock_all_stock);
     }
 
 

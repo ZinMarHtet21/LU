@@ -154,9 +154,9 @@ public class CheckLowStockSearch extends ActionBarActivity {
                 }
                 categories = new String[a.size()];
                 categories  = a.toArray(categories);
-                for (int j = 0; j<categories.length;j++){
-                    System.out.println(categories[j]);
-                }
+//                for (int j = 0; j<categories.length;j++){
+//                    System.out.println(categories[j]);
+//                }
                 categoryAdapter = new ArrayAdapter<String>(CheckLowStockSearch.this,
                         android.R.layout.simple_dropdown_item_1line,categories);
                 spinner_category.setAdapter(categoryAdapter);
@@ -264,7 +264,7 @@ public class CheckLowStockSearch extends ActionBarActivity {
         a.put("description",description);
         JSONObject jo = new JSONObject(a);
 
-        JsonRequest<JSONObject> jr = new JsonObjectRequest(Request.Method.POST, itemDetailUrl, jo,
+        JsonRequest<JSONObject> jr = new JsonObjectRequest(Request.Method.POST, itemDetailUrl,jo,
                 new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

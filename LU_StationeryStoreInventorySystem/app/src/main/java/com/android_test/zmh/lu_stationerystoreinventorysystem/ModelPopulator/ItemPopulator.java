@@ -86,8 +86,9 @@ public class ItemPopulator implements IItem {
             try {
                 JSONObject jo = ja.getJSONObject(i);
                 Item item = new Item();
-                item.setDescription(jo.getString("id"));
-                item.setBalance(jo.getInt("server"));
+                item.setDescription(jo.getString("item_desc"));
+                item.setBalance(jo.getInt("item_qty"));
+                item.setId(jo.getString("item_code"));
                 list.add(item);
                 // list.add(new (jo.getString("id"),jo.getString("server"),jo.getString("server")));
             } catch (JSONException e) {

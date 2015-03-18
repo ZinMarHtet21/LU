@@ -4,20 +4,23 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.CheckLowStockMain">
+    tools:context="com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.CheckLowStockMain"
+    android:background="#fff9fff0">
 
     <TabHost
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/tabHost"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        style="@style/text">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
-            android:weightSum="1">
+            android:weightSum="1"
+            android:background="#fff9fff0">
 
             <TabWidget
                 android:id="@android:id/tabs"
@@ -35,18 +38,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:clipToPadding="false"
-                    android:divider="@android:color/transparent"
-                    android:scrollbarStyle="outsideOverlay" />
+                    android:scrollbarStyle="outsideOverlay"
+                    style="@style/listview" />
 
                 <ListView
                     android:id="@+id/lowstock_list"
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:clipToPadding="false"
-                    android:divider="@android:color/transparent"
-                    android:dividerHeight="10dp"
                     android:padding="10dp"
-                    android:scrollbarStyle="outsideOverlay" />
+                    android:scrollbarStyle="outsideOverlay"
+                    style="@style/listview" />
 
 
             </FrameLayout>
