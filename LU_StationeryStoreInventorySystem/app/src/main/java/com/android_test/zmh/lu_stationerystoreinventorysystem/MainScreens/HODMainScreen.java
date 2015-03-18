@@ -68,7 +68,7 @@ public class HODMainScreen extends Activity implements AdapterView.OnItemClickLi
 ////            i = new Intent(this, UpdateProfile.class);
 ////        }else if(item.equals("New Requisition")){
 ////            i = new Intent(this, NewRequisition.class);
-////        }else if(item.equals("Requisition List")){
+////        }else if(item.equals("Requisition DisbursementItemList")){
 ////            i = new Intent(this, RequisitionList.class);
 ////        }else if(item.equals("Requisition History")){
 ////            i = new Intent(this, RequisitionHistory.class);

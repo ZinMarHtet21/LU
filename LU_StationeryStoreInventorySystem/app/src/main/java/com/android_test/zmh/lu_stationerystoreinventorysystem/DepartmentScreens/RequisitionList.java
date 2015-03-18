@@ -31,6 +31,44 @@ public class RequisitionList extends Activity {
     private ArrayList<Requisition> reqList;
     private String url = UrlManager.APIROOTURL;
     ListView reqlist_lv;
+    Myadapter myadapter;
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        finish();
+//        startActivity(getIntent());
+//    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new AsyncTask<Void, Void, List<Requisition>>() {
+            @Override
+            protected List<Requisition> doInBackground(Void... params) {
+                return reqPopulator.getRequisitionList(MainActivity.emp.getDepartmentID());
+            }
+            @Override
+            protected void onPostExecute(List<Requisition> result) {
+                reqlist_lv = (ListView) findViewById(R.id.req_list_lv);
+
+                 myadapter = new Myadapter(RequisitionList.this, result);
+                reqlist_lv.setAdapter(myadapter);
+
+                reqlist_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent i = new Intent(RequisitionList.this,RequisitionListDetail.class);
+                        String req =  ((Requisition) parent.getAdapter().getItem(position)).getId();
+                        String req_date = ((Requisition)parent.getAdapter().getItem(position)).getDate();
+                        i.putExtra("req_date", req_date);
+                        i.putExtra("req_id",req);
+                        startActivity(i);
+                    }
+                });
+            }
+        }.execute();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,23 +84,20 @@ public class RequisitionList extends Activity {
             @Override
             protected void onPostExecute(List<Requisition> result) {
 
-                Myadapter myadapter = new Myadapter(RequisitionList.this, result);
+                 myadapter = new Myadapter(RequisitionList.this, result);
                 reqlist_lv.setAdapter(myadapter);
 
-                reqlist_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent i = new Intent(RequisitionList.this,RequisitionListDetail.class);
-//                      i.putExtra("Requisition_id",reqList.get(position).getId());
-                        String req =  ((Requisition) parent.getAdapter().getItem(position)).getId();
-                        String req_date = ((Requisition)parent.getAdapter().getItem(position)).getDate();
-//                        i.putExtra("emp_id",MainActivity.emp.getId());
-                        i.putExtra("req_date", req_date);
-                        i.putExtra("req_id",req);
-                        //i.putExtra("Requisition_id",reqList.get(position).getId());
-                        startActivity(i);
-                    }
-                });
+//                reqlist_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                        Intent i = new Intent(RequisitionList.this,RequisitionListDetail.class);
+//                        String req =  ((Requisition) parent.getAdapter().getItem(position)).getId();
+//                        String req_date = ((Requisition)parent.getAdapter().getItem(position)).getDate();
+//                        i.putExtra("req_date", req_date);
+//                        i.putExtra("req_id",req);
+//                        startActivity(i);
+//                    }
+//                });
             }
         }.execute();
     }

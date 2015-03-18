@@ -38,7 +38,6 @@ public class RequisitionHistoryDetail extends ActionBarActivity {
 
     String req_id;
     String req_date;
-    Requisition model;
     TextView req_history_date;
     ListView lv;
 
@@ -49,14 +48,12 @@ public class RequisitionHistoryDetail extends ActionBarActivity {
         setContentView(R.layout.activity_requisition_history_detail);
         lv = (ListView) findViewById(R.id.listView_ReqDetails);
         req_history_date = (TextView)findViewById(R.id.req_history_date_tv);
-        //model = new Requisition();
 
         if (getIntent() != null) {
             req_id = getIntent().getStringExtra("req_id").toString();
             req_date = getIntent().getStringExtra("req_date").toString();
             String dateText = "Date : " + req_date;
             req_history_date.setText(dateText);
-            //    ("Requisition",listdata.get(position));
         }
 
         //model.setRequisitionDetails();
@@ -66,7 +63,6 @@ public class RequisitionHistoryDetail extends ActionBarActivity {
             protected List<RequisitionDetail> doInBackground(Void... params) {
 
                 List<RequisitionDetail> listdetail = pop.getRequisitionDetail(req_id, baseurl);
-                //model.setRequisitionDetails(listdetail);
                 return listdetail;
 
             }
@@ -76,13 +72,6 @@ public class RequisitionHistoryDetail extends ActionBarActivity {
 
                 Myadapter myadapter = new Myadapter(RequisitionHistoryDetail.this,result);
                 lv.setAdapter(myadapter);
-
-//                SimpleAdapter mysimpleAdapter = new SimpleAdapter(RequisitionHistoryDetail.this,
-//                        convertModelToHashMapModel(model),
-//                        android.R.layout.simple_list_item_2,
-//                        new String[]{"itemName", "qty"},
-//                        new int[]{android.R.id.text1, android.R.id.text2});
-//                lv.setAdapter(mysimpleAdapter);
             }
         }.execute();
     }
@@ -122,7 +111,6 @@ public class RequisitionHistoryDetail extends ActionBarActivity {
             View v = inflater.inflate(R.layout.row_items, null, true);
             TextView tv1 = (TextView) v.findViewById(R.id.itemName_txt);
             TextView tv2 = (TextView) v.findViewById(R.id.itemQty_et);
-//            TextView tv3 = (TextView) v.findViewById(R.id.req_status);
 
             tv1.setText(list.get(position).getItemName());
             tv2.setText(Integer.toString(list.get(position).getItem_detail_qty()));
@@ -131,20 +119,3 @@ public class RequisitionHistoryDetail extends ActionBarActivity {
         }
     }
 }
-
-//    public ArrayList<temp> convertModelToHashMapModel(Requisition model) {
-//        ArrayList<temp> tempList = new ArrayList<temp>();
-//        for(RequisitionDetail rd : model.getRequisitionDetails()) {
-//            String qty = ""+rd.getItem_detail_qty();
-//            tempList.add(new temp(rd.getItemName(),qty));
-//        }
-//        return  tempList;
-//    }
-//
-//    public  class temp extends HashMap<String,String>{
-//        public temp(String item,String qty) {
-//            put("itemName", item);
-//            put("qty", qty);
-//        }
-//    }
-//}

@@ -65,7 +65,7 @@ public class PurchaseOrderUII extends ActionBarActivity {
 
         //get the data list from populator(orders)
       /*  PurchaseOrderPopulator obj = new PurchaseOrderPopulator();
-        final List<PurchaseOrder> orders = obj.PopulatePurchaseOrder();
+        final DisbursementItemList<PurchaseOrder> orders = obj.PopulatePurchaseOrder();
 
 
 

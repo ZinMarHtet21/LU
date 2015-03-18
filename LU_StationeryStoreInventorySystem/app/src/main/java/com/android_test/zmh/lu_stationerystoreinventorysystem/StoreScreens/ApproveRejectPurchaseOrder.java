@@ -61,7 +61,7 @@ public class ApproveRejectPurchaseOrder extends ActionBarActivity {
         }.execute();
 
 
-        /*final List<PurchaseOrder> orders = obj.PopulatePurchaseOrder();
+        /*final DisbursementItemList<PurchaseOrder> orders = obj.PopulatePurchaseOrder();
 
 
 

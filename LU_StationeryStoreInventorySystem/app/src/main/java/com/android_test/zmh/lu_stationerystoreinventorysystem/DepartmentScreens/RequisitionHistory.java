@@ -57,12 +57,10 @@ public class RequisitionHistory extends Activity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent i = new Intent(RequisitionHistory.this, RequisitionHistoryDetail.class);
-//                      i.putExtra("Requisition_id",reqList.get(position).getId());
                         String req = ((Requisition) parent.getAdapter().getItem(position)).getId();
                         String req_date = ((Requisition)parent.getAdapter().getItem(position)).getDate();
                         i.putExtra("req_date", req_date);
                         i.putExtra("req_id", req);
-                        //i.putExtra("Requisition_id",reqList.get(position).getId());
                         startActivity(i);
                     }
                 });
@@ -109,8 +107,6 @@ public class RequisitionHistory extends Activity {
             TextView tv1 = (TextView) v.findViewById(R.id.req_id);
             TextView tv2 = (TextView) v.findViewById(R.id.req_date);
             TextView tv3 = (TextView) v.findViewById(R.id.req_status);
-
-
 
             tv1.setText(list.get(position).getId());
             tv2.setText(list.get(position).getDate());

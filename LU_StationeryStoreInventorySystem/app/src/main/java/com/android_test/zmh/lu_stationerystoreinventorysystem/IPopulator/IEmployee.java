@@ -17,7 +17,7 @@ public interface IEmployee {
 
     public Employee LoginEmployee(String empNo,String empPwd);
 
-//    public List<Employee> PopulateEmployeeFromWcf();
+//    public DisbursementItemList<Employee> PopulateEmployeeFromWcf();
 
     //String convertToJSONObj(Employee emp) throws JSONException;
 

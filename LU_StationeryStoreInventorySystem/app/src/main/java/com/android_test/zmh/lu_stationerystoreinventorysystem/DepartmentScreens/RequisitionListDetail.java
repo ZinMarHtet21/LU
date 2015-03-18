@@ -37,10 +37,8 @@ public class RequisitionListDetail extends ActionBarActivity implements View.OnC
     RequisitionPopulator reqPopulator = new RequisitionPopulator();
     String baseurl;
     String remark = null;
-//    String status = null;
     String outcome = null;
     String jsonUpdateResult = null;
-//    String popUpResult = null;
     int emp_id;
     String req_id;
     String req_date;
@@ -49,6 +47,7 @@ public class RequisitionListDetail extends ActionBarActivity implements View.OnC
     Button approve_btn, reject_btn;
     TextView req_list_date;
     SimpleAdapter mysimpleAdapter;
+    Myadapter myadapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,15 +62,11 @@ public class RequisitionListDetail extends ActionBarActivity implements View.OnC
         model = new Requisition();
         Bundle extras = getIntent().getExtras();
         if(getIntent()!= null) {
-//            emp_id = extras.getInt("emp_id");
-//            emp_id = getIntent().getIntExtra("emp_id");
             req_id = extras.getString("req_id").toString();
             req_date = getIntent().getStringExtra("req_date").toString();
             String dateText = "Date : " + req_date;
             req_list_date.setText(dateText);
-//            req_id = getIntent().getStringExtra("req_id").toString();
             baseurl = UrlManager.APIROOTURL + "requisition_detailApi/new/";
-            //    ("Requisition",listdata.get(position));
         }
 
         //model.setRequisitionDetails();
@@ -87,18 +82,9 @@ public class RequisitionListDetail extends ActionBarActivity implements View.OnC
             }
             @Override
             protected void onPostExecute(List<RequisitionDetail> result) {
-                System.out.println("REQUISITION DETAIL");
-                System.out.println(result.toString());
 
-                Myadapter myadapter = new Myadapter(RequisitionListDetail.this,result);
+                myadapter = new Myadapter(RequisitionListDetail.this,result);
                 lv.setAdapter(myadapter);
-
-//                mysimpleAdapter = new SimpleAdapter(RequisitionListDetail.this,
-//                        convertModelToHashMapModel(model),
-//                        android.R.layout.simple_list_item_2,
-//                        new String[]{"itemName","qty"} ,
-//                        new int[]{ android.R.id.text1,android.R.id.text2});
-//                lv.setAdapter(mysimpleAdapter);
             }
         }.execute();
 
@@ -121,7 +107,7 @@ public class RequisitionListDetail extends ActionBarActivity implements View.OnC
                 break;
             }
         }
-        mysimpleAdapter.notifyDataSetChanged();
+        myadapter.notifyDataSetChanged();
     }
 
     private void sendRequisitionRespond(final String outcome) {
@@ -144,7 +130,6 @@ public class RequisitionListDetail extends ActionBarActivity implements View.OnC
                     finish();
                     Toast.makeText(RequisitionListDetail.this,"Reject Requisition Successfully!",Toast.LENGTH_LONG).show();
                 }
-//                mysimpleAdapter.this.notifyDataSetChanged();
             }
 
         }.execute();
@@ -169,13 +154,13 @@ public class RequisitionListDetail extends ActionBarActivity implements View.OnC
                     public void onClick(DialogInterface dialog,int id) {
                         remark = remarkET.getText().toString();
                         sendRequisitionRespond(outcome);
-//                        Toast.makeText(RequisitionListDetail.this, remark, Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setNegativeButton("Cancel",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
                                 dialog.cancel();
+                                sendRequisitionRespond(outcome);
                             }
                         });
 
@@ -218,7 +203,6 @@ public class RequisitionListDetail extends ActionBarActivity implements View.OnC
             View v = inflater.inflate(R.layout.row_items, null, true);
             TextView tv1 = (TextView) v.findViewById(R.id.itemName_txt);
             TextView tv2 = (TextView) v.findViewById(R.id.itemQty_et);
-//            TextView tv3 = (TextView) v.findViewById(R.id.req_status);
 
             tv1.setText(list.get(position).getItemName());
             tv2.setText(Integer.toString(list.get(position).getItem_detail_qty()));
@@ -227,21 +211,3 @@ public class RequisitionListDetail extends ActionBarActivity implements View.OnC
         }
     }
 }
-//    public ArrayList<temp> convertModelToHashMapModel(Requisition model) {
-//        ArrayList<temp> tempList = new ArrayList<temp>();
-//        for(RequisitionDetail rd : model.getRequisitionDetails()) {
-//            String qty = "" + rd.getItem_detail_qty();
-//            tempList.add(new temp(rd.getItemName(),qty));
-//        }
-//        return  tempList;
-//    }
-//
-//
-//
-//    public  class temp extends HashMap<String,String>{
-//        public temp(String item,String qty) {
-//            put("itemName", item);
-//            put("qty", qty);
-//        }
-//    }
-//}

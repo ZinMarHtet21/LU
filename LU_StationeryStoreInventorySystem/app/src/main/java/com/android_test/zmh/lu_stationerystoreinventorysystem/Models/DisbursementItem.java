@@ -8,15 +8,17 @@ public class DisbursementItem {
     private String item_desc;
     private int item_qty;
     private int item_actual;
+    private int lblactual;
 
     public DisbursementItem() {
     }
 
-    public DisbursementItem(String item_code, String item_desc, int item_qty, int item_actual) {
+    public DisbursementItem(String item_code, String item_desc, int item_qty, int item_actual, int lblactual) {
         this.item_code = item_code;
         this.item_desc = item_desc;
         this.item_qty = item_qty;
         this.item_actual = item_actual;
+        this.lblactual = lblactual;
     }
 
     public String getItem_code() {
@@ -51,6 +53,14 @@ public class DisbursementItem {
         this.item_actual = item_actual;
     }
 
+    public int getLblactual() {
+        return lblactual;
+    }
+
+    public void setLblactual(int lblactual) {
+        this.lblactual = lblactual;
+    }
+
     @Override
     public String toString() {
         return "DisbursementItem{" +
@@ -58,6 +68,7 @@ public class DisbursementItem {
                 ", item_desc='" + item_desc + '\'' +
                 ", item_qty=" + item_qty +
                 ", item_actual=" + item_actual +
+                ", lblactual=" + lblactual +
                 '}';
     }
 }

@@ -57,7 +57,7 @@ public class DepartmentPopulator implements IDepartment {
             }
 
         } catch (Exception e) {
-            Log.e("Department List", "JSONArray error");
+            Log.e("Department DisbursementItemList", "JSONArray error");
         }
         return deptList;
     }

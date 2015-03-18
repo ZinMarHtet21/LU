@@ -5,6 +5,7 @@ import android.util.Log;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.IPopulator.IDisbursement;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Disbursement;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.DisbursementItem;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.DisbursementItemList;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Requisition;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.RequisitionDetail;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
@@ -24,24 +25,7 @@ import java.util.List;
 public class DisbursementPopulator implements IDisbursement {
     public final static String baseurl = UrlManager.APIROOTURL;
     public final static String disbURL = baseurl + "disbursementlistApi";
-    public final static String receiveDisbURL = disbURL + "";
-
-
-//    @Override
-//    public List<Disbursement> populateDisbursement() {
-//
-//        List<Disbursement> disb_list = new LinkedList<Disbursement>();
-//
-//        Disbursement disbursement = new Disbursement("Dis01",(new Date(System.currentTimeMillis())),"Clip","ENGL",10,30);
-//        Disbursement disbursement2 = new Disbursement("Dis02",(new Date(System.currentTimeMillis())),"Envelope","COMM",5,20);
-//        Disbursement disbursement3 = new Disbursement("Dis03",(new Date(System.currentTimeMillis())),"File Transparent","ZOO",7,56);
-//
-//        disb_list.add(disbursement);
-//        disb_list.add(disbursement2);
-//        disb_list.add(disbursement3);
-//
-//        return disb_list;
-//    }
+    public final static String receiveDisbURL = disbURL + "/confirmcollect";
 
     public List<DisbursementItem> getDisbursementList(int departmentID) {
         List<DisbursementItem> list = new ArrayList<DisbursementItem>();
@@ -68,15 +52,35 @@ public class DisbursementPopulator implements IDisbursement {
    }
 
     @Override
-    public String receiveDisbursementList(List<DisbursementItem> disbList) {
-
+    public String receiveDisbursementList(int deptID, String remark, List<DisbursementItemList> disbList) {
         String result = null;
-        Gson gson = new Gson();
+        String json = null;
+        if(remark==""){
+            remark = "Received no remark";
+        }
 
-        String json = gson.toJson(disbList);
+        System.out.println("RECEIVE DISBURSEMENT LIST");
+        System.out.println("DEPT ID : " + deptID);
+        System.out.println("REMARK : " + remark);
+        System.out.println("DISBURSEMENT LIST : " + disbList.toString());
 
-        System.out.println("CONVERTED JSON");
-        System.out.println(json);
+//        try{
+//            JSONObject obj = new JSONObject();
+//            obj.put("departmentID",deptID);
+//            obj.put("remark",remark);
+//            //obj.put("List",disbList);
+//
+//            JSONArray jsonArr = new JSONArray(disbList);
+//            obj.put("List",jsonArr);
+//
+//            Gson gson = new Gson();
+//            json = gson.toJson(obj);
+//        }catch(Exception e){
+//            Log.e("Receive Disbursement List", "JSON Error");
+//        }
+//
+//        System.out.println("CONVERTED JSON");
+//        System.out.println(json);
 
 
 //        result = JSONParser.postStream(String.format("%s", receiveDisbURL), json);

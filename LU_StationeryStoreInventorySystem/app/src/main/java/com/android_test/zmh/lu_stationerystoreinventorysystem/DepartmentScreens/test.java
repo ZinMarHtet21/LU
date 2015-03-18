@@ -23,65 +23,20 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.UpdateProfile;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-/*
-public class test extends ActionBarActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_test, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-}*/
 
 
 public class test extends ListActivity {
 
-    String[] clerk_menu = {"Update Profile","Retrieval List","Disbursement List","Check Low Stock","Purchase Order","Report Discrepency"};
+    String[] clerk_menu = {"Update Profile","Retrieval DisbursementItemList","Disbursement DisbursementItemList","Check Low Stock","Purchase Order","Report Discrepency"};
     List data= new ArrayList<Requisition>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         RequisitionPopulator pop = new RequisitionPopulator();
-        //data =  pop.populateRequisition();
-
-//        for(Requisition r :pop.populateRequisition()){
-//            data.add(r.getStatus());
-//        }
-
-
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,data);
         setListAdapter(adapter);
-
-
-
-        /*setListAdapter(new SimpleAdapter(this,data,android.R.layout.simple_list_item_1,
-                new String[]{"date","departmentName"},
-                new int[]{android.R.id.text1,android.R.id.text2}));*/
     }
 
     @Override
@@ -91,9 +46,9 @@ public class test extends ListActivity {
 
         if(item.equals("Update Profile")){
             i = new Intent(this, UpdateProfile.class);
-        }else if(item.equals("Retrieval List")){
+        }else if(item.equals("Retrieval DisbursementItemList")){
             i = new Intent(this, RetrievalList.class);
-        }else if(item.equals("Disbursement List")){
+        }else if(item.equals("Disbursement DisbursementItemList")){
             i = new Intent(this, DisbursementList.class);
         }else if(item.equals("Check Low Stock")){
             i = new Intent(this, CheckLowStockMain.class);

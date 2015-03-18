@@ -99,15 +99,10 @@ public class ChangePassword extends ActionBarActivity {
                 confirm_pwd = confirmPwd.getText().toString();
                 if (flag) {
                     if (new_pwd.equals(confirm_pwd)) {
-//                        System.out.println("Passwords match");
-//                        String result = empPopulator.changePassword(MainActivity.emp.getId(),new_pwd);
-//                        finish();
-//                        Toast.makeText(ChangePassword.this, "Change Password Successfully!", Toast.LENGTH_SHORT).show();
 
                         new AsyncTask<Void, Void, String>() {
                             @Override
                             protected String doInBackground(Void... params) {
-//                        jsonUpdateResult = empPopulator.updateEmployeeProfile(new Employee(emp_id, emp_type, emp_name, MainActivity.emp.getGender(), emp_no, emp_email, emp_ph, emp_pwd, emp_deptID));
                                 jsonUpdateResult = empPopulator.changePassword(MainActivity.emp.getId(),new_pwd);
                                 return jsonUpdateResult;
                             }

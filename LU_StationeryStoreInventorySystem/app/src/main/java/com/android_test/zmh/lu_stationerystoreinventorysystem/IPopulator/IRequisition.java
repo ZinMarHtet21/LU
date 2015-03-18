@@ -17,10 +17,10 @@ import java.util.List;
 public interface IRequisition {
 
     public List<Requisition> getRequisitionHistoryList(int empID);
-//    public List<RequisitionDetail> getRequisitionHistoryDetails(String req_id, String url);
+//    public DisbursementItemList<RequisitionDetail> getRequisitionHistoryDetails(String req_id, String url);
 
     public List<Requisition> getRequisitionList(int deptID);
-//    public List<RequisitionDetail> getRequisitionListDetails(String req_id, String url);
+//    public DisbursementItemList<RequisitionDetail> getRequisitionListDetails(String req_id, String url);
 
     public List<RequisitionDetail> getRequisitionDetail(String reqID,String url);
 

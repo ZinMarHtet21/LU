@@ -158,7 +158,6 @@ public class NewRequisition extends ActionBarActivity {
                                                         itemAdapter.notifyDataSetChanged();
 
                                                         TempItem test = arrayOfItems.get(pos);
-//                                                        System.out.println(test.iID + " / " + test.iName+ " / " + test.iQty);
                                                         Toast.makeText(NewRequisition.this,"Item Edited",Toast.LENGTH_SHORT).show();
 
                                                     }
@@ -179,7 +178,6 @@ public class NewRequisition extends ActionBarActivity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 arrayOfItems.remove(pos);
-//                                finalitems.remove(pos);
                                 itemAdapter = new ItemsAdapter(NewRequisition.this, arrayOfItems);
                                 new_req_listView.setAdapter(itemAdapter);
                                 itemAdapter.notifyDataSetChanged();
@@ -189,9 +187,7 @@ public class NewRequisition extends ActionBarActivity {
                         });
 
                 alertDialog.show();
-
                 return false;
-
             }
         });
 
@@ -213,8 +209,7 @@ public class NewRequisition extends ActionBarActivity {
 
                         if (t.iID.equals(itemID)) {
                             int temp_qty = t.iQty;
-                            System.out.println("qty : " + qty + " | existing : " + t.iQty);
-                            // qty = qty + t.iQty;
+//                            System.out.println("qty : " + qty + " | existing : " + t.iQty);
                             t.iQty = t.iQty + qty;
                             // if any problem found... just update and break the loop..
                             status = false;
