@@ -21,8 +21,8 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.UpdateProfile;
 public class ClerkMainScreen extends Activity implements AdapterView.OnItemClickListener{
 
 
-    String[] clerk_menu = {"Update Profile","Retrieval DisbursementItemList",
-            "Disbursement DisbursementItemList","Check Low Stock","Purchase Order","Report Discrepency"};
+    String[] clerk_menu = {"Process Requisitions","Check Retrieval Form",
+            "Check Disbursement List","Check Stock","Check Purchase Order","Report Discrepancy","Update Profile"};
 
 //    String[] clerk_menu = {"Process Requisitions","Check Retrieval List",
 //            "Check Disbursement List","Check Stock","Check Purchase Order","Report Discrepency","Update Profile"};
@@ -59,7 +59,7 @@ public class ClerkMainScreen extends Activity implements AdapterView.OnItemClick
             i = new Intent(this, CheckLowStockMain.class);
         }else if(item.equals("Check Purchase Order")){
             i = new Intent(this, PurchaseOrderUI.class);
-        }else if(item.equals("Report Discrepency")){
+        }else if(item.equals("Report Discrepancy")){
             i = new Intent(this, CheckLowStockSearch.class);
         }else if(item.equals("Process Requisitions")){
             i = new Intent(this, ProcessRequisitions.class);

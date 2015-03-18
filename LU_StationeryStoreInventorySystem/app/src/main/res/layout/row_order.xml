@@ -13,7 +13,8 @@
         android:text="Large Text"
         android:id="@+id/po"
         android:layout_alignParentTop="true"
-        android:textColor="#093a60" />
+        android:textColor="#093a60"
+        android:textSize="18dp"/>
 
 
     <TextView
@@ -25,6 +26,7 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="20dp"
+        android:textSize="15dp"
         android:textColor="#093a60" />
 
     <TextView
@@ -35,7 +37,8 @@
         android:id="@+id/o_date"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/o_supplier"
-        android:textColor="#093a60" />
+        android:textColor="#093a60"
+        android:textSize="15dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,6 +48,7 @@
         android:id="@+id/o_status"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/o_supplier"
-        android:textColor="#093a60" />
+        android:textColor="#093a60"
+        android:textSize="15dp"/>
 
 </RelativeLayout>
