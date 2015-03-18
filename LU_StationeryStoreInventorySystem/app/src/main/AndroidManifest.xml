@@ -45,8 +45,7 @@
         </activity>
         <activity
             android:name=".UpdateProfile"
-            android:label="@string/title_activity_update_profile"
-            android:parentActivityName=".MainScreens.EmployeeMainScreen" >
+            android:label="@string/title_activity_update_profile">
         </activity>
         <activity
             android:name=".DepartmentScreens.NewRequisition"
@@ -83,8 +82,7 @@
         </activity>
         <activity
             android:name=".DepartmentScreens.RequisitionHistoryDetail"
-            android:label="@string/title_activity_requisition_history_detail"
-            android:parentActivityName=".DepartmentScreens.RequisitionHistory" >
+            android:label="@string/title_activity_requisition_history_detail">
         </activity>
         <activity
             android:name=".StoreScreens.RetrievalList"

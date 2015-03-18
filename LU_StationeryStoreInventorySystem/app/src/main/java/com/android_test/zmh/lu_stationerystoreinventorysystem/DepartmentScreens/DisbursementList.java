@@ -213,6 +213,8 @@ public class DisbursementList extends ActionBarActivity {
                         if(!result.equals(null)){
                             finish();
                             Toast.makeText(DisbursementList.this,"Receive Disbursement DisbursementItemList Successfully!",Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(DisbursementList.this,"There is no current disbursement list.",Toast.LENGTH_LONG).show();
                         }
                     }
 

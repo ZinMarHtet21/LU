@@ -43,6 +43,14 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         loginBtn.setOnClickListener(MainActivity.this);
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        empNo.setText("");
+        empPwd.setText("");
+    }
+
     @Override
     public void onClick(View v) {
 
@@ -52,8 +60,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         if ((emp_no.equals("")) || (emp_pwd.equals(""))) {
 
             AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-            alertDialog.setTitle("Error");
-            alertDialog.setMessage("You need to login!");
+            alertDialog.setTitle("Login Error");
+            alertDialog.setMessage("Please enter username and password!");
             alertDialog.setCancelable(true);
             alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
 

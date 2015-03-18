@@ -1,7 +1,9 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.MainScreens;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.DisbursementList;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.NewRequisition;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.RequisitionHistory;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Main.MainActivity;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.DisbursementDepartment;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.CheckLowStockMain;
@@ -32,7 +35,7 @@ public class ClerkMainScreen extends Activity implements AdapterView.OnItemClick
 
 
     String[] clerk_menu = {"Update Profile","Retrieval DisbursementItemList",
-            "Disbursement DisbursementItemList","Check Low Stock","Purchase Order","Report Discrepency"};
+            "Disbursement DisbursementItemList","Check Low Stock","Purchase Order","Report Discrepency","Logout"};
 
 //    String[] clerk_menu = {"Process Requisitions","Check Retrieval List",
 //            "Check Disbursement List","Check Stock","Check Purchase Order","Report Discrepency","Update Profile"};
@@ -52,29 +55,55 @@ public class ClerkMainScreen extends Activity implements AdapterView.OnItemClick
     }
 
     @Override
+    public void onBackPressed() {
+        //  super.onBackPressed();
+    }
+
+    @Override
     public void onItemClick(AdapterView<?> av, View view, int position, long id) {
         String item = (String)av.getAdapter().getItem(position);
         Intent i = new Intent();
 
         if(item.equals("Update Profile")){
             i = new Intent(this, UpdateProfile.class);
+            startActivity(i);
         }else if(item.equals("Retrieval DisbursementItemList")){
             i = new Intent(this, RetrievalList.class);
+            startActivity(i);
         }else if(item.equals("Disbursement DisbursementItemList")){
         }else if(item.equals("Check Retrieval List")){
             i = new Intent(this, RetrievalList.class);
+            startActivity(i);
         }else if(item.equals("Check Disbursement List")){
             i = new Intent(this, DisbursementDepartmentList.class);
+            startActivity(i);
         }else if(item.equals("Check Stock")){
             i = new Intent(this, CheckLowStockMain.class);
+            startActivity(i);
         }else if(item.equals("Check Purchase Order")){
             i = new Intent(this, PurchaseOrderUII.class);
+            startActivity(i);
         }else if(item.equals("Report Discrepency")){
             i = new Intent(this, CheckLowStockSearch.class);
+            startActivity(i);
         }else if(item.equals("Process Requisitions")){
             i = new Intent(this, ProcessRequisitions.class);
+            startActivity(i);
+        }else if(item.equals("Logout")){
+            new AlertDialog.Builder(this)
+                    .setMessage("Are you sure you want to exit?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            MainActivity.emp = null;
+                            ClerkMainScreen.this.finish();
+                        }
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+
         }
-        startActivity(i);
+
     }
 
     /*@Override

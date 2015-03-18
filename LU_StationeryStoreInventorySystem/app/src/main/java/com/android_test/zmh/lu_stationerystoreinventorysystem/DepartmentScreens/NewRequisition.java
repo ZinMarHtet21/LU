@@ -218,13 +218,17 @@ public class NewRequisition extends ActionBarActivity {
                     }
                     if(status){
                         // status will be false , if for loops runs and breaked..
-                        // satstus will be true.. if the loop runs and no match foun...
-                        arrayOfItems.add(it);
+                        // satstus will be true.. if the loop runs and no match found...
+                        if(itemQty.getText().toString().equals("0")){
+                            Toast.makeText(NewRequisition.this,"Quantity should not be zero!",Toast.LENGTH_SHORT).show();
+                        }else{
+                            arrayOfItems.add(it);
+                        }
                     }
                 }
                 else{
 
-                    if(itemQty.getText().toString()=="0"){
+                    if(itemQty.getText().toString().equals("0")){
                         Toast.makeText(NewRequisition.this,"Quantity should not be zero!",Toast.LENGTH_SHORT).show();
                     }else{
                         arrayOfItems.add(it);

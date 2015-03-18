@@ -1,8 +1,10 @@
 package com.android_test.zmh.lu_stationerystoreinventorysystem.ModelPopulator;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.android_test.zmh.lu_stationerystoreinventorysystem.IPopulator.IEmployee;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Main.MainActivity;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.Employee;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.RequisitionDetail;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
@@ -28,6 +30,7 @@ public class EmployeePopulator implements IEmployee {
     String changePwdURL = empURL + "/changepassword";
     String empLoginURL = empURL + "/login";
 
+
     @Override
     public List<Employee> PopulateEmployee() {
         // popluate the employee object ,
@@ -50,8 +53,8 @@ public class EmployeePopulator implements IEmployee {
           //  JSONObject result = JSONParser.getJSONFromUrl(String.format("%s/%s/%s", empLoginURL, empNo,empPwd));
          JSONObject result = JSONParser.getJSONFromUrl(loginurl);
 
-        System.out.println("RESULT");
-        System.out.println(result);
+//        System.out.println("RESULT");
+//        System.out.println(result);
 
             try {
                 JSONObject obj = result;
@@ -70,10 +73,11 @@ public class EmployeePopulator implements IEmployee {
                 Log.e("list", "JSONArray error");
             }
 
-        System.out.println("EMPLOYEE");
-        System.out.println(emp);
+//        System.out.println("EMPLOYEE");
+//        System.out.println(emp);
         return  emp;
     }
+
 
     @Override
     public String updateEmployeeProfile(Employee emp) {
@@ -114,6 +118,4 @@ public class EmployeePopulator implements IEmployee {
         }
         return result;
     }
-
-
 }

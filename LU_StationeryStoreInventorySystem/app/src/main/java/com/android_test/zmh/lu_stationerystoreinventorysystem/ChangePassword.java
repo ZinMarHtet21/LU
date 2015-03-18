@@ -113,9 +113,10 @@ public class ChangePassword extends ActionBarActivity {
                                 @Override
                                 protected void onPostExecute(String result) {
                                     if(!result.equals(null)){
-                                        System.out.println("RESULT");
-                                        System.out.println(result);
+//                                        System.out.println("RESULT");
+//                                        System.out.println(result);
                                         finish();
+//                                        MainActivity.emp = empPopulator.LoginEmployee(MainActivity.emp.getEmp_number(), new_pwd);
                                         Toast.makeText(ChangePassword.this,"Change Password Successfully!",Toast.LENGTH_SHORT).show();
                                     }
 
