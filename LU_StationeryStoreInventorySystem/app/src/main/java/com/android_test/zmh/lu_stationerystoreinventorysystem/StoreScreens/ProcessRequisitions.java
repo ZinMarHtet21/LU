@@ -59,12 +59,13 @@ public class ProcessRequisitions extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_process_requisitions);
         button = (Button)findViewById(R.id.button);
-        setButtonOnclick();
 
 
         itemPopulator = new ItemPopulator();
         mRequestQueue = Volley.newRequestQueue(this);
        list = (ListView) findViewById(R.id.item_list);
+        setButtonOnclick();
+
 
     }
 

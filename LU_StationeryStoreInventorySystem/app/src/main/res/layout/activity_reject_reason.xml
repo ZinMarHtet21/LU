@@ -12,21 +12,17 @@
         android:id="@+id/imageView"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/reject"
-        android:layout_below="@+id/view"
-        android:layout_alignParentStart="true" />
-        android:layout_alignParentStart="true"
         android:layout_below="@+id/spinner"
-    android:id="@+id/view" />
+        android:layout_alignParentStart="true" />
 
-        android:layout_below="@+id/spinner"
-        android:layout_alignParentStart="true" />
 
     <TextView
         android:text="Please select the reason here:"
         android:textSize="15dp"
         android:id="@+id/textView1"
-        style="@style/text"
-         />
+        style="@style/text"/>
+
+
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

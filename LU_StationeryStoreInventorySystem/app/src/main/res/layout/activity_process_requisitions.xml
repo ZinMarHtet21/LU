@@ -30,7 +30,6 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Description"
-                    android:textColor="@color/darkblue"
                     android:layout_weight="1"
                     style="@style/text" />
 
@@ -40,7 +39,6 @@
                     android:gravity="right"
                     android:text="Qty"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="@color/darkblue"
                     android:layout_weight="1"
                     style="@style/text" />
 
@@ -57,7 +55,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Process Requisitions"
-            android:background="@color/OurGreenButton"
             android:id="@+id/button"
             style="@style/Button" />
     </LinearLayout>
