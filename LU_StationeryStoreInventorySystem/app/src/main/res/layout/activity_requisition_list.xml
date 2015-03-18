@@ -2,12 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#fff9fff0"
     tools:context="com.android_test.zmh.lu_stationerystoreinventorysystem.DepartmentScreens.RequisitionList">
 
     <ListView
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:id="@+id/req_list_lv"
+        android:divider="@color/lv_divider"
+        android:dividerHeight="1dp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

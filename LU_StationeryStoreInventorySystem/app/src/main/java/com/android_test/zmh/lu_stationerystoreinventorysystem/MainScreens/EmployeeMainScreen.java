@@ -32,8 +32,6 @@ public class EmployeeMainScreen extends Activity implements AdapterView.OnItemCl
         emp_lv.setAdapter(adapter);
         emp_lv.setOnItemClickListener(this);
 
-
-
     }
 
     @Override

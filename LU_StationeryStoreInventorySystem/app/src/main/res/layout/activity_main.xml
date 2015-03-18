@@ -29,10 +29,11 @@
         android:layout_centerHorizontal="true" />
 
     <EditText
-        android:id="@+id/usernameET"
+        android:id="@+id/empNo_et"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:hint="@string/username_hint"
+        android:textSize="16dp"
         android:layout_marginTop="70dp"
         android:background="@drawable/edittext_bg"
         android:singleLine="true"
@@ -41,15 +42,16 @@
         android:outlineProvider="bounds" />
 
     <EditText
-        android:id="@+id/passswordET"
+        android:id="@+id/empPwd_et"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:hint="@string/password_hint"
+        android:textSize="16dp"
         android:background="@drawable/edittext_bg"
         android:layout_marginTop="20dp"
         android:singleLine="true"
-        android:layout_below="@+id/usernameET"
+        android:layout_below="@+id/empNo_et"
         android:layout_centerHorizontal="true"
         android:password="true" />
 
@@ -62,7 +64,7 @@
         android:textStyle="bold"
         android:background="#98d944"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/passswordET"
+        android:layout_below="@+id/empPwd_et"
         android:layout_centerHorizontal="true"
         android:text="@string/loginBtn"
         android:shadowColor="#ffbaffaf" />

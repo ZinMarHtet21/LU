@@ -38,48 +38,8 @@ public class DisbursementListDetail extends ActionBarActivity {
         lv = (ListView) findViewById(R.id.listView_disbDetails);
         model = new Disbursement();
 
-        if(getIntent()!= null) {
+        if (getIntent() != null) {
             disb_id = getIntent().getStringExtra("disb_id").toString();
-            //    ("Requisition",listdata.get(position));
         }
-
-        //model.setRequisitionDetails();
-        // creat a new async task to pull all the requisition details..
-//        new AsyncTask<Void, Void, List<RequisitionDetail>>() {
-//            @Override
-//            protected List<RequisitionDetail> doInBackground(Void... params) {
-//
-////                List<DisbursementListDetail> listdetail = disPopulator.getDisbursementListDetails(disb_id, baseurl);
-//                model.setD(listdetail);
-//                return listdetail;
-//
-//            }
-//            @Override
-//            protected void onPostExecute(List<RequisitionDetail> result) {
-//                SimpleAdapter mysimpleAdapter = new SimpleAdapter(RequisitionHistoryDetail.this,
-//                        convertModelToHashMapModel(model),
-//                        android.R.layout.simple_list_item_2,
-//                        new String[]{"itemName","qty"} ,
-//                        new int[]{ android.R.id.text1,android.R.id.text2});
-//                lv.setAdapter(mysimpleAdapter);
-//            }
-//        }.execute();
     }
-
-//    public ArrayList<temp> convertModelToHashMapModel(Requisition model) {
-//        ArrayList<temp> tempList = new ArrayList<temp>();
-//        for(RequisitionDetail rd : model.getRequisitionDetails()) {
-//            String qty = "" + rd.getQty();
-//            tempList.add(new temp(rd.getItemName(),qty));
-//        }
-//        return  tempList;
-//    }
-//
-//    public  class temp extends HashMap<String,String> {
-//        public temp(String item,String qty) {
-//            put("itemName", item);
-//            put("qty", qty);
-//        }
-//    }
-
 }

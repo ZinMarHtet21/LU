@@ -9,9 +9,10 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="text1"
-        android:padding="5dp"
-        android:textSize="15dp"
-        android:layout_marginLeft="0dp"
+        android:textColor="#093a60"
+        android:padding="10dp"
+        android:textSize="18dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginRight="20dp"
         android:layout_alignParentStart="true" />
 
@@ -20,10 +21,11 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="text1"
-        android:padding="5dp"
-        android:textSize="15dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="7dp"
+        android:textColor="#093a60"
+        android:padding="10dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="18dp"
+        android:gravity="right"
         android:layout_toEndOf="@+id/itemName_txt"/>
 
 

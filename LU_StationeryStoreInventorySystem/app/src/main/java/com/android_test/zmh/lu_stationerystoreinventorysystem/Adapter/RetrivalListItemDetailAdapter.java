@@ -54,7 +54,11 @@ public class RetrivalListItemDetailAdapter extends BaseAdapter {
 
         TextView text_department = (TextView)convertView.findViewById(R.id.department);
         TextView text_qty= (TextView)convertView.findViewById(R.id.qty);
-        EditText edit_actul = (EditText)convertView.findViewById(R.id.actual_qty);
+        EditText edit_actural = (EditText)convertView.findViewById(R.id.actual_qty);
+
+        text_department.setText(list.get(position).getDepartmentName());
+        text_qty.setText(String.valueOf(list.get(position).getNeededQty()));
+        edit_actural.setText(String.valueOf(list.get(position).getNeededQty()));
 
 
 

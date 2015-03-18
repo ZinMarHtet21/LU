@@ -51,7 +51,7 @@ public class ManagerMainScreen extends Activity implements AdapterView.OnItemCli
 
         if(item.equals("Update Profile")){
             i = new Intent(this, UpdateProfile.class);
-        }else if(item.equals("Retrieval List")){
+        }else if(item.equals("Retrieval DisbursementItemList")){
             i = new Intent(this, RetrievalList.class);
         }else if(item.equals("Approve/Reject Stock Adjustment")){
             i = new Intent(this,ApproveRejectStockAdjustmentForManager.class);

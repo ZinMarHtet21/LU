@@ -25,6 +25,8 @@ public class EmployeePopulator implements IEmployee {
     String empURL = baseurl+"employeeApi";
     String empGetURL = empURL + "/get";
     String empPostURL = empURL + "/edit";
+    String changePwdURL = empURL + "/changepassword";
+    String empLoginURL = empURL + "/login";
 
     @Override
     public List<Employee> PopulateEmployee() {
@@ -39,34 +41,38 @@ public class EmployeePopulator implements IEmployee {
     }
 
     @Override
-    public Employee populateEmployeByUname(String name) {
-        Employee emp=null;
-            JSONObject result = JSONParser.getJSONFromUrl(String.format("%s/%s", empGetURL, name));
+    public Employee LoginEmployee(String empNo, String empPwd) {
+
+        String loginurl = empLoginURL+"?emp_no="+empNo+"&emp_pwd="+empPwd;
+
+
+            Employee emp=null;
+          //  JSONObject result = JSONParser.getJSONFromUrl(String.format("%s/%s/%s", empLoginURL, empNo,empPwd));
+         JSONObject result = JSONParser.getJSONFromUrl(loginurl);
+
+        System.out.println("RESULT");
+        System.out.println(result);
 
             try {
                 JSONObject obj = result;
                     emp = new Employee(
-                            obj.getInt("employee_id"),
-                            obj.getString("employee_type").toString(),
-                            obj.getString("employee_name").toString(),
-                            //obj.getString("employee_gender").toString(),
-                            obj.getString("employee_number").toString(),
-                            obj.getString("employee_email").toString(),
-                            obj.getString("employee_phone").toString(),
-                            obj.getString("employee_password").toString(),
-                            obj.getInt("department_department_id"));
+                    obj.getInt("employee_id"),
+                    obj.getString("employee_type").toString(),
+                    obj.getString("employee_name").toString(),
+                    //obj.getString("employee_gender").toString(),
+                    obj.getString("employee_number").toString(),
+                    obj.getString("employee_email").toString(),
+                    obj.getString("employee_phone").toString(),
+                    obj.getString("employee_password").toString(),
+                    obj.getInt("department_department_id"));
 
             } catch (Exception e) {
                 Log.e("list", "JSONArray error");
             }
 
+        System.out.println("EMPLOYEE");
+        System.out.println(emp);
         return  emp;
-    }
-
-    @Override
-    public List<Employee> PopulateEmployeeFromWcf() {
-
-        return null;
     }
 
     @Override
@@ -89,6 +95,22 @@ public class EmployeePopulator implements IEmployee {
 
         }catch(Exception e){
             Log.e("Update Employee Profile","JSON Error");
+        }
+        return result;
+    }
+
+    @Override
+    public String changePassword(int empID, String newPwd) {
+
+        String result = null;
+        try{
+            JSONObject obj = new JSONObject();
+            obj.put("emp_id",empID);
+            obj.put("new_pwd",newPwd);
+            String json = obj.toString();
+            result = JSONParser.postStream(String.format("%s",changePwdURL),json);
+        }catch(Exception e){
+            Log.e("Change Password","JSON Error");
         }
         return result;
     }

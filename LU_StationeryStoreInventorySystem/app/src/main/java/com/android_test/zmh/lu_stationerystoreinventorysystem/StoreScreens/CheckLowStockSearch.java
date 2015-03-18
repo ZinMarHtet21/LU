@@ -264,7 +264,7 @@ public class CheckLowStockSearch extends ActionBarActivity {
         a.put("description",description);
         JSONObject jo = new JSONObject(a);
 
-        JsonRequest<JSONObject> jr = new JsonObjectRequest(Request.Method.POST, itemDetailUrl, jo,
+        JsonRequest<JSONObject> jr = new JsonObjectRequest(Request.Method.POST, itemDetailUrl,jo,
                 new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

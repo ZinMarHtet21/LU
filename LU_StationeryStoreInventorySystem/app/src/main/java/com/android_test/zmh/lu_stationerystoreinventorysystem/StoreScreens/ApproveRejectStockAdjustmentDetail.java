@@ -178,7 +178,7 @@ public class ApproveRejectStockAdjustmentDetail extends ActionBarActivity {
 
 
             //            @Override
-//            protected void onPostExecute(List<PurchaseOrderDetail> result) {
+//            protected void onPostExecute(DisbursementItemList<PurchaseOrderDetail> result) {
 //                SimpleAdapter mysimpleAdapter = new SimpleAdapter(ApproveRejectStockAdjustmentDetail.this,
 //                        convertModelToHashMapModel(model),
 //                        R.layout.row_adjustment_detail,

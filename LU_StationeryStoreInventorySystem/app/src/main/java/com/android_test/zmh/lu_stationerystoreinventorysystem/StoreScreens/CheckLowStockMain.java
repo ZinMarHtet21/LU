@@ -43,45 +43,23 @@ public class CheckLowStockMain extends ActionBarActivity implements AdapterView.
     private ArrayList<Item> allstocklist;
     private String url = UrlManager.APIROOTURL+"itemApi/all";
     private String url2 = UrlManager.APIROOTURL+"itemApi/low";
-
+    private  ListView list;
+    private  ListView list2;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        itemPopulator = new ItemPopulator();
-        setContentView(R.layout.activity_check_low_stock_main);
-      //  final ProgressDialog pd = ProgressDialog.show(this,"Loading...","Life is So Difficult...");
-        mRequestQueue = Volley.newRequestQueue(this);
-
-        final ArrayList<StockItem> photos = new ArrayList<StockItem>();
-        final ListView list = (ListView) findViewById(R.id.lowstock_list);
-        final ListView list2 = (ListView) findViewById(R.id.allstock_list);
-
-        th = (TabHost) findViewById(R.id.tabHost);
-        th.setup();
-
-        TabHost.TabSpec
-        ts = th.newTabSpec("allStockItems");
-        ts.setContent(R.id.allstock_list);
-        ts.setIndicator("All Stock Items");
-        th.addTab(ts);
-
-        ts = th.newTabSpec("lowStockItems");
-        ts.setContent(R.id.lowstock_list);
-        ts.setIndicator("Low Stock Items");
-        th.addTab(ts);
-
+    protected void onResume() {
+        super.onResume();
 
         JsonArrayRequest jr = new JsonArrayRequest(url2, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray jsonArray) {
                 lowstocklist = itemPopulator.populateItemList(jsonArray);
-              //  pd.dismiss();
-             //   System.out.println(lowstocklist.get(0).getBalance());
+                //  pd.dismiss();
+                //   System.out.println(lowstocklist.get(0).getBalance());
                 LowStockListAdapter adapter = new LowStockListAdapter(CheckLowStockMain.this, lowstocklist);
                 list.setAdapter(adapter);
-              //  list2.setAdapter(adapter);
+                //  list2.setAdapter(adapter);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -94,8 +72,8 @@ public class CheckLowStockMain extends ActionBarActivity implements AdapterView.
             @Override
             public void onResponse(JSONArray jsonArray) {
                 allstocklist = itemPopulator.populateItemList(jsonArray);
-             //   pd.dismiss();
-            //    System.out.println(allstocklist.get(1).getBalance());
+                //   pd.dismiss();
+                //    System.out.println(allstocklist.get(1).getBalance());
                 LowStockListAdapter adapter = new LowStockListAdapter(CheckLowStockMain.this, allstocklist);
                 list2.setAdapter(adapter);
             }
@@ -132,6 +110,96 @@ public class CheckLowStockMain extends ActionBarActivity implements AdapterView.
                 startActivity(i);
             }
         });
+
+
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        itemPopulator = new ItemPopulator();
+        setContentView(R.layout.activity_check_low_stock_main);
+      //  final ProgressDialog pd = ProgressDialog.show(this,"Loading...","Life is So Difficult...");
+        mRequestQueue = Volley.newRequestQueue(this);
+
+        final ArrayList<StockItem> photos = new ArrayList<StockItem>();
+        list = (ListView) findViewById(R.id.lowstock_list);
+        list2 = (ListView) findViewById(R.id.allstock_list);
+
+        th = (TabHost) findViewById(R.id.tabHost);
+        th.setup();
+
+        TabHost.TabSpec
+        ts = th.newTabSpec("allStockItems");
+        ts.setContent(R.id.allstock_list);
+        ts.setIndicator("All Stock Items");
+        th.addTab(ts);
+
+        ts = th.newTabSpec("lowStockItems");
+        ts.setContent(R.id.lowstock_list);
+        ts.setIndicator("Low Stock Items");
+        th.addTab(ts);
+
+
+//        JsonArrayRequest jr = new JsonArrayRequest(url2, new Response.Listener<JSONArray>() {
+//            @Override
+//            public void onResponse(JSONArray jsonArray) {
+//                lowstocklist = itemPopulator.populateItemList(jsonArray);
+//              //  pd.dismiss();
+//             //   System.out.println(lowstocklist.get(0).getBalance());
+//                LowStockListAdapter adapter = new LowStockListAdapter(CheckLowStockMain.this, lowstocklist);
+//                list.setAdapter(adapter);
+//              //  list2.setAdapter(adapter);
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                // Log.i(TAG, error.getMessage());
+//            }
+//        });
+//
+//        JsonArrayRequest jr2 = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+//            @Override
+//            public void onResponse(JSONArray jsonArray) {
+//                allstocklist = itemPopulator.populateItemList(jsonArray);
+//             //   pd.dismiss();
+//            //    System.out.println(allstocklist.get(1).getBalance());
+//                LowStockListAdapter adapter = new LowStockListAdapter(CheckLowStockMain.this, allstocklist);
+//                list2.setAdapter(adapter);
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                // Log.i(TAG, error.getMessage());
+//            }
+//        });
+//
+//
+//
+//        mRequestQueue.add(jr2);
+//        mRequestQueue.add(jr);
+//
+//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Item item = (Item) parent.getAdapter().getItem(position);
+//                Intent i = new Intent(view.getContext(), CheckLowStockSearch.class);
+//                i.putExtra("from", 2);
+//                i.putExtra("item", item);
+//                startActivity(i);
+//            }
+//        });
+//
+//        list2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Item item = (Item) parent.getAdapter().getItem(position);
+//                Intent i = new Intent(view.getContext(), CheckLowStockSearch.class);
+//                i.putExtra("from", 2);
+//                i.putExtra("item", item);
+//                startActivity(i);
+//            }
+//        });
 
     }
 

@@ -6,7 +6,7 @@
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
     <string name="loginBtn">Login</string>
-    <string name="username_hint">Username</string>
+    <string name="username_hint">EmployeeID</string>
     <string name="password_hint">Password</string>
     <string name="title_activity_acitvity_main_screen">acitvity_main_screen</string>
     <string name="title_activity_main_screen">MainScreen</string>
@@ -68,5 +68,10 @@
     <string name="title_activity_disbursement_department_list">DisbursementDepartmentList</string>
     <string name="title_activity_disbursement_department_list_detail"> DisbursementDepartmentListDetail</string>
     <string name="title_activity_purchase_order_uii">PurchaseOrderUII</string>
+<<<<<<< HEAD
+    <string name="title_activity_change_password">ChangePassword</string>
+=======
+    <string name="title_activity_retrival_list_detail">RetrivalListDetail</string>
+>>>>>>> origin/master
 
 </resources>

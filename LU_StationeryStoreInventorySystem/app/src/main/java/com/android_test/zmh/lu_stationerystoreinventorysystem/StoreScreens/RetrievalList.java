@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.android.volley.Request;
@@ -20,6 +21,7 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.Adapter.Disburseme
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Adapter.RetrivalListAdapter;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.DepartmentDisbursementList;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.RetrivalItem;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.Models.RetrivalItemDetail;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Tools.UrlManager;
 
@@ -35,13 +37,20 @@ public class RetrievalList extends ActionBarActivity {
     private ArrayList<RetrivalItem> items;
     private String url = UrlManager.APIROOTURL+"retrivalformApi/pendingcollect";
     private ListView list;
+    private Button btn_confirmCollect;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mRequestQueue = Volley.newRequestQueue(this);
         setContentView(R.layout.activity_retrieval_list);
-
+        btn_confirmCollect =(Button)findViewById(R.id.button);
         list  = (ListView) findViewById(R.id.listView);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
         items = new ArrayList<RetrivalItem>();
         JsonArrayRequest jr = new JsonArrayRequest(url,new Response.Listener<JSONArray>() {
             @Override
@@ -62,6 +71,17 @@ public class RetrievalList extends ActionBarActivity {
                 }
                 RetrivalListAdapter adapter = new RetrivalListAdapter(RetrievalList.this,items);
                 list.setAdapter(adapter);
+                list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        RetrivalItem ri = (RetrivalItem) parent.getAdapter().getItem(position);
+                        System.out.print(ri.getItem_code());
+                        Intent i = new Intent(view.getContext(), RetrievalListDetail.class);
+                        i.putExtra("retrivalitem", ri);
+                        startActivity(i);
+                    }
+                });
+
 
             }
         },new Response.ErrorListener() {
@@ -75,7 +95,6 @@ public class RetrievalList extends ActionBarActivity {
         mRequestQueue.add(jr);
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -99,17 +118,5 @@ public class RetrievalList extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setListOnClickListenliner(){
- list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-     @Override
-     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-         RetrivalItem ri = (RetrivalItem) parent.getAdapter().getItem(position);
-         Intent i = new Intent(view.getContext(), DisbursementDepartmentListDetail.class);
-         i.putExtra("retrivalitem", ri);
-         startActivity(i);
-     }
- });
 
-
-    }
 }

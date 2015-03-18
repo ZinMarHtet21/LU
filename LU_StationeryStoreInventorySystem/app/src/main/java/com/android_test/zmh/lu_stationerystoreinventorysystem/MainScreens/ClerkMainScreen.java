@@ -20,8 +20,13 @@ import com.android_test.zmh.lu_stationerystoreinventorysystem.UpdateProfile;
 
 public class ClerkMainScreen extends Activity implements AdapterView.OnItemClickListener{
 
+<<<<<<< HEAD
+    String[] clerk_menu = {"Update Profile","Retrieval DisbursementItemList",
+            "Disbursement DisbursementItemList","Check Low Stock","Purchase Order","Report Discrepency"};
+=======
     String[] clerk_menu = {"Process Requisitions","Check Retrieval List",
             "Check Disbursement List","Check Stock","Check Purchase Order","Report Discrepency","Update Profile"};
+>>>>>>> origin/master
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +48,15 @@ public class ClerkMainScreen extends Activity implements AdapterView.OnItemClick
 
         if(item.equals("Update Profile")){
             i = new Intent(this, UpdateProfile.class);
+<<<<<<< HEAD
+        }else if(item.equals("Retrieval DisbursementItemList")){
+            i = new Intent(this, RetrievalList.class);
+        }else if(item.equals("Disbursement DisbursementItemList")){
+=======
         }else if(item.equals("Check Retrieval List")){
             i = new Intent(this, RetrievalList.class);
         }else if(item.equals("Check Disbursement List")){
+>>>>>>> origin/master
             i = new Intent(this, DisbursementDepartmentList.class);
         }else if(item.equals("Check Stock")){
             i = new Intent(this, CheckLowStockMain.class);
@@ -66,9 +77,9 @@ public class ClerkMainScreen extends Activity implements AdapterView.OnItemClick
 
         if(item.equals("Update Profile")){
             i = new Intent(this, ProcessRequisitions.class);
-        }else if(item.equals("Retrieval List")){
+        }else if(item.equals("Retrieval DisbursementItemList")){
             i = new Intent(this, RetrievalList.class);
-        }else if(item.equals("Disbursement List")){
+        }else if(item.equals("Disbursement DisbursementItemList")){
             i = new Intent(this, DisbursementDepartmentList.class);
         }else if(item.equals("Check Low Stock")){
             i = new Intent(this, CheckLowStockMain.class);

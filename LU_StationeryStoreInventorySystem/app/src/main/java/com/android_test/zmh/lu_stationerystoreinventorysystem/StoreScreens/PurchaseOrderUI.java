@@ -60,12 +60,12 @@ public class PurchaseOrderUI extends ActionBarActivity {
             }
         }.execute();
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase_order);
         lv = (ListView) findViewById(R.id.orderlist);
+
 
 
     }

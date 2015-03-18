@@ -55,11 +55,14 @@ public class ApproveRejectPurchaseOrder extends ActionBarActivity {
 
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approve_reject_purchase_order);
         lv = (ListView) findViewById(R.id.orderlist_s);
+
+
 
     }
 

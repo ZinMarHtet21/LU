@@ -35,6 +35,7 @@ public class RequisitionPopulator implements IRequisition {
     public final static String reqListURL = baseurl + "requisitionsApi/department/Pending/";
     public final static String reqDetailURL = baseurl + "requisitionsApi/detail/";
     public final static String reqSendNewURL = baseurl + "requisitionsApi/create";
+    public final static String approveRejectURL = baseurl + "requisitionsApi/approve";
 
     @Override
     public List<Requisition> getRequisitionHistoryList(int deptID) {
@@ -47,7 +48,10 @@ public class RequisitionPopulator implements IRequisition {
                 JSONObject obj = arr.getJSONObject(i);
                 Requisition req = new Requisition();
                 req.setId(obj.getString("requisition_id").toString());
-                req.setDate(obj.getString("requisition_date").toString());
+                String date = obj.getString("requisition_date").toString();
+                String substringDate = date.substring(0, 10);
+                String formattedDate = dateFormatter(substringDate);
+                req.setDate(formattedDate);
                 req.setStatus(obj.getString("requisition_status").toString());
                 list.add(req);
             }
@@ -59,28 +63,22 @@ public class RequisitionPopulator implements IRequisition {
         return (list);
     }
 
-//    @Override
-//    public List<RequisitionDetail> getRequisitionHistoryDetails(String req_id, String url) {
-//        List<RequisitionDetail> list = new ArrayList<RequisitionDetail>();
-//        JSONArray arr = JSONParser.getJSONArrayFromUrl(String.format("%s/%s",reqDetailURL,req_id));
-//
-//        try {
-//            for (int i =0; i < arr.length(); i++) {
-//
-//                JSONObject obj = arr.getJSONObject(i);
-//                RequisitionDetail req = new RequisitionDetail();
-//                req.setId(obj.getString("requisition_detail_id").toString());
-//                //req.setQty(Integer.parseInt(b.getString("requisition_detail_qty").toString()));
-//                req.setItemName(obj.getString("item_item_id").toString());//NEed to change
-//                list.add(req);
-//            }
-//
-//        } catch (Exception e) {
-//            Log.e("list", "JSONArray error");
-//        }
-//
-//        return(list);
-//    }
+    public String dateFormatter(String dateString){
+
+        String strCurrentDate = dateString;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date newDate = null;
+        try {
+            newDate = format.parse(strCurrentDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        format = new SimpleDateFormat("dd MMM yyyy");
+        String formattedDate = format.format(newDate);
+        return formattedDate;
+
+    }
 
     @Override
     public List<Requisition> getRequisitionList(int empID) {
@@ -93,7 +91,10 @@ public class RequisitionPopulator implements IRequisition {
                 JSONObject obj = arr.getJSONObject(i);
                 Requisition req = new Requisition();
                 req.setId(obj.getString("requisition_id").toString());
-                req.setDate(obj.getString("requisition_date").toString());
+                String date = obj.getString("requisition_date").toString();
+                String substringDate = date.substring(0, 10);
+                String formattedDate = dateFormatter(substringDate);
+                req.setDate(formattedDate);
                 req.setStatus(obj.getString("requisition_status").toString());
                 list.add(req);
             }
@@ -104,29 +105,6 @@ public class RequisitionPopulator implements IRequisition {
 
         return (list);
     }
-
-//    @Override
-//    public List<RequisitionDetail> getRequisitionListDetails(String req_id, String url) {
-//        List<RequisitionDetail> list = new ArrayList<RequisitionDetail>();
-//        JSONArray arr = JSONParser.getJSONArrayFromUrl(String.format("%s/%s",reqDetailURL,req_id));
-//
-//        try {
-//            for (int i =0; i < arr.length(); i++) {
-//
-//                JSONObject obj = arr.getJSONObject(i);
-//                RequisitionDetail req = new RequisitionDetail();
-//                req.setId(obj.getString("requisition_detail_id").toString());
-//                //req.setQty(Integer.parseInt(b.getString("requisition_detail_qty").toString()));
-//                req.setItemName(obj.getString("item_item_id").toString());//NEed to change
-//                list.add(req);
-//            }
-//
-//        } catch (Exception e) {
-//            Log.e("list", "JSONArray error");
-//        }
-//
-//        return(list);
-//    }
 
     @Override
     public List<RequisitionDetail> getRequisitionDetail(String reqID, String url) {
@@ -141,7 +119,6 @@ public class RequisitionPopulator implements IRequisition {
                 reqDetail.setId(obj.getInt("requisition_detail_id"));
                 reqDetail.setItemName(obj.getString("item"));
                 reqDetail.setItem_detail_qty(obj.getInt("requisition_detail_qty"));
-                //reqDetail.setActualQty(obj.getInt(""));
                 list.add(reqDetail);
             }
 
@@ -149,8 +126,6 @@ public class RequisitionPopulator implements IRequisition {
             Log.e("list", "JSONArray error");
         }
 
-        System.out.println("Requisition History Detail");
-        System.out.println(list.toString());
         return (list);
     }
 
@@ -179,32 +154,24 @@ public class RequisitionPopulator implements IRequisition {
         result = JSONParser.postStream(String.format("%s", reqSendNewURL), json);
         return result;
     }
+
+    @Override
+    public String sendRequisitionResponseByHOD(String reqID, String remark, String outcome) {
+
+        String result = null;
+        try{
+            String jsonString;
+            JSONObject obj = new JSONObject();
+//            obj.put("approved_by",approvedBy);
+            obj.put("requisitionID",reqID);
+            obj.put("remark",remark);
+            obj.put("outcome",outcome);
+            String json = obj.toString();
+            result = JSONParser.postStream(String.format("%s",approveRejectURL),json);
+
+        }catch(Exception e){
+            Log.e("Approve Reject Requisition","JSON Error");
+        }
+        return result;
+    }
 }
-
-
-//        String result = null;
-//
-//        try {
-//
-//            JSONObject reqDetailObj = new JSONObject();
-//            reqDetailObj.put("emp_id", empID);
-//            reqDetailObj.put("req_detail_list", reqDetailsArr);
-//            String json = reqDetailObj.toString();
-//
-//            System.out.println("JSON NEW REQ");
-//            System.out.println(json);
-//            //************ NEED URL TO POST TO SERVER
-//            result = JSONParser.postStream(String.format("%s", reqSendNewURL), json);
-//
-//        } catch (Exception e) {
-//            Log.e("Update Employee Profile", "JSON Error");
-//        }
-//
-//        System.out.println("JSON NEW REQ");
-//        System.out.println(result);
-//
-//        return result;
-//    }
-//}
-
-
