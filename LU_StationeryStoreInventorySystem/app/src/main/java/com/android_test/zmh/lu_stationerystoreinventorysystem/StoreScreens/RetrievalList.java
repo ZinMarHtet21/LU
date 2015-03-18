@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -57,7 +58,7 @@ public class RetrievalList extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
 
-         getData();
+        mRequestQueue.add(getRequest());
 
     }
 
@@ -115,10 +116,10 @@ public class RetrievalList extends ActionBarActivity {
             }
         });
         mRequestQueue.add(jsonRequest);
-        getData();
+        mRequestQueue.add(getRequest());
     }
 
-    private void getData(){
+    private JsonArrayRequest getRequest(){
 
         items = new ArrayList<RetrivalItem>();
         JsonArrayRequest jr = new JsonArrayRequest(url,new Response.Listener<JSONArray>() {
@@ -140,6 +141,8 @@ public class RetrievalList extends ActionBarActivity {
                 }
                 RetrivalListAdapter adapter = new RetrivalListAdapter(RetrievalList.this,items);
                 list.setAdapter(adapter);
+
+
                 list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -150,6 +153,11 @@ public class RetrievalList extends ActionBarActivity {
                         startActivity(i);
                     }
                 });
+                if (jsonArray.length() == 0){
+
+                    Toast.makeText(RetrievalList.this,"No retrieval form to be confirmed!",Toast.LENGTH_SHORT).show();
+                    btn_confirmCollect.setBackgroundColor(Color.LTGRAY);
+                }
 
 
             }
@@ -159,7 +167,7 @@ public class RetrievalList extends ActionBarActivity {
 
             }
         });
-        mRequestQueue.add(jr);
+       return jr;
     }
 
 }

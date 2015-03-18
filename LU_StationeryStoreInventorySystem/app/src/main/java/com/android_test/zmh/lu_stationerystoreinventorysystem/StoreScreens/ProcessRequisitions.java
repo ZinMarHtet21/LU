@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DownloadManager;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -51,7 +52,9 @@ public class ProcessRequisitions extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        getData();
+        JsonArrayRequest jr = getRequest();
+        mRequestQueue.add(jr);
+
     }
 
     @Override
@@ -64,7 +67,7 @@ public class ProcessRequisitions extends ActionBarActivity {
         itemPopulator = new ItemPopulator();
         mRequestQueue = Volley.newRequestQueue(this);
        list = (ListView) findViewById(R.id.item_list);
-        setButtonOnclick();
+
 
 
     }
@@ -103,7 +106,7 @@ public class ProcessRequisitions extends ActionBarActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         process();
                         Toast.makeText(ProcessRequisitions.this,"Process Successfully!",Toast.LENGTH_SHORT).show();
-                        getData();
+
 
                     }
                 }).setNegativeButton("Cancel",null).show();
@@ -126,9 +129,10 @@ public class ProcessRequisitions extends ActionBarActivity {
             }
         });
         mRequestQueue.add(jsonRequest);
+        mRequestQueue.add(getRequest());
     }
 
-    private void getData(){
+    private JsonArrayRequest getRequest(){
         JsonArrayRequest jr = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -138,13 +142,17 @@ public class ProcessRequisitions extends ActionBarActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                //    System.out.println(retrivalItems.get(1).toString());
-//                SimpleAdapter adapter = new SimpleAdapter(ProcessRequisitions.this,
-//                        retrivalItems, R.layout.row_retrivalitem,
-//                        new String[]{"description", "qty"},
-//                        new int[]{R.id.description, R.id.qty});
+
                 ProcessRequisitionAdapter adapter = new ProcessRequisitionAdapter(ProcessRequisitions.this, retrivalItems);
                 list.setAdapter(adapter);
+               if (response.length() == 0){
+
+                   Toast.makeText(ProcessRequisitions.this,"No requisitions to be processed!",Toast.LENGTH_SHORT).show();
+                   button.setBackgroundColor(Color.LTGRAY);
+               }
+                else {
+                   setButtonOnclick();
+               }
 
 
 
@@ -155,7 +163,8 @@ public class ProcessRequisitions extends ActionBarActivity {
                 // Log.i(TAG,error.getMessage());
             }
         });
-        mRequestQueue.add(jr);
+      //  mRequestQueue.add(jr);
+        return jr;
 
     }
 }
