@@ -12,9 +12,21 @@
     android:weightSum="1"
     android:background="@color/OurBackGroundColor">
 
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Disbursement List"
+            android:textColor="@color/OurTextColor"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/textView7" />
 
         <TableRow
             android:layout_width="match_parent"

@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.Main.MainActivity;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.R;
+import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.ApproveRejectStockAdjustment;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.CheckLowStockMain;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.CheckLowStockSearch;
 import com.android_test.zmh.lu_stationerystoreinventorysystem.StoreScreens.DisbursementDepartmentList;
@@ -25,7 +26,7 @@ public class ClerkMainScreen extends Activity implements AdapterView.OnItemClick
 
 
     String[] clerk_menu = {"Process Requisitions","Check Retrieval Form",
-            "Check Disbursement List","Check Stock","Check Purchase Order","Report Discrepancy","Update Profile","Logout"};
+            "Check Disbursement List","Check Stock","Check Purchase Order","Report Discrepancy","Check Adjustment Voucher","Update Profile","Logout"};
 
 
 
@@ -77,6 +78,10 @@ public class ClerkMainScreen extends Activity implements AdapterView.OnItemClick
         }else if(item.equals("Process Requisitions")){
             i = new Intent(this, ProcessRequisitions.class);
             startActivity(i);
+        }else if(item.equals("Check Adjustment Voucher")){
+          Intent b = new Intent(this, ApproveRejectStockAdjustment.class);
+            b.putExtra("from",2);
+            startActivity(b);
         }else if(item.equals("Logout")){
             new AlertDialog.Builder(this)
                     .setMessage("Are you sure you want to exit?")

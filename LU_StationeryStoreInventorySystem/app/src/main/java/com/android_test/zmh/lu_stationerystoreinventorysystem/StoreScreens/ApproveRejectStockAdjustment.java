@@ -27,6 +27,7 @@ import java.util.List;
 public class ApproveRejectStockAdjustment extends ActionBarActivity {
     AdjustmentPopulator obj = new AdjustmentPopulator();
     String status = "";
+    int from ;
     private ListView lv ;
     private MyAdapter myadapter;
 
@@ -38,8 +39,14 @@ public class ApproveRejectStockAdjustment extends ActionBarActivity {
         new AsyncTask<Void, Void, List<AdjustmentVoucher>>() {
             @Override
             protected List<AdjustmentVoucher> doInBackground(Void... params) {
+                if (from==1) {
 
-                return obj.populateSupervisorListFromWcf();
+                    return obj.populateSupervisorListFromWcf();
+                }else {
+
+                    return obj.populateAllListFromWcf();
+                }
+
 
             }
             @Override
@@ -54,6 +61,7 @@ public class ApproveRejectStockAdjustment extends ActionBarActivity {
                         Intent i = new Intent(ApproveRejectStockAdjustment.this,ApproveRejectStockAdjustmentDetail.class);
                         String vi =  ((AdjustmentVoucher) parent.getAdapter().getItem(position)).getVoucher_id();
                         i.putExtra("VoucherNo",  vi);
+                        i.putExtra("from",from);
 
                         startActivity(i);
                     }
@@ -71,6 +79,12 @@ public class ApproveRejectStockAdjustment extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approve_reject_stock_adjustment);
         lv = (ListView) findViewById(R.id.list_voucher);
+        Intent get = getIntent();
+        from = get.getIntExtra("from", 1);
+        if (from==2){
+            this.setTitle("Adjustment Voucher");
+        }
+
 
     }
 

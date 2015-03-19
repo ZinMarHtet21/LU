@@ -50,16 +50,31 @@ public class ApproveRejectStockAdjustmentDetail extends ActionBarActivity {
     private Button btn2;
     private TextView tv1 ;
     private ListView lv;
+    private int from;
     private AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approve_reject_stock_adjustment_detail);
+        if (getIntent()!= null) {
+
+            vi= getIntent().getSerializableExtra("VoucherNo").toString();
+            from = getIntent().getIntExtra("from",1);
+
+        }
+
 
 
         btn1 = (Button) findViewById(R.id.btApprove);
         btn2 = (Button) findViewById(R.id.btReject);
+        if (from == 2){
+            btn1.setVisibility(View.INVISIBLE);
+            btn2.setVisibility(View.INVISIBLE);
+            this.setTitle("Stock Adjustment Detail");
+        }
+
+
         tv1 = (TextView) findViewById(R.id.voucher_id);
 
         mRequestQueue = Volley.newRequestQueue(this);
@@ -92,11 +107,7 @@ public class ApproveRejectStockAdjustmentDetail extends ActionBarActivity {
 
 
 
-        if (getIntent()!= null) {
 
-            vi= getIntent().getSerializableExtra("VoucherNo").toString();
-
-        }
 
 
         new AsyncTask<Void, Void, List<AdjustmentVoucherDetail>>() {

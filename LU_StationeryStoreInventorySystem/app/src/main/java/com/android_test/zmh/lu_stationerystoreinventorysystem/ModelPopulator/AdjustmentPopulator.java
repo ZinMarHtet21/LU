@@ -27,6 +27,8 @@ public class AdjustmentPopulator implements IAdjustmentVoucher {
    private List<AdjustmentVoucher> managerlist= new LinkedList<AdjustmentVoucher>() ;
     private List<AdjustmentVoucher> supervisorlist = new LinkedList<AdjustmentVoucher>();
     public final static String baseurl = UrlManager.APIROOTURL+"stockAdjustmentApi/pending/";
+    public final static String baseurl2 = UrlManager.APIROOTURL+"stockAdjustmentApi/";
+
 
     @Override
     public List<AdjustmentVoucher> populateAdjustmentVoucher() {
@@ -140,6 +142,28 @@ public class AdjustmentPopulator implements IAdjustmentVoucher {
         }
         return list;
     }
+
+    public List<AdjustmentVoucher> populateAllListFromWcf() {
+        ArrayList<AdjustmentVoucher> list = new ArrayList<AdjustmentVoucher>();
+        JSONArray arr = JSONParser.getJSONArrayFromUrl(String.format("%s",baseurl2+"all"));
+
+        for (int i = 0; i<arr.length();i++){
+            try {
+                JSONObject jo = arr.getJSONObject(i);
+                AdjustmentVoucher ad = new AdjustmentVoucher();
+                ad.setVoucher_id(jo.getString("Adj_id"));
+                ad.setStatus(jo.getString("Status"));
+                ad.setDate(jo.getString("Date"));
+
+                list.add(ad);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+
     @Override
     public List<AdjustmentVoucherDetail> populateAdjustmentDetailFromWcf(String url){
         List<AdjustmentVoucherDetail> list = new ArrayList<AdjustmentVoucherDetail>();

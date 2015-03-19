@@ -17,5 +17,7 @@ public interface IAdjustmentVoucher {
     List<AdjustmentVoucher> populateSupervisorList();
     List<AdjustmentVoucher> populateManagerListFromWcf();
     List<AdjustmentVoucher> populateSupervisorListFromWcf();
+    public List<AdjustmentVoucher> populateAllListFromWcf();
     List<AdjustmentVoucherDetail>populateAdjustmentDetailFromWcf(String url);
+
 }
