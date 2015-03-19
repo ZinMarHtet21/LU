@@ -98,6 +98,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                                dialog.cancel();
                            }
                        });
+                       alertDialog.show();
+                       empNo.setText("");
+                       empPwd.setText("");
 //                    Toast.makeText(MainActivity.this,"EmployeeID or Password is wrong! Please try again!",Toast.LENGTH_SHORT).show();
                    }else{
                        if (emp.getType().equals("Clerk")) {

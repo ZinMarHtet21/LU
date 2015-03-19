@@ -49,10 +49,12 @@ public class RequisitionPopulator implements IRequisition {
                 Requisition req = new Requisition();
                 req.setId(obj.getString("requisition_id").toString());
                 String date = obj.getString("requisition_date").toString();
+                String remark = obj.getString("requisition_remark").toString();
                 String substringDate = date.substring(0, 10);
                 String formattedDate = dateFormatter(substringDate);
                 req.setDate(formattedDate);
                 req.setStatus(obj.getString("requisition_status").toString());
+                req.setRemark(remark);
                 list.add(req);
             }
 

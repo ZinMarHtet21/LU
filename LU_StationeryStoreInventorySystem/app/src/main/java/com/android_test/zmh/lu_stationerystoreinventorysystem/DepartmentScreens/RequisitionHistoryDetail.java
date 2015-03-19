@@ -38,22 +38,37 @@ public class RequisitionHistoryDetail extends ActionBarActivity {
 
     String req_id;
     String req_date;
+    String reason;
+    String status;
+
     TextView req_history_date;
     ListView lv;
+    TextView reasonTV;
+    TextView reasonLbl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requisition_history_detail);
+        reasonTV = (TextView)findViewById(R.id.reason_tv);
+        reasonLbl = (TextView)findViewById(R.id.reason_lbl);
         lv = (ListView) findViewById(R.id.listView_ReqDetails);
         req_history_date = (TextView)findViewById(R.id.req_history_date_tv);
+
 
         if (getIntent() != null) {
             req_id = getIntent().getStringExtra("req_id").toString();
             req_date = getIntent().getStringExtra("req_date").toString();
+            reason = getIntent().getStringExtra("req_reason").toString();
+            status = getIntent().getStringExtra("req_status").toString();
             String dateText = "Date : " + req_date;
             req_history_date.setText(dateText);
+            if(status.equals("Approved") || status.equals("Pending")){
+                reasonLbl.setVisibility(View.GONE);
+                reasonTV.setVisibility(View.GONE);
+            }
+            reasonTV.setText(reason);
         }
 
         //model.setRequisitionDetails();

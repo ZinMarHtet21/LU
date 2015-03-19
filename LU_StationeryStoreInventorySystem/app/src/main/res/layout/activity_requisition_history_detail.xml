@@ -26,5 +26,30 @@
         android:layout_below="@+id/req_history_date_tv"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:text="Reason : "
+        android:layout_marginLeft="45dp"
+        android:textStyle="bold"
+        android:id="@+id/reason_lbl"
+        android:layout_below="@+id/listView_ReqDetails"
+        android:layout_alignParentStart="true"
+        android:textColor="#ffe30017" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:id="@+id/reason_tv"
+        android:layout_below="@+id/listView_ReqDetails"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/req_history_date_tv"
+        android:layout_alignParentBottom="true"
+        android:textColor="#ffe30017" />
+
 
 </RelativeLayout>

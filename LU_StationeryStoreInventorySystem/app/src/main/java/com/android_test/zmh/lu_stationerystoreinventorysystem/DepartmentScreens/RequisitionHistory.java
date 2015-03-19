@@ -59,8 +59,12 @@ public class RequisitionHistory extends Activity {
                         Intent i = new Intent(RequisitionHistory.this, RequisitionHistoryDetail.class);
                         String req = ((Requisition) parent.getAdapter().getItem(position)).getId();
                         String req_date = ((Requisition)parent.getAdapter().getItem(position)).getDate();
+                        String reason = ((Requisition)parent.getAdapter().getItem(position)).getRemark();
+                        String status = ((Requisition)parent.getAdapter().getItem(position)).getStatus();
                         i.putExtra("req_date", req_date);
                         i.putExtra("req_id", req);
+                        i.putExtra("req_reason",reason);
+                        i.putExtra("req_status",status);
                         startActivity(i);
                     }
                 });
