@@ -107,6 +107,7 @@ public class ProcessRequisitions extends ActionBarActivity {
                         process();
                         Toast.makeText(ProcessRequisitions.this,"Process Successfully!",Toast.LENGTH_SHORT).show();
 
+                        finish();
 
                     }
                 }).setNegativeButton("Cancel",null).show();

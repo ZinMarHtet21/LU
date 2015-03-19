@@ -94,7 +94,7 @@ public class RetrievalList extends ActionBarActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         confirmCollect();
                         Toast.makeText(RetrievalList.this,"Confirm Successfully!",Toast.LENGTH_SHORT).show();
-
+                         finish();
                     }
                 }).setNegativeButton("Cancel",null).show();
 
@@ -116,7 +116,7 @@ public class RetrievalList extends ActionBarActivity {
             }
         });
         mRequestQueue.add(jsonRequest);
-        mRequestQueue.add(getRequest());
+     //   mRequestQueue.add(getRequest());
     }
 
     private JsonArrayRequest getRequest(){
