@@ -57,6 +57,8 @@ public class CheckLowStockSearch extends ActionBarActivity {
     private TextView text_reorderlevel;
     private TextView text_balance;
     private Button btn_submit;
+    private TextView text1;
+    private TextView text2;
     private EditText et_newBalance;
     private EditText et_reason;
 
@@ -85,6 +87,8 @@ public class CheckLowStockSearch extends ActionBarActivity {
         if (intent.getIntExtra("from", 1) == 2) {
             spinner_description.setVisibility(View.INVISIBLE);
             spinner_category.setVisibility(View.INVISIBLE);
+            text1.setVisibility(View.INVISIBLE);
+            text2.setVisibility(View.INVISIBLE);
             i = (Item) intent.getExtras().getSerializable("item");
             System.out.print(i.getId());
             this.setTitle(i.getDescription());
@@ -134,6 +138,9 @@ public class CheckLowStockSearch extends ActionBarActivity {
         btn_submit = (Button) findViewById(R.id.submit);
         et_newBalance = (EditText) findViewById(R.id.newbalance);
         et_reason = (EditText) findViewById(R.id.reason);
+        text1 =(TextView)findViewById(R.id.text1);
+        text2 =(TextView)findViewById(R.id.text2);
+
 
     }
 
