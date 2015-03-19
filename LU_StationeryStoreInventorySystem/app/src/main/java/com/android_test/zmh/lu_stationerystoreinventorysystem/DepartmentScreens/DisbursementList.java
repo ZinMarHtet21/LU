@@ -73,6 +73,9 @@ public class DisbursementList extends ActionBarActivity {
             }
             @Override
             protected void onPostExecute(List<DisbursementItem> result) {
+
+                System.out.println("DISBLIST*****");
+                System.out.println(disbList.toString());
                 myadapter = new Myadapter(DisbursementList.this, result);
                 disburment_lv.setAdapter(myadapter);
             }
@@ -90,7 +93,7 @@ public class DisbursementList extends ActionBarActivity {
 
                 final EditText new_qty = (EditText) promptsView
                         .findViewById(R.id.new_qty_et);
-                new_qty.setText(Integer.toString(disbList.get(position).getItem_qty()));
+                new_qty.setText(Integer.toString(disbList.get(position).getItem_actual()));
 
                 // set dialog message
                 alertDialogBuilder
@@ -100,8 +103,9 @@ public class DisbursementList extends ActionBarActivity {
                                     public void onClick(DialogInterface dialog, int id) {
                                         // get user input and set it to result
                                         // edit text
-                                           DisbursementItem element = (DisbursementItem) myadapter.getItem(position);
-                                        element.setItem_qty(Integer.parseInt(new_qty.getText().toString()));
+                                        DisbursementItem element = (DisbursementItem) myadapter.getItem(position);
+                                        element.setItem_actual(Integer.parseInt(new_qty.getText().toString()));
+                                        System.out.print("element"+element.getItem_actual());
 
                                        // element.setLblactual(Integer.parseInt(new_qty.getText().toString()));
                                         //new_qty.setText(Integer.toString(element.getItem_actual()));
@@ -134,10 +138,15 @@ public class DisbursementList extends ActionBarActivity {
     }
 
     public List<DisbursementItemList> changeDisbursementItemToList(List<DisbursementItem> disbItems){
+        System.out.println("COVERT disbItems");
+        System.out.println(disbItems.toString());
+
         List<DisbursementItemList> disbItemList = new ArrayList<DisbursementItemList>();
         for(DisbursementItem d:disbItems){
-            disbItemList.add(new DisbursementItemList(d.getItem_code(),d.getItem_qty()));
+            disbItemList.add(new DisbursementItemList(d.getItem_code(),d.getItem_actual()));
         }
+        System.out.println("CONVERT disbItemList");
+        System.out.println(disbItemList.toString());
         return disbItemList;
     }
 
@@ -151,7 +160,6 @@ public class DisbursementList extends ActionBarActivity {
         final EditText remarkET = (EditText) promptsView
                 .findViewById(R.id.remark_et);
 
-        // set dialog message
         alertDialogBuilder
                 .setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -170,27 +178,6 @@ public class DisbursementList extends ActionBarActivity {
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
-//    public void sendReceiveDisbursementList(){
-//              jsonUpdateResult = disbPopulator.receiveDisbursementList(MainActivity.emp.getDepartmentID(),remark,disbItemList);
-//        Log.i("jsonResult",jsonUpdateResult.toString());
-////        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,receiveDisbURL, jsonUpdateResult,new Response.Listener<JSONObject>() {
-////            @Override
-////            public void onResponse(JSONObject jsonObject) {
-////                System.out.println(jsonObject);
-////            }
-////        },new Response.ErrorListener() {
-////            @Override
-////            public void onErrorResponse(VolleyError volleyError) {
-////
-////            }
-////        })
-////        {
-////        };
-////
-////        requestQueue.add(request);
-//
-//    }
-
 
 
     public void sendReceiveDisbursementList(){
@@ -261,7 +248,7 @@ public class DisbursementList extends ActionBarActivity {
             TextView tv2 = (TextView) v.findViewById(R.id.itemQty_et);
 
             tv1.setText(list.get(position).getItem_desc());
-            tv2.setText(Integer.toString(list.get(position).getItem_qty()));
+            tv2.setText(Integer.toString(list.get(position).getItem_actual()));
 
             return v;
         }

@@ -51,50 +51,6 @@ public class DisbursementPopulator implements IDisbursement {
         return(list);
    }
 
-//    @Override
-//    public JSONObject receiveDisbursementList(int deptID, String remark, List<DisbursementItemList> disbList) {
-//     //   String result = null;
-//       // String json = null;
-//        if(remark.equals("")){
-//            remark = "Received no remark";
-//        }
-//
-//        System.out.println("RECEIVE DISBURSEMENT LIST");
-//        System.out.println("DEPT ID : " + deptID);
-//        System.out.println("REMARK : " + remark);
-//        System.out.println("DISBURSEMENT LIST : " + disbList.toString());
-//        JSONObject obj = new JSONObject();
-//        JSONArray arr = new JSONArray();
-//        try{
-//
-//            obj.put("departmentID",deptID);
-//            obj.put("remark",remark);
-//
-//            for(int i =0; i<disbList.size();i++){
-//
-//                JSONObject itemdetail = new JSONObject();
-//                itemdetail.put("itemCode",disbList.get(i).getItemCode());
-//                itemdetail.put("lblAcutal",disbList.get(i).getLblAcutal());
-//
-//                arr.put(obj);
-//            }
-//            obj.put("list",arr);
-//
-//          //  obj.put("list",disbList);
-//          //  json = obj.toString();
-//           // result = JSONParser.postStream(String.format("%s",receiveDisbURL),json);
-//        }catch(Exception e){
-//            Log.e("Receive Disbursement List", "JSON Error");
-//        }
-//        Log.i("Json",obj.toString());
-//
-//        System.out.println("CONVERTED JSON");
-//        System.out.println(obj);
-//
-//        return obj;
-//    }
-
-//
     @Override
     public String receiveDisbursementList(int deptID, String remark, List<DisbursementItemList> disbList) {
         String result = null;
@@ -118,15 +74,25 @@ public class DisbursementPopulator implements IDisbursement {
             for(int i =0; i<disbList.size();i++){
 
                 String itemcode = disbList.get(i).getItemCode();
-                String lalActual = String.valueOf(disbList.get(i).getLblAcutal());
+//                String lblActual = String.valueOf(disbList.get(i).getLblAcutal());
+//                String lblActual = disbList.get(i).getLblAcutal();
+                System.out.println("ITEMCODE *** " + itemcode);
+                System.out.println("LBL ***** " + disbList.get(i).getLblAcutal());
 
                 JSONObject itemdetail = new JSONObject();
                 itemdetail.put("itemCode",itemcode);
-                itemdetail.put("lblAcutal",lalActual);
 
+                int value = disbList.get(i).getLblAcutal();
+                itemdetail.put("lblAcutal",value);
+
+                System.out.println("ITEM DETAIL******");
+                System.out.println(itemdetail.toString());
                 jar.put(itemdetail);
             }
            obj.put("list",jar);
+
+           
+
          //   System.out.print("JSONSSSSS"+obj.toString());
 
          //   obj.put("list",disbList);
